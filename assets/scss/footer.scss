@@ -1,0 +1,129 @@
+.site-footer {
+	line-height: 1.642;
+	color: #9b9b9b;
+	.top-footer {
+		background-color: #1a1a1a;
+		padding: 87px 0 25px;
+		position: relative;
+		.footer-widget-title {
+			font-size: 14px;
+			color: #fff;
+			margin-bottom: 18px;
+		}
+		@media #{$max-sm} {
+			.cms-footer-item + .cms-footer-item {
+				margin-top: 45px;
+			}
+		}
+		.footer-divider {
+			top: -30px;
+			z-index: 99;
+		}
+	}
+	.middle-footer {
+		background-color: #1a1a1a;
+		padding-top: 22px;
+		padding-bottom: 90px;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+		.middle-footer-holder {
+			max-width: 530px;
+			padding: 0 15px;
+			margin: auto;
+			font-size: 15px;
+			line-height: 23px;
+		}
+		.footer-logo {
+			margin-bottom: 17px;
+		}
+		.footer-about {
+			margin-bottom: 24px;
+		}
+		.middle-footer-logo-overlay {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			@include transform(translate(-50%, 0));
+			margin: auto;
+			z-index: -1;
+			&:before, &:after {
+				content: '';
+				height: 1px;
+				background-color: #2d2d2d;
+				position: absolute;
+				top: 50%;
+				@include transform(translate(0, -50%));
+				width: 5000px;
+			}
+			&:before {
+				right: calc(100% + 35px);
+				right: -webkit-calc(100% + 35px);
+				right: -ms-calc(100% + 35px);
+				right: -o-calc(100% + 35px);
+			}
+			&:after {
+				left: calc(100% + 35px);
+				left: -webkit-calc(100% + 35px);
+				left: -ms-calc(100% + 35px);
+				left: -o-calc(100% + 35px);
+			}
+		}
+	}
+	.bottom-footer {
+		background-color: #1b1b1b;
+		font-size: 13px;
+		padding: 34px 0;
+		position: relative;
+		z-index: 2;
+		&:before {
+			content: '';
+			width: 140px;
+			height: 17px;
+			background-image: url(../images/divider-footer.png);
+			background-repeat: no-repeat;
+			position: absolute;
+			left: 0;
+			right: 0;
+			margin: auto;
+			top: -17px;
+		}
+		.bottom-social {
+			a {
+				font-size: 18px;
+				color: #fff;
+				display: inline-block;
+				margin: 16px 10px 0 10px;
+				&:hover {
+					color: $primary_color;
+				}
+			}
+		}
+	}
+}
+.scroll-top {
+	position: fixed;
+	z-index: 99;
+	bottom: 24px;
+	right: 30px;
+	height: 47px;
+	width: 47px;
+	line-height: 47px;
+	text-align: center;
+	background-color: $primary_color;
+	@include border-radius(2px);
+	color: #fff;
+	font-size: 22px;
+	opacity: 0;
+	visibility: hidden;
+	&:hover, &:focus, &:active {
+		color: #fff;
+		background-color: darken($primary_color, 0.08);
+	}
+	&.on {
+		bottom: 44px;
+		opacity: 1;
+		visibility: visible;
+	}
+}
