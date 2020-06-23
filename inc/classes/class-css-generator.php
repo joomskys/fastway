@@ -149,10 +149,12 @@ class CSS_Generator {
         $thirdary_color         = 'var(--thirdary-color)';
         $fourth_color           = 'var(--fourth-color)';
         printf('$primary_color:%s;',$primary_color);
+        printf('$primary_color_o:%s;',fastway_configs('primary_color'));
         printf('$accent_color:%s;',$accent_color);
         printf('$darkent_accent_accent:%s;',$darkent_accent_accent);
         printf('$lightent_accent_accent:%s;',$lightent_accent_accent);
         printf('$secondary_color:%s;',$secondary_color);
+        printf('$secondary_color_o:%s;',fastway_configs('secondary_color'));
         printf('$thirdary_color:%s;',$thirdary_color);
         printf('$fourth_color:%s;',$fourth_color);
         printf('$invalid_color:%s;',fastway_configs('invalid_color'));
@@ -182,6 +184,7 @@ class CSS_Generator {
 		}
 
 		/* Font */
+		printf('$BodyFont:%s;', fastway_configs('body_font'));
 		printf('$body_default_font:%s;', fastway_configs('body_font'));
 		printf('$heading_default_font:%s;', fastway_configs('heading_font'));
 		printf('$sub_heading_default_font:%s;', fastway_configs('heading_font'));

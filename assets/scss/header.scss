@@ -53,7 +53,7 @@
 				background-color: $primary_color;
 				display: inline-block;
 				&:hover {
-					background-color: darken($primary_color, 0.08);
+					//background-color: darken($primary_color, 0.08);
 					color: #fff;
 				}
 			}
@@ -264,9 +264,6 @@
 	}
 }
 
-@media #{$max-md} {
-	
-}
 // Header Sticky
 //--------------------------------------------------
 #site-header {

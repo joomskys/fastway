@@ -11,7 +11,7 @@ if(!function_exists('fastway_configs')){
             'primary_color'         => '#303030',
             'accent_color'          => '#f5b91b',
             'secondary_color'       => '#e6a423',
-            'thirdary_color'        => '#5580ff',
+            'thirdary_color'        => '#020d26',
             'fourth_color'          => '#3b2e4d',
             'darkent_accent_color'  => '#e6a423',
             'lightent_accent_color' => '#ffdd65',
@@ -43,7 +43,7 @@ if(!function_exists('fastway_configs')){
             'heading_color_hover'   => 'var(--accent-color)',
             'heading_font_weight'   => 600,
             'meta_font'             => '\'Poppins\', sans-serif',    
-            'meta_color'            => '#777777',    
+            'meta_color'            => '#484848',    
             'meta_color_hover'      => 'var(--accent-color)',
             'text-grey'            => '#b0b0b0',
             // Boder
@@ -632,3 +632,26 @@ function fastway_inline_styles() {
     );
     return ob_get_clean();
 }
+
+/**
+ * Incudes file
+ *
+*/
+if(!function_exists('fastway_require_folder')){
+    function fastway_require_folder($foldername,$path)
+    {
+        $dir = $path . DIRECTORY_SEPARATOR . $foldername;
+        if (!is_dir($dir)) {
+            return;
+        }
+        $files = array_diff(scandir($dir), array('..', '.'));
+        foreach ($files as $file) {
+            $patch = $dir . DIRECTORY_SEPARATOR . $file;
+            if (file_exists($patch) && strpos($file, ".php") !== false) {
+                require_once $patch;
+            }
+        }
+    }
+}
+
+fastway_require_folder('inc/extends', get_template_directory());

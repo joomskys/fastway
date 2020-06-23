@@ -23,6 +23,8 @@
  * Custom Boostrap Grid breakpoint
  * Need add it before load boostrap grid
 */
+@import "variables";
+
 $grid-breakpoints: (
   xxs: 0,
   xs: 480px,
@@ -32,10 +34,14 @@ $grid-breakpoints: (
   xl: 1200px
 ) !default;
 
+$theme-colors: (
+	"primary":    $primary_color_o,
+    "secondary":  $secondary_color_o,
+) !default;
+
 @import 'bootstrap/bootstrap-grid';
 
 /*--------------------------------------------------------------*/
-@import "variables";
 @import "colors";
 @import "mixins";
 

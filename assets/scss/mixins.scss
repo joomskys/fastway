@@ -444,10 +444,6 @@ $mm-lg: "(min-width: 992px) and (max-width: 1199px)";
 $mm-lg2: "(min-width: 992px) and (max-width: 1280px)";
 $mm-xl: "(min-width: 1200px) and (max-width: 1400px)";
 
-/* Custom Mixin */
-$color_dark: #282828;
-$color_dark2: #222;
-
 /* Set Font Default */
 @mixin font-family-default($body_default_font) {
   @if ($body_default_font == 'Rubik') {

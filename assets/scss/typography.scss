@@ -2,6 +2,7 @@ html {
     box-sizing: border-box;
 }
 body {
+  font-family: $BodyFont;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

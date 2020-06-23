@@ -119,7 +119,7 @@
 	visibility: hidden;
 	&:hover, &:focus, &:active {
 		color: #fff;
-		background-color: darken($primary_color, 0.08);
+		//background-color: darken($primary_color, 0.08);
 	}
 	&.on {
 		bottom: 44px;
