@@ -1,0 +1,15 @@
+.site-branding{
+	.logo-light{
+		display: inline-block;
+	}
+	.logo-dark, .logo-mobile {
+		position: absolute;
+		top: 50%;
+		@include transform(translate(0, -50%));
+		left: 0;
+		opacity: 0;
+	}
+	img {
+		vertical-align: middle;
+	}
+}

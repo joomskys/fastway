@@ -1166,6 +1166,45 @@ if(!function_exists('fastway_header_top_text')){
         echo '</'.$args['tag'].'>';
     }
 }
+if(!function_exists('fastway_header_top_quick_contact')){
+    function fastway_header_top_quick_contact($args=[]){
+        $args = wp_parse_args($args,[
+            'before' => '',
+            'after'  => '',
+            'tag'    => 'div',
+            'class'  => ''
+        ]);
+        $phone_label   = fastway_get_opts('phone_label','');
+        $phone_number  = fastway_get_opts('phone_number','');
+        $email_label   = fastway_get_opts('email_label','');
+        $email_address = fastway_get_opts('email_address','');
+        $time_label    = fastway_get_opts('time_label','');
+        $time          = fastway_get_opts('time','');
+        // html
+        if(!empty($args['before']))  echo wp_kses_post($args['before']);
+            echo '<'.$args['tag'].' class="'.implode(' ', ['cms-quick-contact', $args['class']]).'">';
+                if(!empty($phone_label) || !empty($phone_number)){
+                    echo '<div class="qc-item qc-phone">';
+                        if(!empty($phone_label)) echo '<span class="qc-labelr phone-label">'.esc_html($phone_label).'</span>';
+                        if(!empty($phone_number)) echo '<span class="qc-value phone-number">'.esc_html($phone_number).'</span>';
+                    echo '</div>';
+                }
+                if(!empty($email_label) || !empty($email_address)) {
+                    echo '<div class="qc-item qc-email">';
+                        if(!empty($email_label)) echo '<span class="qc-labelr email-label">'.esc_html($email_label).'</span>';
+                        if(!empty($email_address)) echo '<span class="qc-value email-address">'.esc_html($email_address).'</span>';
+                    echo '</div>';
+                }
+                if(!empty($time_label) || !empty($time)){
+                    echo '<div class="qc-item qc-email">';
+                        if(!empty($time_label)) echo '<span class="qc-labelr time-label">'.esc_html($time_label).'</span>';
+                        if(!empty($time)) echo '<span class="qc-value time">'.esc_html($time).'</span>';
+                    echo '</div>';
+                }
+            echo '</'.$args['tag'].'>';
+        if(!empty($args['after'])) echo wp_kses_post($args['after']);
+    }
+}
 if(!function_exists('fastway_header_top_social')){
     function fastway_header_top_social($args=[]) {
         $args = wp_parse_args($args, [
@@ -1199,6 +1238,7 @@ if(!function_exists('fastway_header_top')){
             <div class="row justify-content-center justify-content-lg-end">
                 <div class="col-auto"><?php
                     fastway_header_top_social(['tag' => 'span']);
+                    fastway_header_top_quick_contact(['tag' => 'span', 'class' => 'd-inline-block vertical']);
                     fastway_header_top_text(['tag' => 'span']);
                 ?></div>
             </div>

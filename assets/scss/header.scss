@@ -7,19 +7,9 @@
 		align-items: center;
 	}
 	.site-branding {
-		margin: 15px;
+		margin: 10px 15px;
 		position: relative;
 		flex-grow: 1;
-		img {
-			//max-height: 35px;
-		}
-		.logo-dark, .logo-mobile {
-			position: absolute;
-			top: 50%;
-			@include transform(translate(0, -50%));
-			left: 0;
-			opacity: 0;
-		}
 	}
 	.site-menu-right {
 		display: flex;
@@ -117,89 +107,6 @@
 			margin: 0 15px;
 			display: flex;
 			align-items: center;
-		}
-		#site-header {
-			&.h-fixed {
-				.primary-menu > li > a, .site-menu-right {
-					line-height: 80px;
-				}
-			}
-		}
-		&.header-layout1 {
-			.site-header-main {
-				&:not(.h-fixed) {
-					border-bottom: 1px solid rgba(#fff, 0.1);
-				}
-				&.h-fixed {
-					.primary-menu > li > a:before {
-						bottom: 0;
-					}
-				}
-			}
-		}
-		&.header-layout2 {
-			.site-branding {
-				margin: 30px 15px 8px 15px;
-				display: inline-block;
-				.logo-light {
-					display: none;
-				}
-				.logo-dark {
-					opacity: 1;
-					position: static;
-				}
-			}
-			.norow {
-				margin: 0 -15px;
-				text-align: center;
-			}
-			.site-navigation {
-				justify-content: center;
-			}
-			.main-navigation {
-				text-align: left;
-			}
-			.primary-menu > li > a {
-				line-height: 75px;
-				&:before {
-					bottom: auto;
-					top: 50%;
-				}
-			}
-			.site-menu-right {
-				margin-left: 17px;
-				line-height: 75px;
-			}
-			#site-header.h-fixed {
-				.site-branding {
-					display: none;
-				}
-			}
-		}
-		&.header-layout3 {
-			.primary-menu > li > a {
-				&:before {
-					top: 50%;
-					bottom: auto;
-				}
-			}
-			.site-menu-right {
-				margin-left: 17px;
-			}
-			.site-menu-social {
-				margin-left: 20px;
-			}
-		}
-		&.header-layout4 {
-			.site-branding {
-				.logo-light {
-					display: none;
-				}
-				.logo-dark {
-					opacity: 1;
-					position: static;
-				}
-			}
 		}
 		&.header-transparent {
 			position: absolute;
