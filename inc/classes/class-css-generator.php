@@ -162,25 +162,33 @@ class CSS_Generator {
         printf('$color_green:%s;',fastway_configs('color_green'));
         printf('$white:%s;',fastway_configs('white'));
 
-		$link_color = fastway_get_opt( 'link_color', '#ff5e14' );
+        // Typography
+        printf('$h1_size:%s;',fastway_configs('h1_size'));
+        printf('$h2_size:%s;',fastway_configs('h2_size'));
+        printf('$h3_size:%s;',fastway_configs('h3_size'));
+        printf('$h4_size:%s;',fastway_configs('h4_size'));
+        printf('$h5_size:%s;',fastway_configs('h5_size'));
+        printf('$h6_size:%s;',fastway_configs('h6_size'));
+
+		$link_color = fastway_get_opt( 'link_color', '#333' );
 		if ( ! empty( $link_color['regular'] ) && isset( $link_color['regular'] ) ) {
 			printf( '$link_color: %s;', esc_attr( $link_color['regular'] ) );
 		} else {
-			echo '$link_color: #ff5e14;';
+			echo '$link_color: #333;';
 		}
 
-		$link_color_hover = fastway_get_opt( 'link_color', '#a68046' );
+		$link_color_hover = fastway_get_opt( 'link_color', 'var(-accent-color)' );
 		if ( ! empty( $link_color['hover'] ) && isset( $link_color['hover'] ) ) {
 			printf( '$link_color_hover: %s;', esc_attr( $link_color['hover'] ) );
 		} else {
-			echo '$link_color_hover: #a68046;';
+			echo '$link_color_hover: var(--accent-color);';
 		}
 
-		$link_color_active = fastway_get_opt( 'link_color', '#a68046' );
+		$link_color_active = fastway_get_opt( 'link_color', 'var(--accent-color)' );
 		if ( ! empty( $link_color['active'] ) && isset( $link_color['active'] ) ) {
 			printf( '$link_color_active: %s;', esc_attr( $link_color['active'] ) );
 		} else {
-			echo '$link_color_active: #a68046;';
+			echo '$link_color_active: var(--accent-color);';
 		}
 
 		/* Font */

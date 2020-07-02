@@ -181,23 +181,13 @@ Redux::setSection($opt_name, array(
 # Header
 --------------------------------------------------------------*/
 
+Redux::setSection($opt_name, fastway_header_opts());
+
 Redux::setSection($opt_name, array(
-    'title'  => esc_html__('Header', 'fastway'),
-    'icon'   => 'el-icon-website',
-    'fields' => array(
-        array(
-            'id'       => 'header_layout',
-            'type'     => 'image_select',
-            'title'    => esc_html__('Layout', 'fastway'),
-            'subtitle' => esc_html__('Select a layout for header.', 'fastway'),
-            'options'  => array(
-                '1' => get_template_directory_uri() . '/assets/images/header-layout/h1.jpg',
-                '2' => get_template_directory_uri() . '/assets/images/header-layout/h2.jpg',
-                '3' => get_template_directory_uri() . '/assets/images/header-layout/h3.jpg',
-                '4' => get_template_directory_uri() . '/assets/images/header-layout/h4.jpg',
-            ),
-            'default'  => '1'
-        ),
+    'title'      => esc_html__('Header Attribute', 'fastway'),
+    'icon'       => 'el-icon-website',
+    'subsection' => true,
+    'fields'     => array(
         array(
             'id'       => 'sticky_on',
             'type'     => 'switch',
@@ -219,8 +209,13 @@ Redux::setSection($opt_name, array(
         ),
     )
 ));
-
-
+/**
+ * Header Top
+*/
+Redux::setSection($opt_name, fastway_header_top_opts());
+/**
+ * Logo 
+**/
 Redux::setSection($opt_name, array(
     'title'      => esc_html__('Logo', 'fastway'),
     'icon'       => 'el el-picture',
@@ -422,30 +417,7 @@ Redux::setSection($opt_name, array(
     'icon'   => 'el el-share',
     'subsection' => true,
     'fields' => array(
-        array(
-            'id'      => 'social_list',
-            'type'    => 'sorter',
-            'title'   => 'Social',
-            'desc'    => 'Choose which social networks are displayed and edit where they link to.',
-            'options' => array(
-                'enabled'  => array(
-                    'google-plus'        => 'Google',
-                    'twitter'       => 'Twitter',
-                    'facebook'      => 'Facebook',
-                    'instagram'     => 'Instagram',
-                ),
-                'disabled' => array(
-                    'tripadvisor'   => 'Tripadvisor',
-                    'youtube'       => 'Youtube',
-                    'vimeo'         => 'Vimeo',
-                    'tumblr'        => 'Tumblr',
-                    'pinterest'     => 'Pinterest',
-                    'yelp'          => 'Yelp',
-                    'skype'         => 'Skype',
-                    'linkedin'      => 'Linkedin',
-                )
-            ),
-        ),
+        fastway_social_list_opts()
     )
 ));
 
@@ -788,7 +760,7 @@ Redux::setSection($opt_name, array(
                 '3'  => esc_html__('3 Column', 'fastway'),
                 '4'  => esc_html__('4 Column', 'fastway'),
             ),
-            'default'  => '3',
+            'default'  => '4',
         ),
         array(
             'id'    => 'footer_top_color',
@@ -987,31 +959,7 @@ Redux::setSection($opt_name, array(
             'id' => 'footer_social',
             'indent' => true,
         ),
-
-        array(
-            'id'      => 'f_social_list',
-            'type'    => 'sorter',
-//            'title'   => 'Social',
-            'desc'    => 'Choose which social networks are displayed and edit where they link to.',
-            'options' => array(
-                'enabled'  => array(
-                    'google-plus'   => 'Google',
-                    'twitter'       => 'Twitter',
-                    'facebook'      => 'Facebook',
-                    'instagram'     => 'Instagram',
-                ),
-                'disabled' => array(
-                    'tripadvisor'   => 'Tripadvisor',
-                    'youtube'       => 'Youtube',
-                    'vimeo'         => 'Vimeo',
-                    'tumblr'        => 'Tumblr',
-                    'pinterest'     => 'Pinterest',
-                    'yelp'          => 'Yelp',
-                    'skype'         => 'Skype',
-                    'linkedin'      => 'Linkedin',
-                )
-            ),
-        ),
+        fastway_social_list_opts(['param_name' => 'f_social_list'])
     )
 ));
 
@@ -1025,20 +973,34 @@ Redux::setSection($opt_name, array(
     'icon'   => 'el-icon-file-edit',
     'fields' => array(
         array(
+            'id'          => 'accent_color',
+            'type'        => 'color',
+            'title'       => esc_html__('Accent Color', 'fastway'),
+            'transparent' => false,
+            'default'     => ''
+        ),
+        array(
             'id'          => 'primary_color',
             'type'        => 'color',
             'title'       => esc_html__('Primary Color', 'fastway'),
             'transparent' => false,
-            'default'     => '#ff5e14'
+            'default'     => ''
+        ),
+        array(
+            'id'          => 'secondary_color',
+            'type'        => 'color',
+            'title'       => esc_html__('Secondary Color', 'fastway'),
+            'transparent' => false,
+            'default'     => ''
         ),
         array(
             'id'      => 'link_color',
             'type'    => 'link_color',
             'title'   => esc_html__('Link Colors', 'fastway'),
             'default' => array(
-                'regular' => '#ff5e14',
-                'hover'   => '#a68046',
-                'active'  => '#a68046'
+                'regular' => '',
+                'hover'   => '',
+                'active'  => ''
             ),
             'output'  => array('a')
         )

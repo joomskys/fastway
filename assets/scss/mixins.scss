@@ -236,7 +236,7 @@
     }
 
     @else {
-        @include css3-prefix('transition', $what: all, $length: 1s, $easing: ease-in-out);
+        @include css3-prefix('transition', 'all 300ms ease-in-out');
     }
 }
 
@@ -464,4 +464,10 @@ $mm-xl: "(min-width: 1200px) and (max-width: 1400px)";
 }
 .ft-heading {
   @include font-family-heading($heading_default_font);
+}
+
+// font icon
+@mixin font-awesome($icon){
+  font-family: FontAwesome;
+  content: $icon;
 }

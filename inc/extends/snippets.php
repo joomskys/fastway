@@ -101,7 +101,7 @@ function fastway_get_content_link( $args = []){
         'content' => '',
         'class'   => 'content-link btn btn-pri',
         'target'  => '_blank',
-        'prefix'  => esc_html__('Visit','ef5-frame'),
+        'prefix'  => esc_html__('Visit','fastway'),
         'echo'    => true
     ]);
     $link = $title = '';

@@ -8,42 +8,45 @@
 if(!function_exists('fastway_configs')){
     function fastway_configs($value){
         $configs = [
-            'primary_color'         => '#303030',
-            'accent_color'          => '#f5b91b',
-            'secondary_color'       => '#e6a423',
-            'thirdary_color'        => '#020d26',
-            'fourth_color'          => '#3b2e4d',
-            'darkent_accent_color'  => '#e6a423',
-            'lightent_accent_color' => '#ffdd65',
+            //accent color
+            'accent_color'          => '#ff5e14',
+            'darkent_accent_color'  => '#020d26',
+            'lightent_accent_color' => '#020d26',
+            // others colors
+            'primary_color'         => '#1a1a1a',
+            'secondary_color'       => '#020d26',
+            'thirdary_color'        => '#484848',
+            'fourth_color'          => '#a1a1a1',
+            //others colors
             'invalid_color'         => 'red',
             'color_red'             => 'red',
             'color_green'           => 'green',
             'white'                 => 'white',
             // Typo
-            'google_fonts'          => 'Poppins:300,400,500,600,700',
+            'google_fonts'          => 'Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i',
             'body_bg'               => '#fff',
             'body_font'             => '\'Poppins\', sans-serif',
-            'body_font_size'        => '15px',
+            'body_font_size'        => '14px',
             'body_font_size_large'  => '18px',
             'body_font_size_medium' => '16px',
-            'body_font_size_small'  => '14px',
-            'body_font_size_xsmall' => '13px',
-            'body_font_size_xxsmall'=> '12px',
-            'body_font_color'       => '#303030',
-            'body_line_height'      => '1.6',
+            'body_font_size_small'  => '13px',
+            'body_font_size_xsmall' => '12px',
+            'body_font_size_xxsmall'=> '11px',
+            'body_font_color'       => 'var(--secondary-color)',
+            'body_line_height'      => '1.42857143',
             'content_width'         => 1170,
-            'h1_size'               => '36px',
-            'h2_size'               => '30px',
-            'h3_size'               => '22px',
+            'h1_size'               => '45px',
+            'h2_size'               => '35px',
+            'h3_size'               => '24px',
             'h4_size'               => '18px',
             'h5_size'               => '16px',
             'h6_size'               => '14px',
-            'heading_font'          => '\'Poppins\', sans-serif',
+            'heading_font'          => '\'Roboto\', sans-serif',
             'heading_color'         => 'var(--primary-color)',
             'heading_color_hover'   => 'var(--accent-color)',
             'heading_font_weight'   => 600,
             'meta_font'             => '\'Poppins\', sans-serif',    
-            'meta_color'            => '#484848',    
+            'meta_color'            => 'var(--secondary-color)',    
             'meta_color_hover'      => 'var(--accent-color)',
             'text-grey'            => '#b0b0b0',
             // Boder
@@ -51,11 +54,11 @@ if(!function_exists('fastway_configs')){
             'main_border2'          => '2px solid #DDDDDD', 
             'main_border_color'     => '#DDDDDD', 
             // Thumbnail Size
-            'large_size_w'                   => 770,
-            'large_size_h'                   => 353,
-            'medium_size_w'                  => 370,
-            'medium_size_h'                  => 250,
-            'thumbnail_size_w'               => 86,
+            'large_size_w'                   => 750,
+            'large_size_h'                   => 450,
+            'medium_size_w'                  => 380,
+            'medium_size_h'                  => 272,
+            'thumbnail_size_w'               => 100,
             'thumbnail_size_h'               => 80,
             'post_thumbnail_size_w'          => 1170,
             'post_thumbnail_size_h'          => 500,
@@ -68,9 +71,9 @@ if(!function_exists('fastway_configs')){
             'main_menu_height' => '100px',
             'header_sidewidth' => '320px',
             // Menu Color
-            'menu_link_color_regular' => 'var(--primary-color)',
-            'menu_link_color_hover' => 'var(--accent-color)',
-            'menu_link_color_active' => 'var(--accent-color)',
+            'main_menu_color_regular' => 'var(--primary-color)',
+            'main_menu_color_hover' => 'var(--accent-color)',
+            'main_menu_color_active' => 'var(--accent-color)',
             // Menu Ontop Color
             'ontop_link_color_regular' => 'var(--primary-color)',
             'ontop_link_color_hover' => 'var(--accent-color)',
@@ -80,8 +83,8 @@ if(!function_exists('fastway_configs')){
             'sticky_link_color_hover' => 'var(--accent-color)',
             'sticky_link_color_active' => 'var(--accent-color)',
             // Dropdown
-            'dropdown_bg'      => 'rgba(0,0,0, 1)',
-            'dropdown_regular' => '#c0c0c0',
+            'dropdown_bg'      => '#ffffff',
+            'dropdown_regular' => '#000000',
             'dropdown_hover'   => 'var(--accent-color)',
             'dropdown_active'  => 'var(--accent-color)',
             // Comments 
@@ -156,6 +159,8 @@ if ( ! function_exists( 'fastway_setup' ) ) :
 			'comment-list',
 			'gallery',
 			'caption',
+            'script',
+            'style'
 		) );
 
 		// Set up the WordPress core custom background feature.
@@ -180,7 +185,6 @@ if ( ! function_exists( 'fastway_setup' ) ) :
 		) );
         // Enable support for Post Thumbnails on posts and pages.
         add_theme_support('post-thumbnails');
-        add_image_size( 'thumbnail-small', 160, 160, true );
 
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'wc-product-gallery-zoom' );
@@ -238,10 +242,10 @@ function fastway_widgets_init() {
 		'name'          => esc_html__( 'Blog Sidebar', 'fastway' ),
 		'id'            => 'sidebar-blog',
 		'description'   => esc_html__( 'Add widgets here.', 'fastway' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
-		'after_widget'  => '</div></section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
+		'after_widget'  => '</div></div>',
+		'before_title'  => '<h4 class="widget-title text-uppercase">',
+		'after_title'   => '</h4>',
 	) );
 
 	if (class_exists('ReduxFramework')) {
@@ -249,10 +253,10 @@ function fastway_widgets_init() {
 			'name'          => esc_html__( 'Page Sidebar', 'fastway' ),
 			'id'            => 'sidebar-page',
 			'description'   => esc_html__( 'Add widgets here.', 'fastway' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '</div></section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
+			'after_widget'  => '</div></div>',
+			'before_title'  => '<h4 class="widget-title text-uppercase">',
+			'after_title'   => '</h4>',
 		) );
 	}
 
@@ -261,10 +265,10 @@ function fastway_widgets_init() {
 			'name'          => esc_html__( 'Shop Sidebar', 'fastway' ),
 			'id'            => 'sidebar-shop',
 			'description'   => esc_html__( 'Add widgets here.', 'fastway' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '</div></section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
+			'after_widget'  => '</div></div>',
+			'before_title'  => '<h4 class="widget-title text-uppercase">',
+			'after_title'   => '</h4>',
 		) );
 	}
 
@@ -274,25 +278,24 @@ function fastway_widgets_init() {
 			'name'          => esc_html__( 'Hidden Sidebar', 'fastway' ),
 			'id'            => 'sidebar-hidden',
 			'description'   => esc_html__( 'Add widgets here.', 'fastway' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '</div></section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
+			'after_widget'  => '</div></div>',
+			'before_title'  => '<h4 class="widget-title text-uppercase">',
+			'after_title'   => '</h4>',
 		) );
 	}
 	if (class_exists('ReduxFramework')) {
 		$footer_top_column = fastway_get_opt( 'footer_top_column', '4' );
 		if ( isset( $footer_top_column ) && $footer_top_column ) {
-
 			for ( $i = 1; $i <= $footer_top_column; $i ++ ) {
 				register_sidebar( array(
 					'name'          => sprintf( esc_html__( 'Footer Top %s', 'fastway' ), $i ),
 					'id'            => 'sidebar-footer-' . $i,
 					'description'   => esc_html__( 'Add widgets here.', 'fastway' ),
-					'before_widget' => '<section id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</section>',
-					'before_title'  => '<h2 class="footer-widget-title">',
-					'after_title'   => '</h2>',
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<h4 class="footer-widget-title">',
+					'after_title'   => '</h4>',
 				) );
 			}
 		}
@@ -395,6 +398,10 @@ add_action( 'admin_enqueue_scripts', 'fastway_admin_style' );
 require_once get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * Theme options Functions
+ */
+require_once get_template_directory() . '/inc/theme-options-functions.php';
+/**
  * Theme options
  */
 require_once get_template_directory() . '/inc/theme-options.php';
@@ -439,6 +446,8 @@ require_once get_template_directory() . '/inc/libs/materialdesign.php';
  */
 require_once get_template_directory() . '/widgets/widget-recent-posts.php';
 require_once get_template_directory() . '/widgets/widget-social.php';
+require_once get_template_directory() . '/widgets/widget-tagcloud.php';
+require_once get_template_directory() . '/widgets/widget-categories.php';
 require_once get_template_directory() . '/widgets/class.widget-extends.php';
 
 /**
@@ -469,10 +478,6 @@ function fastway_fonts_url() {
     );
     return $font_url;
 }
-function fastway_font_scripts() {
-    wp_enqueue_style( 'ef5-fonts', fastway_fonts_url() );
-}
-add_action( 'wp_enqueue_scripts', 'fastway_font_scripts' );
 
 /**
  * Commnet Form
@@ -583,7 +588,11 @@ function fastway_inline_styles() {
         $header_ontop_top_space['height']
     );
     /* Default Header Color */
-    $header_link_color = fastway_get_opts('header_link_colors',apply_filters('fastway_header_link_color', ['regular' => $primary_color, 'hover' => $accent_color, 'active' => $accent_color]) );
+    $header_link_color = fastway_get_opts('header_link_colors', [
+        'regular' => $primary_color, 
+        'hover'   => $accent_color, 
+        'active'  => $accent_color
+    ]);
     printf(':root{
             --header_regular: %1$s;
             --header_hover: %2$s;
@@ -593,8 +602,27 @@ function fastway_inline_styles() {
         $header_link_color['hover'],
         $header_link_color['active']
     );
+    /*Main Menu Colors */
+    $main_menu_color = fastway_get_opts('main_menu_color', [
+        'regular' => fastway_configs('main_menu_color_regular'), 
+        'hover'   => fastway_configs('main_menu_color_hover'), 
+        'active'  => fastway_configs('main_menu_color_active')
+    ]);
+    printf(':root{
+            --main-menu-color-regular: %1$s;
+            --main-menu-color-hover: %2$s;
+            --main-menu-color-active: %3$s;
+        }',
+        $main_menu_color['regular'],
+        $main_menu_color['hover'],
+        $main_menu_color['active']
+    );
     /* Ontop Header Color */
-    $ontop_link_color = fastway_get_opts('ontop_link_colors', apply_filters('fastway_ontop_link_color', ['regular' => $primary_color, 'hover' => $accent_color, 'active' => $accent_color]) );
+    $ontop_link_color = fastway_get_opts('ontop_link_colors', [
+        'regular' => fastway_configs('ontop_link_color_regular'), 
+        'hover'   => fastway_configs('ontop_link_color_hover'), 
+        'active'  => fastway_configs('ontop_link_color_active')
+    ]);
     printf(':root{
             --ontop_regular: %1$s;
             --ontop_hover: %2$s;
@@ -605,7 +633,11 @@ function fastway_inline_styles() {
         $ontop_link_color['active']
     );
     /* Sticky Header Color */
-    $sticky_link_color = fastway_get_opts('sticky_link_colors',apply_filters('fastway_sticky_link_color',['regular' => '#FFFFFF', 'hover' => $accent_color, 'active' => $accent_color]));    
+    $sticky_link_color = fastway_get_opts('sticky_link_colors',[
+        'regular' => fastway_configs('sticky_link_color_regular'), 
+        'hover'   => fastway_configs('sticky_link_color_hover'), 
+        'active'  => fastway_configs('sticky_link_color_active')
+    ]);    
     printf(':root{
             --sticky_regular: %1$s;
             --sticky_hover: %2$s;
@@ -616,14 +648,17 @@ function fastway_inline_styles() {
         $sticky_link_color['active']
     );
     /* Dropdown && Mobile */
-    $dropdown_bg_opt = fastway_get_opts('dropdown_bg',['rgba' => apply_filters('fastway_dropdown_bg', fastway_configs('dropdown_bg'))]);
-
-    $dropdown_link_colors = fastway_get_opts('dropdown_link_colors', apply_filters('fastway_dropdown_link_colors',['regular' => fastway_configs('dropdown_regular'), 'hover' => fastway_configs('dropdown_hover'), 'active' => fastway_configs('dropdown_active')]) );
+    $dropdown_bg_opt = fastway_get_opts('dropdown_bg',['rgba' => fastway_configs('dropdown_bg')]);
+    $dropdown_link_colors = fastway_get_opts('dropdown_link_colors',[
+        'regular' => fastway_configs('dropdown_regular'), 
+        'hover'   => fastway_configs('dropdown_hover'), 
+        'active'  => fastway_configs('dropdown_active')] 
+    );
     printf(':root{
-            --dropdown_regular: %1$s;
-            --dropdown_hover: %2$s;
-            --dropdown_active: %3$s;
-            --dropdown_bg: %4$s;
+            --dropdown-regular: %1$s;
+            --dropdown-hover: %2$s;
+            --dropdown-active: %3$s;
+            --dropdown-bg: %4$s;
         }', 
         $dropdown_link_colors['regular'],
         $dropdown_link_colors['hover'],
@@ -655,3 +690,45 @@ if(!function_exists('fastway_require_folder')){
 }
 
 fastway_require_folder('inc/extends', get_template_directory());
+
+
+if(!function_exists('fastway_woocommerce_add_to_cart_fragments')){
+    add_filter('woocommerce_add_to_cart_fragments', 'fastway_woocommerce_add_to_cart_fragments', 10, 1 );
+    function fastway_woocommerce_add_to_cart_fragments( $fragments ) {
+        if(!class_exists('WooCommerce')) return;
+        ob_start();
+        $header_layout = fastway_get_opts('header_layout','1');
+        switch ($header_layout) {
+            case '5':
+                $cart_style = '2';
+                break;
+            
+            default:
+                $cart_style = '1';
+                break;
+        }
+        ?>
+        <span class="header-count cart-count cart_total style-<?php echo esc_attr($cart_style);?>"><?php fastway_woocommerce_cart_counter(['style' => $cart_style]); ?></span>
+        <?php
+        $fragments['.cart_total'] = ob_get_clean();
+        return $fragments;
+    }
+}
+
+if(!function_exists('fastway_woocommerce_cart_counter')){
+    function fastway_woocommerce_cart_counter($args=[]){
+        $args = wp_parse_args($args, [
+            'style' => '1'
+        ]);
+        switch ($args['style']) {
+            case '2':
+                $count = WC()->cart->cart_contents_count;
+                break;
+            
+            default:
+                $count = WC()->cart->cart_contents_count;
+                break;
+        }
+        echo fastway_html($count);
+    }
+}

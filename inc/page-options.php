@@ -178,35 +178,37 @@ function fastway_page_options_register( $metabox ) {
 	 * Config page meta options
 	 *
 	 */
-	$metabox->add_section( 'page', array(
-		'title'  => esc_html__( 'Header', 'fastway' ),
-		'desc'   => esc_html__( 'Header settings for the page.', 'fastway' ),
-		'icon'   => 'el-icon-website',
-		'fields' => array(
-			array(
-				'id'      => 'custom_header',
-				'type'    => 'switch',
-				'title'   => esc_html__( 'Custom Header', 'fastway' ),
-				'default' => false,
-				'indent'  => true
-			),
-			array(
-				'id'           => 'header_layout',
-				'type'         => 'image_select',
-				'title'        => esc_html__( 'Layout', 'fastway' ),
-				'subtitle'     => esc_html__( 'Select a layout for header.', 'fastway' ),
-				'options'      => array(
-					'0' => get_template_directory_uri() . '/assets/images/header-layout/h0.jpg',
-					'1' => get_template_directory_uri() . '/assets/images/header-layout/h1.jpg',
-					'2' => get_template_directory_uri() . '/assets/images/header-layout/h2.jpg',
-					'3' => get_template_directory_uri() . '/assets/images/header-layout/h3.jpg',
-					'4' => get_template_directory_uri() . '/assets/images/header-layout/h4.jpg',
-				),
-				'default'      => fastway_get_option_of_theme_options( 'header_layout' ),
-				'required'     => array( 0 => 'custom_header', 1 => 'equals', 2 => '1' ),
-				'force_output' => true
-			),
-			array(
+	$metabox->add_section( 'page',  fastway_header_opts([
+			'default'       => true,
+			'default_value' => '1'
+		])
+	);
+
+	$metabox->add_section( 'page',  array(
+	    'title'      => esc_html__('Header Attribute', 'fastway'),
+	    'icon'       => 'el-icon-website',
+	    'subsection' => true,
+	    'fields'     => array(
+	        array(
+	            'id'       => 'sticky_on',
+	            'type'     => 'switch',
+	            'title'    => esc_html__('Sticky Header', 'fastway'),
+	            'subtitle' => esc_html__('Header will be sticked when applicable.', 'fastway'),
+	            'default'  => false
+	        ),
+	        array(
+	            'id'       => 'search_on',
+	            'type'     => 'switch',
+	            'title'    => esc_html__('Search Icon', 'fastway'),
+	            'default'  => false
+	        ),
+	        array(
+	            'id'       => 'cart_on',
+	            'type'     => 'switch',
+	            'title'    => esc_html__('Cart Icon', 'fastway'),
+	            'default'  => false
+	        ),
+	        array(
 	            'id'       => 'logo_dark',
 	            'type'     => 'media',
 	            'title'    => esc_html__('Logo Dark', 'fastway'),
@@ -214,8 +216,9 @@ function fastway_page_options_register( $metabox ) {
 	            'required'     => array( 0 => 'custom_header', 1 => 'equals', 2 => '1' ),
 				'force_output' => true
 	        ),
-		)
-	) );
+	    )
+	));
+	$metabox->add_section('page', fastway_header_top_opts());
 
 	$metabox->add_section( 'page', array(
 		'title'  => esc_html__( 'Page Title', 'fastway' ),

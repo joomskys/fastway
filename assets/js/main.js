@@ -18,6 +18,7 @@
         fastway_rtl();
         fastway_scroll_to_top();
         setTimeout(function () { $('.cms-grid-menu-layout5 .grid-filter-wrap .filter-item:nth-child(1)').trigger('click'); }, 100);
+        fastway_post_gallery_slide();
     });
     $(window).on('resize', function () {
         window_width = $(window).width();
@@ -467,6 +468,14 @@
         if (scroll_top > window_height) {
             $('.scroll-top').addClass('on').removeClass('off');
         }
+    }
+    /** ============
+     Post gallery
+    ================ */
+    function fastway_post_gallery_slide(){
+        $('.cms-post-gallery-slide ').slick({
+            dots: true,
+        });
     }
 
 })(jQuery);

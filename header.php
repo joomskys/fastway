@@ -20,6 +20,7 @@
     <div id="page" class="site">
         <?php 
         	fastway_page_loading();
+            fastway_header_top();
         	fastway_header_layout();
             fastway_page_title_layout();
         ?>

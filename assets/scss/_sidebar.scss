@@ -1,0 +1,13 @@
+.sidebar-widget{
+	.widget{
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #d3d3d3;
+		&:last-child{
+			margin-bottom: 0;
+		}
+		.widget-title{
+			margin-bottom: 15px;
+		}
+	}
+}

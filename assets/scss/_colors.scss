@@ -1,0 +1,23 @@
+/* Custom Mixin */
+$color_dark: #282828;
+$color_dark2: #222;
+$meta_color: $primary_color;
+$meta_color_hover: $secondary_color;
+.bg-accent{
+	background-color:$accent_color; 
+}
+.bg-primary{
+	background-color: $primary_color;
+}
+.bg-secondary{
+	background-color: $secondary_color;
+}
+.bg-thirdary{
+	background-color: $thirdary_color;
+}
+.bg-gray {
+    background-color: #f5f6f6;
+}
+.text-accent{
+	color: $accent_color;
+}

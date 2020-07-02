@@ -60,17 +60,14 @@ if($f_btn_link_type == 'page') {
         <div class="container">
             <div class="row">
                 <div class="bottom-col col-12 text-center">
-                    <div class="bottom-copyright">
-                        <?php
+                    <div class="bottom-copyright"><?php
                         if ($footer_copyright) {
                             echo wp_kses_post($footer_copyright);
                         } else {
                             echo '&copy; FastWay, With Love by <a target="_blank" href="https://themeforest.net/user/7oroof/portfolio">7oroof.com</a>';
-                        } ?>
-                    </div>
-                    <div class="bottom-social">
-                        <?php fastway_social_footer(); ?>
-                    </div>
+                        } 
+                    ?></div>
+                    <div class="bottom-social"><?php fastway_social_footer(); ?></div>
                 </div>
             </div>
         </div>

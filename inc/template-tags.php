@@ -27,18 +27,10 @@ function fastway_page_loading()
  **/
 function fastway_header_layout()
 {
-    $header_layout = fastway_get_opt( 'header_layout', '1' );
-    $custom_header = fastway_get_page_opt( 'custom_header', '0' );
-
-    if ( $custom_header == '1' )
-    {
-        $page_header_layout = fastway_get_page_opt('header_layout');
-        $header_layout = $page_header_layout;
-        if($header_layout == '0') {
-            return;
-        }
+    $header_layout = fastway_get_opts( 'header_layout', '1' );
+    if($header_layout == '0') {
+        return;
     }
-
     get_template_part( 'template-parts/header-layout', $header_layout );
 }
 
@@ -376,13 +368,15 @@ function fastway_posts_pagination( $query = null, $ajax = false )
     <?php
     endif;
 }
+
+/* Meta Post Author */
 if(!function_exists('fastway_post_author')){
     function fastway_post_author($args = []){
         $args = wp_parse_args($args,[
             'show_author' => true,
             'text'       => esc_html__('By','fastway'),
             'icon'       => 'fa fa-user',
-            'icon_class' => 'text-primary'
+            'icon_class' => 'text-accent'
         ]);
 
         if(!$args['show_author']) return;
@@ -390,7 +384,7 @@ if(!function_exists('fastway_post_author')){
         <span class="post-author">
             <?php 
                 // author icon
-                $icon_class = implode(' ', [$args['icon'], $args['icon_class']]);
+                $icon_class = implode(' ', ['meta-icon', $args['icon'], $args['icon_class']]);
                 if(!empty($args['icon'])) echo '<span class="'.esc_attr($icon_class).'"></span>';
                 // Author text
                 if(!empty($args['text'])):  echo esc_html($args['text']).'&nbsp;'; endif; 
@@ -401,13 +395,14 @@ if(!function_exists('fastway_post_author')){
     <?php
     }
 }
+/* Meta Post Category */
 if(!function_exists('fastway_post_category')){
     function fastway_post_category($args = []){
         $args = wp_parse_args($args,[
             'show_cat'   => true,
             'text'       => esc_html__('Category','fastway'),
             'icon'       => 'fa fa-folder-open',
-            'icon_class' => 'text-primary',
+            'icon_class' => 'text-accent',
             'taxo'       => 'category',
             'separator'  => ', '
         ]);
@@ -417,7 +412,7 @@ if(!function_exists('fastway_post_category')){
         <span class="post-cat">
             <?php 
                 // cat icon
-                $icon_class = implode(' ', [$args['icon'], $args['icon_class']]);
+                $icon_class = implode(' ', ['meta-icon',$args['icon'], $args['icon_class']]);
                 if(!empty($args['icon'])) echo '<span class="'.esc_attr($icon_class).'"></span>';
                 // cat text
                 if(!empty($args['text'])):  echo esc_html($args['text']).'&nbsp;'; endif; 
@@ -428,13 +423,15 @@ if(!function_exists('fastway_post_category')){
     <?php
     }
 }
+/* Meta Post Comment */
 if(!function_exists('fastway_post_comment')){
     function fastway_post_comment($args = []){
         $args = wp_parse_args($args,[
             'show_cmt'   => true,
             'text'       => esc_html__('Comments','fastway'),
             'icon'       => 'fa fa-comments',
-            'icon_class' => 'text-primary'
+            'icon_class' => 'text-accent',
+            'cmt_with_text' => true
         ]);
 
         if(!$args['show_cmt']) return;
@@ -442,16 +439,24 @@ if(!function_exists('fastway_post_comment')){
         <span class="post-cmt">
             <?php 
                 // cat icon
-                $icon_class = implode(' ', [$args['icon'], $args['icon_class']]);
+                $icon_class = implode(' ', ['meta-icon', $args['icon'], $args['icon_class']]);
                 if(!empty($args['icon'])) echo '<span class="'.esc_attr($icon_class).'"></span>';
                 // cat text
                 if(!empty($args['text'])):  echo esc_html($args['text']).'&nbsp;'; endif; 
                 // cat list
             ?>
-            <a href="<?php the_permalink(); ?>"><?php echo comments_number(
-                esc_html__('No Comments', 'fastway'),
-                esc_html__('Comment: 1', 'fastway'),
-                esc_html__('Comments: %', 'fastway')); 
+            <a href="<?php the_permalink(); ?>"><?php
+                if($args['cmt_with_text']) 
+                    echo comments_number(
+                        esc_html__('No Comments', 'fastway'),
+                        esc_html__('Comment: 1', 'fastway'),
+                        esc_html__('Comments: %', 'fastway')); 
+                else 
+                    echo comments_number(
+                        '0',
+                        '1',
+                        '%'
+                    );
             ?></a>
         </span>
     <?php
@@ -468,35 +473,38 @@ if ( ! function_exists( 'fastway_archive_meta' ) ) :
             'show_cat'    => fastway_get_opt( 'archive_categories_on', true ),
             'show_cmt' => fastway_get_opt( 'archive_comments_on', true ),
             'show_date' => fastway_get_opt( 'archive_date_on', true ),
+            'class'     => ''
         ]);
        
         if($args['show_author'] || $args['show_cat'] || $args['show_cmt'] || $args['show_date']) : ?>
-            <ul class="entry-meta">
-                <?php if($args['show_author']) : ?>
-                    <li class="item-author"><?php 
-                        fastway_post_author(['show_author' => $args['show_author']]); 
-                    ?></li>
-                <?php endif;
-                if($args['show_date']) : ?>
-                    <li><?php 
-                        echo get_the_date(); 
-                    ?></li>
-                <?php endif;
-                if($args['show_cat']) : ?>
-                    <li class="item-category"><?php fastway_post_category([
-                        'show_cat' => $args['show_cat'],
-                        'text'     =>  ''
-                    ]);?></li>
-                <?php endif;
-                if($args['show_cmt']) : ?>
-                    <li class="item-comment"><?php 
-                        fastway_post_comment([
-                            'show_cmt' => $args['show_cmt'],
-                            'text'     => ''
-                        ]);
-                    ?></li>
-                <?php endif; ?>
-            </ul>
+            <div class="<?php echo implode(' ', ['cms-archive-meta', $args['class']]); ?>">
+                <ul class="entry-meta">
+                    <?php if($args['show_author']) : ?>
+                        <li class="item-author"><?php 
+                            fastway_post_author(['show_author' => $args['show_author']]); 
+                        ?></li>
+                    <?php endif;
+                    if($args['show_date']) : ?>
+                        <li><?php 
+                            echo get_the_date(); 
+                        ?></li>
+                    <?php endif;
+                    if($args['show_cat']) : ?>
+                        <li class="item-category"><?php fastway_post_category([
+                            'show_cat' => $args['show_cat'],
+                            'text'     =>  ''
+                        ]);?></li>
+                    <?php endif;
+                    if($args['show_cmt']) : ?>
+                        <li class="item-comment"><?php 
+                            fastway_post_comment([
+                                'show_cmt' => $args['show_cmt'],
+                                'text'     => ''
+                            ]);
+                        ?></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
         <?php endif; }
 endif;
 
@@ -577,13 +585,9 @@ if (!function_exists('fastway_post_featured_date')){
     function fastway_post_featured_date($show_date = false){
         if(!$show_date) return;
         ?>
-            <div class="cms-post-featured-date text-center bg-primary font-style-600">
-                <div class="cms-post-date text-white text-60 lh-60">
-                    <?php echo get_the_date('d'); ?>
-                </div>
-                <div class="cms-post-year bg-thirdary text-white text-12 text-uppercase">
-                    <?php echo get_the_date('F Y'); ?>
-                </div>
+            <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
+                <div class="cms-post-date text-60 lh-60"><?php echo get_the_date('d'); ?></div>
+                <div class="cms-post-year bg-secondary text-12 text-uppercase"><?php echo get_the_date('F Y'); ?></div>
             </div>
         <?php
     }
@@ -1000,24 +1004,25 @@ function fastway_product_nav() {
 /**
  * Social Icon
  */
+
 function fastway_social_header() {
     $social_list = fastway_get_opt( 'social_list' );
     if($social_list && isset($social_list['enabled'])){
         foreach ($social_list['enabled'] as $social_key => $social_name){
             $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
             $social_link = !empty($social_link)?$social_link:'#';
-            echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
+            if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
         }
     }
 }
 
 function fastway_social_footer() {
     $social_list = fastway_get_opt( 'f_social_list' );
-    if($social_list && isset($social_list['enabled'])){
+    if($social_list && isset($social_list['enabled']) && count($social_list['enabled']) > 1){
         foreach ($social_list['enabled'] as $social_key => $social_name){
             $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
             $social_link = !empty($social_link)?$social_link:'#';
-            echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
+            if($social_key !== 'placebo')  echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
         }
     }
 }
@@ -1142,5 +1147,63 @@ if(!function_exists('fastway_load_more_post_grid')){
             wp_send_json(array('status' => false, 'message' => $e->getMessage()));
         }
         die;
+    }
+}
+
+/**
+ * Header Top
+**/
+if(!function_exists('fastway_header_top_text')){
+    function fastway_header_top_text($args = []){
+        $args = wp_parse_args($args,[
+            'tag'   => 'div',
+            'class' => '',
+            'text'  => 'Your Trusted 24 Hours Service Provider!'
+        ]);
+        $text = fastway_get_opts('header_top_short_text', $args['text']);
+        echo '<'.$args['tag'].' class="'.implode(' ', ['cms-header-top-text', $args['class']]).'">';
+            echo esc_html($text);
+        echo '</'.$args['tag'].'>';
+    }
+}
+if(!function_exists('fastway_header_top_social')){
+    function fastway_header_top_social($args=[]) {
+        $args = wp_parse_args($args, [
+            'tag'    => 'div',
+            'class'  => '',
+            'before' => '',
+            'after'  => ''
+        ]);
+        $social_list = fastway_get_opts( 't_social_list' );
+        if(!empty($args['before'])) echo wp_kses_post($args['before']);
+            echo '<'.$args['tag'].' class="'.implode(' ', ['cms-social-list', $args['class']]).'">';
+                if($social_list && isset($social_list['enabled'])){
+                    foreach ($social_list['enabled'] as $social_key => $social_name){
+                        $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
+                        $social_link = !empty($social_link)?$social_link:'#';
+                        if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank"><span class="cms-icon fa fa-' . esc_attr($social_key) . '"></span></a>';
+                    }
+                }
+            echo '</'.$args['tag'].'>';
+        if(!empty($args['after'])) echo wp_kses_post($args['after']);
+    }
+}
+if(!function_exists('fastway_header_top')){
+    function fastway_header_top($args = []){
+        $args = wp_parse_args($args, []);
+        $show_header_top = fastway_get_opts('show_header_top', true);
+        if(!$show_header_top) return;
+    ?>
+    <div id="cms-header-top" class="cms-header-top bg-gray">
+        <div class="container">
+            <div class="row justify-content-center justify-content-lg-end">
+                <div class="col-auto"><?php
+                    fastway_header_top_social(['tag' => 'span']);
+                    fastway_header_top_text(['tag' => 'span']);
+                ?></div>
+            </div>
+        </div>
+    </div>
+    <?php
     }
 }

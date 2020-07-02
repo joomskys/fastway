@@ -40,87 +40,86 @@ ul.menu {
         padding: 0;
         li {
             position: relative;
-            list-style: none;
             a {
                 display: block;
-                @include transition(all 300ms linear 0ms !important);
-                @include font-family-heading($heading_default_font);
+                @include transition(all 300ms linear 0ms);
             }
         }
+        // Level 1
         > li {
             display: inline-block;
             vertical-align: middle;
-            float: left;
-            margin: 0 17px;
             > a {
+                color: var(--main-menu-color-regular);
                 font-size: 14px;
-                color: $color_dark;
-                font-weight: 700;
-                line-height: 100px;
-                position: relative;
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: -1px;
-                    margin: auto;
-                    background-color: $primary_color;
-                    opacity: 0;
-                    height: 2px;
-                    margin-top: 12px;
-                    width: 0;
-                    @include transition(all 300ms linear 0ms);
-                }
+                font-weight: 600;
+                padding: 25px 12px;
+                text-transform: uppercase;
             }
-            &:hover > a,
+            // has Children
+            &.menu-item-has-children{
+                >a:after{
+                    @include font-awesome("\f078");
+                    font-size: 9px;
+                    margin-left: 3px;
+                    margin-top: -3px;
+                    vertical-align: middle;
+                    opacity: 0.7;
+                    display: inline-block;
+                    [dir="rtl"] &{
+                        margin-left: 0;
+                        margin-right: 3px;
+                    }
+                }            
+            }
+            /*Hover*/
+            &:hover > a{
+                color: var(--main-menu-color-hover);
+            }
+            /* Active */
             &.current_page_item > a,
             &.current-menu-item > a,
             &.current_page_ancestor > a,
             &.current-menu-ancestor > a {
-                color: $primary_color;
-                &:before {
-                    opacity: 1;
-                    width: 100%;
-                }
+                color: var(--main-menu-color-active);
             }
             > ul.back {
-                right: 0 !important;
-                left: auto !important;
+                right: 0;
+                left: auto;
                 li > ul.back {
-                    right: 100% !important;
-                    left: auto !important;
+                    right: 100%;
+                    left: auto;
                 }
             }
             > .sub-menu li > ul.back {
-                right: 100% !important;
-                left: auto !important;
+                right: 100%;
+                left: auto;
             }
         }
-
+        // Level 2
         .sub-menu {
             list-style: none;
             margin: 0;
         }
-
         .sub-menu {
             position: absolute;
-            background: #1b1a1a;
+            border-top: 3px solid var(--accent-color);
+            background: var(--dropdown-bg);
             padding: 10px 0;
             top: 100%;
             left: 0;
-            margin-top: 15px;
-            min-width: 190px;
+            margin: 20px 0 0;
+            min-width: 220px;
             z-index: 99;
             visibility: hidden;
             opacity: 0;
             @include box-shadow(0 2px 5px 0 rgba(0, 0, 0, 0.09));
-            @include transition(all 300ms linear 0ms);
+            @include transition(all 0.3s ease);
             clip: rect(1px, 1px, 1px, 1px);
             li {
                 padding: 0 25px;
                 a {
-                    color: #9b9b9b;
+                    color: var(--dropdown-regular);
                     font-size: 13px;
                     line-height: normal;
                     padding: 10px 0;
@@ -130,12 +129,14 @@ ul.menu {
                 &:last-child > a {
                     border-bottom: none;
                 }
-                > a:hover,
+                > a:hover{
+                    color: var(--dropdown-hover)
+                }
                 &.current_page_item > a,
                 &.current-menu-item > a,
                 &.current_page_ancestor > a,
                 &.current-menu-ancestor > a {
-                    color: #fff;
+                    color: var(--dropdown-active) ;
                 }
             }
 

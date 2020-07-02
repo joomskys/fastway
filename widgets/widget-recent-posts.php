@@ -33,6 +33,7 @@ class CMS_Recent_Posts_Widget extends WP_Widget
             'title'         => esc_html__( 'Recent Posts', 'fastway' ),
             'number'        => 4,
             'post_in'        => '',
+            'layout'        => '1',
         ) );
 
         $title = empty( $instance['title'] ) ? esc_html__( 'Recent Posts', 'fastway' ) : $instance['title'];
@@ -48,6 +49,7 @@ class CMS_Recent_Posts_Widget extends WP_Widget
             $number = 4;
         }
         $post_in = $instance['post_in'];
+        $layout = $instance['layout'];
         $sticky = '';
         if($post_in == 'featured') {
             $sticky = get_option( 'sticky_posts' );
@@ -63,29 +65,50 @@ class CMS_Recent_Posts_Widget extends WP_Widget
 
         if ( $r->have_posts() )
         {
-            echo '<div class="posts-list">';
+            echo '<div class="posts-list layout-'.esc_attr($layout).'">';
 
             while ( $r->have_posts() )
             {
                 $r->the_post();
                 global $post;
-                echo '<div class="post-item">';
+                echo '<div class="post-item row gutters-15">';
                     if (has_post_thumbnail($post->ID) && wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), false)):
-                    $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'fastway-recent-post', false); ?>
-                        <div class="entry-media">
+                        $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail', false); ?>
+                        <div class="entry-media col-auto">
                            <a href="<?php the_permalink(); ?>"><img src="<?php echo esc_url($thumbnail_url[0]); ?>" alt="<?php echo esc_attr(get_the_title($post->ID)); ?>" /></a>
                          </div>
                     <?php endif; ?>
-                    <div class="entry-content">
+                    <div class="entry-content col">
+                        <?php switch ($layout) {
+                            case '2':
+                        ?>
+                            <?php printf(
+                                '<h6 class="entry-title text-uppercase"><a href="%1$s" title="%2$s">%3$s</a></h6>',
+                                esc_url( get_permalink() ),
+                                esc_attr( get_the_title() ),
+                                get_the_title()
+                            ); ?>
+                            <ul class="entry-meta">
+                                <li><?php fastway_post_author(); ?></li>
+                                <li><?php fastway_post_comment(['text' => '','cmt_with_text' => false]); ?></li>
+                            </ul>
+                        <?php
+                                break;
+                            
+                            default:
+                        ?>
                         <div class="entry-meta">
                             <?php echo get_the_date(); ?>
                         </div>
                         <?php printf(
-                            '<h4 class="entry-title"><a href="%1$s" title="%2$s">%3$s</a></h4>',
+                            '<h6 class="entry-title text-uppercase"><a href="%1$s" title="%2$s">%3$s</a></h6>',
                             esc_url( get_permalink() ),
                             esc_attr( get_the_title() ),
                             get_the_title()
                         ); ?>
+                        <?php # code...
+                                break;
+                        } ?>
                     </div>
                 </div>
             <?php }
@@ -113,6 +136,7 @@ class CMS_Recent_Posts_Widget extends WP_Widget
         $instance['title']         = sanitize_text_field( $new_instance['title'] );
         $instance['number']        = absint( $new_instance['number'] );
         $instance['post_in'] = strip_tags($new_instance['post_in']);
+        $instance['layout'] = strip_tags($new_instance['layout']);
         return $instance;
     }
 
@@ -132,6 +156,7 @@ class CMS_Recent_Posts_Widget extends WP_Widget
         $title         = $instance['title'] ? esc_attr( $instance['title'] ) : esc_html__( 'Recent Posts', 'fastway' );
         $number        = absint( $instance['number'] );
         $post_in = isset($instance['post_in']) ? esc_attr($instance['post_in']) : '';
+        $layout = isset($instance['layout']) ? esc_attr($instance['layout']) : '1';
 
         ?>
         <p>
@@ -143,6 +168,12 @@ class CMS_Recent_Posts_Widget extends WP_Widget
          <select class="widefat" id="<?php echo esc_attr( $this->get_field_id('post_in') ); ?>" name="<?php echo esc_attr( $this->get_field_name('post_in') ); ?>">
             <option value="recent"<?php if( $post_in == 'recent' ){ echo 'selected="selected"';} ?>><?php esc_html_e('Recent', 'fastway'); ?></option>
             <option value="featured"<?php if( $post_in == 'featured' ){ echo 'selected="selected"';} ?>><?php esc_html_e('Featured', 'fastway'); ?></option>
+         </select>
+         </p>
+          <p><label for="<?php echo esc_url($this->get_field_id('layout')); ?>"><?php esc_html_e( 'Layout', 'fastway' ); ?></label>
+         <select class="widefat" id="<?php echo esc_attr( $this->get_field_id('layout') ); ?>" name="<?php echo esc_attr( $this->get_field_name('layout') ); ?>">
+            <option value="1"<?php if( $layout == '1' ){ echo 'selected="selected"';} ?>><?php esc_html_e('Default', 'fastway'); ?></option>
+            <option value="2"<?php if( $layout == '2' ){ echo 'selected="selected"';} ?>><?php esc_html_e('Layout 2', 'fastway'); ?></option>
          </select>
          </p>
 

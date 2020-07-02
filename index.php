@@ -16,7 +16,7 @@ $sidebar_pos = fastway_get_opt( 'archive_sidebar_pos', 'right' );
 <div class="container content-container">
     <div class="row content-row">
         <div id="primary" <?php fastway_primary_class( $sidebar_pos, 'content-area' ); ?>>
-            <main id="main" class="site-main">
+            <div id="main" class="site-main">
             <?php
 
                 if ( have_posts() )
@@ -41,15 +41,15 @@ $sidebar_pos = fastway_get_opt( 'archive_sidebar_pos', 'right' );
                 }
 
             ?>
-            </main><!-- #main -->
+            </div><!-- #main -->
         </div><!-- #primary -->
 
         <?php if ( 'left' == $sidebar_pos || 'right' == $sidebar_pos ) : ?>
-        <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area' ); ?>>
+        <div id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area sidebar-widget' ); ?>>
             <div class="sidebar-sticky">
                 <?php get_sidebar(); ?>
             </div>
-        </aside>
+        </div>
         <?php endif; ?>
     </div>
 </div>

@@ -7,7 +7,7 @@
  */
 function fastway_get_theme_opt_name()
 {
-    return apply_filters('fastway_theme_opt_name', 'ef5_theme_options');
+    return apply_filters('fastway_theme_opt_name', 'cms_theme_options');
 }
 
 /**

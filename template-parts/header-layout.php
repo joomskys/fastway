@@ -18,9 +18,22 @@ if($h_btn_link_type == 'page') {
 } else {
     $h_btn_url = $h_btn_link_custom;
 }
+
+$header_layout = fastway_get_opts('header_layout','1');
+switch ($header_layout) {
+    case '5':
+        $cart_style = '2';
+        break;
+    
+    default:
+        $cart_style = '1';
+        break;
+}
+
+//header-transparent
 ?>
 <header id="masthead" class="site-header">
-    <div id="site-header-wrap" class="header-layout1 header-transparent <?php if($sticky_on == 1) { echo 'is-sticky'; } ?>">
+    <div id="site-header-wrap" class="header-layout1 <?php if($sticky_on == 1) { echo 'is-sticky'; } ?>">
         <div id="site-header" class="site-header-main">
             <div class="container">
                 <div class="row row-flex">
@@ -32,23 +45,14 @@ if($h_btn_link_type == 'page') {
                             <?php get_template_part( 'template-parts/header-menu' ); ?>
                         </nav>
                         <div class="site-menu-right">
-                            <?php if($search_on || $cart_on || $hidden_sidebar_on ) : ?>
-                                <div class="site-menu-right-group">
-                                    <?php if($search_on) : ?>
-                                        <span class="menu-right-item h-btn-search"><i class="fa fa-search"></i></span>
-                                    <?php endif; ?>
-                                    
-                                </div>
-                            <?php endif; ?>
-                            <?php if($h_btn_on == 'show' && !empty($h_btn_text)) : ?>
-                                <div class="site-menu-right-button">
-                                    <a href="<?php echo esc_url( $h_btn_url ); ?>" target="<?php echo esc_attr($h_btn_target); ?>" class="menu-right-item h-btn"><?php echo esc_attr( $h_btn_text ); ?></a>
-                                </div>
-                            <?php endif; ?>
                             <?php if(class_exists('Woocommerce') && $cart_on) : ?>
                                 <div class="site-menu-right-cart">
                                     <div class="menu-right-item menu-cart">
-                                        <span class="h-btn-cart"><i class="fa fa-shopping-cart"></i></span>
+                                        <span class="h-btn-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span class="header-count cart-count cart_total style-<?php echo esc_attr($args['style']);?>"><?php fastway_woocommerce_cart_counter(['style' => $cart_style]); ?></span></span>
+                                        </span>
+
                                         <div class="widget_shopping_cart">
                                             <div class="widget_shopping_cart_content">
                                                 <?php woocommerce_mini_cart(); ?>
@@ -56,10 +60,22 @@ if($h_btn_link_type == 'page') {
                                         </div>
                                     </div>
                                 </div>
-                            <?php endif; ?> 
-                            <div class="site-menu-social">
-                                <?php fastway_social_header(); ?>
-                            </div>
+                            <?php endif; ?>
+                            <?php if($search_on || $cart_on || $hidden_sidebar_on ) : ?>
+                                <div class="site-menu-right-group">
+                                    <?php if($search_on) : ?>
+                                        <span class="menu-right-item h-btn-search"><i class="fa fa-search"></i></span>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if($h_btn_on == 'show' && !empty($h_btn_text)) : ?>
+                                <div class="site-menu-right-button">
+                                    <a href="<?php echo esc_url( $h_btn_url ); ?>" target="<?php echo esc_attr($h_btn_target); ?>" class="menu-right-item h-btn"><?php echo esc_attr( $h_btn_text ); ?></a>
+                                </div>
+                            <?php endif; ?>
+                            <div class="site-menu-social"><?php 
+                                fastway_social_header(); 
+                            ?></div>
                         </div>
                     </div>
                 </div>
