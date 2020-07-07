@@ -32,7 +32,7 @@ if ($show_sidebar_post){
         </div><!-- #primary -->
 
         <?php if ( 'left' == $sidebar_pos || 'right' == $sidebar_pos ) : ?>
-        <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area' ); ?>>
+        <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area sidebar-widget' ); ?>>
             <div class="sidebar-sticky">
                 <?php get_sidebar(); ?>
             </div>

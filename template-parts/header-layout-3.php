@@ -3,50 +3,43 @@
  * Template part for displaying default header layout
  */
 $sticky_on = fastway_get_opt( 'sticky_on', false );
-$search_on = fastway_get_opt( 'search_on', false );
-$cart_on = fastway_get_opt( 'cart_on', false );
 ?>
 <header id="masthead" class="site-header">
-    <div id="site-header-wrap" class="header-layout3 header-transparent <?php if($sticky_on == 1) { echo 'is-sticky'; } ?>">
-        <div id="site-header" class="site-header-main">
+    <div id="site-header-wrap" class="<?php fastway_header_css_class('header-layout2 fixed-height'); ?>">
+        <div id="cms-before-header">
             <div class="container">
-                <div class="row row-flex">
-                    <div class="site-branding">
+                <div class="row justify-content-between">
+                    <div class="site-branding col-12 col-md-auto">
                         <?php get_template_part( 'template-parts/header-branding' ); ?>
                     </div>
-                    <div class="site-navigation">
-                        <nav class="main-navigation">
-                            <?php get_template_part( 'template-parts/header-menu' ); ?>
-                        </nav>
-                        <div class="site-menu-right">
-                            <?php if($search_on || $cart_on ) : ?>
-                                <div class="site-menu-right-group">
-                                    <?php if($search_on) : ?>
-                                        <span class="menu-right-item h-btn-search"><i class="fa fa-search"></i></span>
-                                    <?php endif; ?>
-                                    <?php if(class_exists('Woocommerce') && $cart_on) : ?>
-                                        <div class="menu-right-item menu-cart">
-                                            <span class="h-btn-cart"><i class="fa fa-shopping-cart"></i></span>
-                                            <div class="widget_shopping_cart">
-                                                <div class="widget_shopping_cart_content">
-                                                    <?php woocommerce_mini_cart(); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
-                            <div class="site-menu-social">
-                                <?php fastway_social_header(); ?>
-                            </div>
-                        </div>
+                    <div class="cms-header-quick-contact col-auto d-max-sm-none">
+                        <?php fastway_header_top_quick_contact(['class' => 'style2 row']); ?>
                     </div>
                 </div>
             </div>
-            <div id="main-menu-mobile">
-                <span class="btn-nav-mobile open-menu">
-                    <span></span>
-                </span>
+        </div>
+        <div id="site-header" class="site-header-main bg-secondary">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="site-navigation col">
+                        <nav class="main-navigation">
+                            <?php get_template_part( 'template-parts/header-menu' ); ?>
+                        </nav>
+                    </div>
+                    <div class="<?php fastway_site_menu_right_class('col-12 col-xl-auto d-block');?>">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-left col-auto">
+                                <?php  fastway_mobile_menu_icon(); ?>
+                            </div>
+                            <div class="col-right col-auto d-flex align-items-center"><?php
+                                fastway_header_button();
+                                fastway_header_cart(['class' => 'menu-icon']);
+                                fastway_header_search(['class' => 'menu-icon']);
+                                fastway_header_social(['icon_class' => 'menu-icon menu-color']); 
+                            ?></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

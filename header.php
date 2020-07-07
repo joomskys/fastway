@@ -17,7 +17,7 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <div id="page" class="site">
+    <div id="cms-page" class="cms-page site">
         <?php 
         	fastway_page_loading();
             fastway_header_top();

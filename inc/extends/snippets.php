@@ -497,3 +497,13 @@ function fastway_hex2rgba($color, $opacity = false) {
         //Return rgb(a) color string
         return $output;
 }
+
+/**
+ * Loop Page 
+*/
+function fastway_is_loop(){
+    if(is_home() || is_archive() || is_author() || is_category() || is_post_type_archive() || is_tag() || is_tax() || is_search())
+        return true;
+    else 
+        return false;
+}

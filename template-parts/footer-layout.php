@@ -16,9 +16,8 @@ if($f_btn_link_type == 'page') {
 } else {
     $f_btn_url = $f_btn_link_custom;
 }
-
 ?>
-<footer id="colophon" class="site-footer footer-layout1 footer-<?php echo esc_attr($footer_top_column); ?>-column">
+<footer id="cms-footer" class="<?php fastway_footer_css_class();?>">
     <?php if ( is_active_sidebar( 'sidebar-footer-1' ) || is_active_sidebar( 'sidebar-footer-2' ) || is_active_sidebar( 'sidebar-footer-3' ) || is_active_sidebar( 'sidebar-footer-4' ) ) : ?>
         <div class="top-footer">
             <div class="container">

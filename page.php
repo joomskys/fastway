@@ -40,7 +40,7 @@ if ($show_sidebar_page){
             </div><!-- #primary -->
 
             <?php if ( 'left' == $sidebar_pos || 'right' == $sidebar_pos ) : ?>
-                <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area' ); ?>>
+                <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area sidebar-widget' ); ?>>
                     <?php dynamic_sidebar( 'sidebar-page' ); ?>
                 </aside>
             <?php endif; ?>

@@ -9,7 +9,7 @@ ul.menu {
     margin: 0;
   }
 }
-@media #{$min-lg} {
+@media screen and (min-width: 1170px) {
     .primary-menu-not-set {
         list-style: none;
         margin: 0;
@@ -18,12 +18,11 @@ ul.menu {
             a {
                 font-size: 14px;
                 text-transform: uppercase;
-                color: #fff;
                 font-weight: 700;
                 line-height: 100px;
-                @include font-family-heading($heading_default_font);
+                color: var(--main-menu-color-regular);
                 &:hover {
-                    color: $primary_color;
+                    color: var(--main-menu-color-hover);
                 }
             }
         }
@@ -36,7 +35,7 @@ ul.menu {
     }
     .primary-menu {
         list-style: none;
-        margin: 0;
+        margin: 0 -12px;
         padding: 0;
         li {
             position: relative;
@@ -180,7 +179,7 @@ ul.menu {
 
 }
 
-@media #{$max-md} {
+@media (max-width: 1169px) {
     .site-navigation {
         background-color: #fff;
         border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -278,7 +277,7 @@ ul.menu {
     }
     #main-menu-mobile {
         .btn-nav-mobile {
-            color: #282828;
+            color: var(--main-menu-color-regular);
             display: inline-block;
             font-size: 16px;
             height: 32px;
@@ -293,9 +292,9 @@ ul.menu {
             &:before, &:after, span {
                 @include transition(all 300ms linear 0ms);
                 content: "";
-                background-color: #282828;
+                background-color: var(--main-menu-color-regular);
                 display: block;
-                height: 2px;
+                height: 3px;
                 left: 0;
                 margin: auto;
                 position: absolute;
@@ -304,11 +303,11 @@ ul.menu {
                 top: 21px;
             }
             &:before {
-                top: 9px;
+                top: 7px;
             }
 
             span {
-                top: 15px;
+                top: 14px;
             }
 
             &.opened{
@@ -323,8 +322,10 @@ ul.menu {
                 span{
                     display: none;
                 }
+                &:before, &:after, span {
+                    background-color: var(--main-menu-color-active);
+                }
             }
-
         }
     }
     .main-menu-toggle {

@@ -14,7 +14,7 @@ if(!function_exists('fastway_configs')){
             'lightent_accent_color' => '#020d26',
             // others colors
             'primary_color'         => '#1a1a1a',
-            'secondary_color'       => '#020d26',
+            'secondary_color'       => '#010e2a',
             'thirdary_color'        => '#484848',
             'fourth_color'          => '#a1a1a1',
             //others colors
@@ -58,12 +58,14 @@ if(!function_exists('fastway_configs')){
             'large_size_h'                   => 450,
             'medium_size_w'                  => 380,
             'medium_size_h'                  => 272,
+            'medium_large_size_w'            => 410,
+            'medium_large_size_h'            => 293,
             'thumbnail_size_w'               => 100,
             'thumbnail_size_h'               => 80,
             'post_thumbnail_size_w'          => 1170,
             'post_thumbnail_size_h'          => 500,
-            'fastway_default_post_thumbnail' => true,
-            'fastway_thumbnail_is_bg'        => true,
+            'fastway_default_post_thumbnail' => false,
+            'fastway_thumbnail_is_bg'        => false,
             // Header 
             'logo_width'       => '192',
             'logo_height'      => '38',
@@ -75,11 +77,11 @@ if(!function_exists('fastway_configs')){
             'main_menu_color_hover' => 'var(--accent-color)',
             'main_menu_color_active' => 'var(--accent-color)',
             // Menu Ontop Color
-            'ontop_link_color_regular' => 'var(--primary-color)',
+            'ontop_link_color_regular' => '#fff',
             'ontop_link_color_hover' => 'var(--accent-color)',
             'ontop_link_color_active' => 'var(--accent-color)',
             // Menu Sticky Color
-            'sticky_link_color_regular' => 'var(--primary-color)',
+            'sticky_link_color_regular' => '#fff',
             'sticky_link_color_hover' => 'var(--accent-color)',
             'sticky_link_color_active' => 'var(--accent-color)',
             // Dropdown
@@ -87,6 +89,11 @@ if(!function_exists('fastway_configs')){
             'dropdown_regular' => '#000000',
             'dropdown_hover'   => 'var(--accent-color)',
             'dropdown_active'  => 'var(--accent-color)',
+            // Page title
+            'ptitle_color'    => '#ffffff',
+            'ptitle_bg_color' => 'var(--accent-color)',
+            'ptitle_bg_img'   => '../images/ptitle-layout/bg.jpg',
+            'ptitle_overlay_color'   => 'rgba(0,0,0,0.7)',
             // Comments 
             'cmt_avatar_size'  => 100,
             'cmt_border'       => '1px solid #DDDDDD',
@@ -200,6 +207,9 @@ function fastway_update(){
         'large_size_w'        => fastway_configs('large_size_w'),
         'large_size_h'        => fastway_configs('large_size_h'),
         'large_crop'          => 1, 
+        'medium_large_size_w' => fastway_configs('medium_large_size_w'),
+        'medium_large_size_h' => fastway_configs('medium_large_size_h'),
+        'medium_large_crop'   => 1, 
         'medium_size_w'       => fastway_configs('medium_size_w'),
         'medium_size_h'       => fastway_configs('medium_size_h'),
         'medium_crop'         => 1, 
@@ -311,6 +321,7 @@ function fastway_scripts() {
 	$theme = wp_get_theme( get_template() );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.7.0' );
 	wp_enqueue_style( 'font-material-icon', get_template_directory_uri() . '/assets/css/material-design-iconic-font.min.css', array(), '2.2.0' );
+    wp_enqueue_style( 'font-flaticon', get_template_directory_uri() . '/assets/css/font-flaticon.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0' );
 	wp_enqueue_style( 'fastway-theme', get_template_directory_uri() . '/assets/css/theme.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'fastway-menu', get_template_directory_uri() . '/assets/css/menu.css', array(), $theme->get( 'Version' ) );
@@ -391,77 +402,6 @@ function fastway_admin_style() {
 }
 
 add_action( 'admin_enqueue_scripts', 'fastway_admin_style' );
-
-/**
- * Helper functions for this theme.
- */
-require_once get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Theme options Functions
- */
-require_once get_template_directory() . '/inc/theme-options-functions.php';
-/**
- * Theme options
- */
-require_once get_template_directory() . '/inc/theme-options.php';
-
-/**
- * Page options
- */
-require_once get_template_directory() . '/inc/page-options.php';
-
-/**
- * Get options
- */
-require_once get_template_directory() . '/inc/_get_options.php';
-
-/**
- * CSS Generator.
- */
-if ( ! class_exists( 'CSS_Generator' ) ) {
-	require_once get_template_directory() . '/inc/classes/class-css-generator.php';
-}
-
-/**
- * Breadcrumb.
- */
-require_once get_template_directory() . '/inc/classes/class-breadcrumb.php';
-
-/**
- * Custom template tags for this theme.
- */
-require_once get_template_directory() . '/inc/template-tags.php';
-
-/* Load list require plugins */
-require_once( get_template_directory() . '/inc/require-plugins.php' );
-
-/* Load lib Font */
-require_once get_template_directory() . '/inc/libs/fontawesome.php';
-require_once get_template_directory() . '/inc/libs/materialdesign.php';
-
-
-/**
- * Additional widgets for the theme
- */
-require_once get_template_directory() . '/widgets/widget-recent-posts.php';
-require_once get_template_directory() . '/widgets/widget-social.php';
-require_once get_template_directory() . '/widgets/widget-tagcloud.php';
-require_once get_template_directory() . '/widgets/widget-categories.php';
-require_once get_template_directory() . '/widgets/class.widget-extends.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require_once get_template_directory() . '/inc/extends.php';
-
-
-/**
- * Tutorials snippet functions. You should add those to extends.php
- * and remove the file.
- */
-require_once get_template_directory() . '/inc/snippets.php';
-
 
 /**
  * Register Google Fonts
@@ -618,30 +558,30 @@ function fastway_inline_styles() {
         $main_menu_color['active']
     );
     /* Ontop Header Color */
-    $ontop_link_color = fastway_get_opts('ontop_link_colors', [
+    $ontop_link_color = fastway_get_opts('ontop_menu_color', [
         'regular' => fastway_configs('ontop_link_color_regular'), 
         'hover'   => fastway_configs('ontop_link_color_hover'), 
         'active'  => fastway_configs('ontop_link_color_active')
     ]);
     printf(':root{
-            --ontop_regular: %1$s;
-            --ontop_hover: %2$s;
-            --ontop_active: %3$s;
+            --ontop-regular: %1$s;
+            --ontop-hover: %2$s;
+            --ontop-active: %3$s;
         }', 
         $ontop_link_color['regular'],
         $ontop_link_color['hover'],
         $ontop_link_color['active']
     );
     /* Sticky Header Color */
-    $sticky_link_color = fastway_get_opts('sticky_link_colors',[
+    $sticky_link_color = fastway_get_opts('sticky_menu_color',[
         'regular' => fastway_configs('sticky_link_color_regular'), 
         'hover'   => fastway_configs('sticky_link_color_hover'), 
         'active'  => fastway_configs('sticky_link_color_active')
     ]);    
     printf(':root{
-            --sticky_regular: %1$s;
-            --sticky_hover: %2$s;
-            --sticky_active: %3$s;
+            --sticky-regular: %1$s;
+            --sticky-hover: %2$s;
+            --sticky-active: %3$s;
         }', 
         $sticky_link_color['regular'],
         $sticky_link_color['hover'],
@@ -664,6 +604,24 @@ function fastway_inline_styles() {
         $dropdown_link_colors['hover'],
         $dropdown_link_colors['active'],
         $dropdown_bg_opt['rgba']
+    );
+    /* Page title */
+    $ptitle_color = fastway_get_opts('ptitle_color',fastway_configs('ptitle_color'));
+    $ptitle_bg = fastway_get_opts('ptitle_bg',[
+        'background-color' => fastway_configs('ptitle_bg_color'), 
+        'background-image' => fastway_configs('ptitle_bg_img')
+    ]);
+    $ptitle_overlay = fastway_get_opts('ptitle_overlay_color',['color'=> '#000', 'alpha'=> '0.7', 'rgba' => fastway_configs('ptitle_overlay_color')]);
+    printf(':root{
+        --ptitle-color: %1$s;
+        --ptitle-bg-color: %2$s;
+        --ptitle-bg-img: url(%3$s);
+        --ptitle-overlay-color: %4$s;
+        }',
+        $ptitle_color,
+        $ptitle_bg['background-color'],
+        $ptitle_bg['background-image'],
+        $ptitle_overlay['rgba']
     );
     return ob_get_clean();
 }
@@ -689,46 +647,33 @@ if(!function_exists('fastway_require_folder')){
     }
 }
 
+fastway_require_folder('inc', get_template_directory());
 fastway_require_folder('inc/extends', get_template_directory());
 
-
-if(!function_exists('fastway_woocommerce_add_to_cart_fragments')){
-    add_filter('woocommerce_add_to_cart_fragments', 'fastway_woocommerce_add_to_cart_fragments', 10, 1 );
-    function fastway_woocommerce_add_to_cart_fragments( $fragments ) {
-        if(!class_exists('WooCommerce')) return;
-        ob_start();
-        $header_layout = fastway_get_opts('header_layout','1');
-        switch ($header_layout) {
-            case '5':
-                $cart_style = '2';
-                break;
-            
-            default:
-                $cart_style = '1';
-                break;
-        }
-        ?>
-        <span class="header-count cart-count cart_total style-<?php echo esc_attr($cart_style);?>"><?php fastway_woocommerce_cart_counter(['style' => $cart_style]); ?></span>
-        <?php
-        $fragments['.cart_total'] = ob_get_clean();
-        return $fragments;
-    }
+/**
+ * CSS Generator.
+ */
+if ( ! class_exists( 'CSS_Generator' ) ) {
+    require_once get_template_directory() . '/inc/classes/class-css-generator.php';
 }
 
-if(!function_exists('fastway_woocommerce_cart_counter')){
-    function fastway_woocommerce_cart_counter($args=[]){
-        $args = wp_parse_args($args, [
-            'style' => '1'
-        ]);
-        switch ($args['style']) {
-            case '2':
-                $count = WC()->cart->cart_contents_count;
-                break;
-            
-            default:
-                $count = WC()->cart->cart_contents_count;
-                break;
-        }
-        echo fastway_html($count);
-    }
-}
+/**
+ * Breadcrumb.
+ */
+require_once get_template_directory() . '/inc/classes/class-breadcrumb.php';
+
+
+/* Load lib Font */
+require_once get_template_directory() . '/inc/libs/fontawesome.php';
+require_once get_template_directory() . '/inc/libs/materialdesign.php';
+
+
+/**
+ * Additional widgets for the theme
+ */
+fastway_require_folder('widgets', get_template_directory());
+
+/**
+ * Elementor
+*/
+fastway_require_folder('inc/elementor', get_template_directory());

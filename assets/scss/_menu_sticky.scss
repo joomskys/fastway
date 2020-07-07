@@ -1,0 +1,27 @@
+.h-fixed{
+	.primary-menu {
+		// Level 1
+        > li {
+            > a {
+                color: var(--sticky-regular);
+            }
+            /*Hover*/
+            &:hover > a{
+                color: var(--sticky-hover);
+            }
+            /* Active */
+            &.current_page_item > a,
+            &.current-menu-item > a,
+            &.current_page_ancestor > a,
+            &.current-menu-ancestor > a {
+                color: var(--sticky-active);
+            }
+        }
+	}
+    .menu-color{
+        color: var(--sticky-regular);
+        &:hover{
+            color: var(--sticky-hover);
+        }
+    }
+}

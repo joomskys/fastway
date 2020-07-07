@@ -1,0 +1,14 @@
+.cms-post-list-layout1{
+	.grid-item{
+		margin-bottom: 40px;
+	}
+	.cms-featured{
+		@media (min-width: 992px){
+			max-width: 410px;
+			width: 36%;
+		}
+	}
+	.cms-grid-pagination{
+		margin-top: 0;
+	}
+}

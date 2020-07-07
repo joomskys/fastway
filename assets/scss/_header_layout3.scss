@@ -1,0 +1,9 @@
+.header-layout3{
+	.site-branding{
+	    @media #{$min-md}{
+	    	&:after{
+		    	display: none;
+			}
+		}
+	}
+}

@@ -176,43 +176,20 @@ Redux::setSection($opt_name, array(
         ),
     )
 ));
-
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-
-Redux::setSection($opt_name, fastway_header_opts());
-
-Redux::setSection($opt_name, array(
-    'title'      => esc_html__('Header Attribute', 'fastway'),
-    'icon'       => 'el-icon-website',
-    'subsection' => true,
-    'fields'     => array(
-        array(
-            'id'       => 'sticky_on',
-            'type'     => 'switch',
-            'title'    => esc_html__('Sticky Header', 'fastway'),
-            'subtitle' => esc_html__('Header will be sticked when applicable.', 'fastway'),
-            'default'  => false
-        ),
-        array(
-            'id'       => 'search_on',
-            'type'     => 'switch',
-            'title'    => esc_html__('Search Icon', 'fastway'),
-            'default'  => false
-        ),
-        array(
-            'id'       => 'cart_on',
-            'type'     => 'switch',
-            'title'    => esc_html__('Cart Icon', 'fastway'),
-            'default'  => false
-        ),
-    )
-));
 /**
  * Header Top
 */
 Redux::setSection($opt_name, fastway_header_top_opts());
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+// Header layout
+Redux::setSection($opt_name, fastway_header_opts());
+// Header OnTop (Transparent)
+Redux::setSection($opt_name, fastway_header_ontop_opts());
+// Header Sticky
+Redux::setSection($opt_name, fastway_header_sticky_opts());
+
 /**
  * Logo 
 **/
@@ -262,156 +239,11 @@ Redux::setSection($opt_name, array(
         ),
     )
 ));
-
-Redux::setSection($opt_name, array(
-    'title'      => esc_html__('Navigation', 'fastway'),
-    'icon'       => 'el el-lines',
-    'subsection' => true,
-    'fields'     => array(
-        array(
-            'id'          => 'font_menu',
-            'type'        => 'typography',
-            'title'       => esc_html__('Custom Google Font', 'fastway'),
-            'google'      => true,
-            'font-backup' => true,
-            'all_styles'  => true,
-            'font-style'  => false,
-            'font-weight'  => true,
-            'text-align'  => false,
-            'font-size'  => false,
-            'line-height'  => false,
-            'color'  => false,
-            'output'      => array('.primary-menu > li > a, body .primary-menu .sub-menu li a'),
-            'units'       => 'px',
-        ),
-        array(
-            'id'       => 'menu_font_size',
-            'type'     => 'text',
-            'title'    => esc_html__('Font Size', 'fastway'),
-            'validate' => 'numeric',
-            'desc'     => 'Enter number',
-            'msg'      => 'Please enter number',
-            'default'  => ''
-        ),
-        array(
-            'id'       => 'menu_text_transform',
-            'type'     => 'select',
-            'title'    => esc_html__('Text Transform', 'fastway'),
-            'options'  => array(
-                '' => esc_html__('Uppercase', 'fastway'),
-                'capitalize'  => esc_html__('Capitalize', 'fastway'),
-                'lowercase'  => esc_html__('Lowercase', 'fastway'),
-                'initial'  => esc_html__('Initial', 'fastway'),
-                'inherit'  => esc_html__('Inherit', 'fastway'),
-                'none'  => esc_html__('None', 'fastway'),
-            ),
-            'default'  => ''
-        ),
-        array(
-            'title' => esc_html__('Main Menu', 'fastway'),
-            'type'  => 'section',
-            'id' => 'main_menu',
-            'indent' => true
-        ),
-        array(
-            'id'      => 'main_menu_color',
-            'type'    => 'link_color',
-            'title'   => esc_html__('Color', 'fastway'),
-            'default' => array(
-                'regular' => '',
-                'hover'   => '',
-                'active'   => '',
-            ),
-        ),
-        array(
-            'title' => esc_html__('Sticky Menu', 'fastway'),
-            'type'  => 'section',
-            'id' => 'sticky_menu',
-            'indent' => true
-        ),
-        array(
-            'id'      => 'sticky_menu_color',
-            'type'    => 'link_color',
-            'title'   => esc_html__('Color', 'fastway'),
-            'default' => array(
-                'regular' => '',
-                'hover'   => '',
-                'active'   => '',
-            ),
-        ),
-        array(
-            'title' => esc_html__('Button Navigation', 'fastway'),
-            'type'  => 'section',
-            'id' => 'button_navigation',
-            'indent' => true
-        ),
-        array(
-            'id'       => 'h_btn_on',
-            'type'     => 'button_set',
-            'title'    => esc_html__('Show/Hide Button', 'fastway'),
-            'options'  => array(
-                'show'  => esc_html__('Show', 'fastway'),
-                'hide'  => esc_html__('Hide', 'fastway')
-            ),
-            'default'  => 'hide',
-        ),
-        array(
-            'id' => 'h_btn_text',
-            'type' => 'text',
-            'title' => esc_html__('Button Text', 'fastway'),
-            'default' => '',
-            'required' => array( 0 => 'h_btn_on', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-        array(
-            'id'       => 'h_btn_link_type',
-            'type'     => 'button_set',
-            'title'    => esc_html__('Button Link Type', 'fastway'),
-            'options'  => array(
-                'page'  => esc_html__('Page', 'fastway'),
-                'custom'  => esc_html__('Custom', 'fastway')
-            ),
-            'default'  => 'page',
-            'required' => array( 0 => 'h_btn_on', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-        array(
-            'id'    => 'h_btn_link',
-            'type'  => 'select',
-            'title' => esc_html__( 'Page Link', 'fastway' ), 
-            'data'  => 'page',
-            'args'  => array(
-                'post_type'      => 'page',
-                'posts_per_page' => -1,
-                'orderby'        => 'title',
-                'order'          => 'ASC',
-            ),
-            'required' => array( 0 => 'h_btn_link_type', 1 => 'equals', 2 => 'page' ),
-            'force_output' => true
-        ),
-        array(
-            'id' => 'h_btn_link_custom',
-            'type' => 'text',
-            'title' => esc_html__('Custom Link', 'fastway'),
-            'default' => '',
-            'required' => array( 0 => 'h_btn_link_type', 1 => 'equals', 2 => 'custom' ),
-            'force_output' => true
-        ),
-        array(
-            'id'       => 'h_btn_target',
-            'type'     => 'button_set',
-            'title'    => esc_html__('Button Target', 'fastway'),
-            'options'  => array(
-                '_self'  => esc_html__('Self', 'fastway'),
-                '_blank'  => esc_html__('Blank', 'fastway')
-            ),
-            'default'  => '_self',
-            'required' => array( 0 => 'h_btn_on', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-    )
-));
-
+// Header Navigation
+Redux::setSection($opt_name, fastway_navigation_opts());
+// Header Attribute:  search, cart,....
+Redux::setSection($opt_name, fastway_header_atts_opts());
+// Header Social
 Redux::setSection($opt_name, array(
     'title'  => esc_html__('Social Link', 'fastway'),
     'icon'   => 'el el-share',
@@ -425,80 +257,7 @@ Redux::setSection($opt_name, array(
 # Page Title area
 --------------------------------------------------------------*/
 
-Redux::setSection($opt_name, array(
-    'title'  => esc_html__('Page Title', 'fastway'),
-    'icon'   => 'el-icon-map-marker',
-    'fields' => array(
-
-        array(
-            'id'           => 'pagetitle',
-            'type'         => 'button_set',
-            'title'        => esc_html__( 'Page Title', 'fastway' ),
-            'options'      => array(
-                'show'  => esc_html__( 'Show', 'fastway' ),
-                'hide'  => esc_html__( 'Hide', 'fastway' ),
-            ),
-            'default'      => 'show',
-        ),
-
-        array(
-            'id'       => 'ptitle_layout',
-            'type'     => 'image_select',
-            'title'    => esc_html__('Layout', 'fastway'),
-            'subtitle' => esc_html__('Select a layout for page title.', 'fastway'),
-            'options'  => array(
-                '1' => get_template_directory_uri() . '/assets/images/ptitle-layout/p1.jpg',
-                '2' => get_template_directory_uri() . '/assets/images/ptitle-layout/p2.jpg',
-                '3' => get_template_directory_uri() . '/assets/images/ptitle-layout/p3.jpg',
-                '4' => get_template_directory_uri() . '/assets/images/ptitle-layout/p4.jpg',
-            ),
-            'default'  => '1',
-            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-
-        array(
-            'id'       => 'ptitle_bg',
-            'type'     => 'background',
-            'title'    => esc_html__('Background', 'fastway'),
-            'subtitle' => esc_html__('Page title background.', 'fastway'),
-            'output'   => array('body #pagetitle'),
-            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-        array(
-            'id'       => 'pagetitle_bg_color',
-            'type'     => 'color_rgba',
-            'title'    => esc_html__('Background Color Overlay', 'fastway'),
-            'output' => array('background-color' => 'body #pagetitle.bg-overlay:before'),
-            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-        array(
-            'id'       => 'ptitle_color',
-            'type'     => 'color',
-            'title'    => esc_html__('Title Color', 'fastway'),
-            'subtitle' => esc_html__('Page title color.', 'fastway'),
-            'output'   => array('body #pagetitle h1.page-title'),
-            'default'  => '',
-            'transparent' => false,
-            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-        array(
-            'id'       => 'ptitle_breadcrumb_on',
-            'type'     => 'button_set',
-            'title'    => esc_html__('Breadcrumb', 'fastway'),
-            'options'  => array(
-                'show'  => esc_html__('Show', 'fastway'),
-                'hidden'  => esc_html__('Hidden', 'fastway'),
-            ),
-            'default'  => 'show',
-            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => 'show' ),
-            'force_output' => true
-        ),
-    )
-));
+Redux::setSection($opt_name, fastway_page_title_opts());
 
 /*--------------------------------------------------------------
 # WordPress default content
@@ -729,22 +488,7 @@ if(class_exists('Woocommerce')) {
 # Footer
 --------------------------------------------------------------*/
 
-Redux::setSection($opt_name, array(
-    'title'  => esc_html__('Footer', 'fastway'),
-    'icon'   => 'el el-website',
-    'fields' => array(
-        array(
-            'id'       => 'footer_layout',
-            'type'     => 'image_select',
-            'title'    => esc_html__('Layout', 'fastway'),
-            'subtitle' => esc_html__('Select a layout for upper footer area.', 'fastway'),
-            'options'  => array(
-                '1' => get_template_directory_uri() . '/assets/images/footer-layout/f1.jpg',
-            ),
-            'default'  => '1'
-        ),
-    )
-));
+Redux::setSection($opt_name, fastway_footer_opts());
 
 Redux::setSection($opt_name, array(
     'title'      => esc_html__('Footer Top', 'fastway'),

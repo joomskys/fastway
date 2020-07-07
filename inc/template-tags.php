@@ -28,10 +28,22 @@ function fastway_page_loading()
 function fastway_header_layout()
 {
     $header_layout = fastway_get_opts( 'header_layout', '1' );
-    if($header_layout == '0') {
-        return;
-    }
     get_template_part( 'template-parts/header-layout', $header_layout );
+}
+
+if(!function_exists('fastway_header_css_class')){
+    function fastway_header_css_class($class=''){
+        $classes = [
+            'cms-header',
+            'header-layout'.fastway_get_opts('header_layout','1')
+        ];
+        $header_sticky = fastway_get_opts('sticky_on','0');
+        $header_ontop = fastway_get_opts('header_ontop','0');
+        if($header_sticky == '1') $classes[] = 'is-sticky header-sticky';
+        if($header_ontop == '1') $classes[] = 'is-ontop header-ontop';
+        if(!empty($class)) $classes[] = $class;
+        echo implode(' ', $classes);
+    }
 }
 
 /**
@@ -43,7 +55,7 @@ function fastway_page_title_layout()
 }
 
 /**
- * Page title layout
+ * Footer 
  **/
 function fastway_footer()
 {
@@ -52,6 +64,26 @@ function fastway_footer()
     }
     $footer_layout = fastway_get_opt( 'footer_layout', '1' );
     get_template_part( 'template-parts/footer-layout', $footer_layout );
+}
+/*
+ * Footer css class
+*/
+if(!function_exists('fastway_footer_css_class')){
+    function fastway_footer_css_class($args = []){
+        $args = wp_parse_args($args, [
+            'class' => ''
+        ]);
+        $footer_top_column = fastway_get_opts( 'footer_top_column', '3' );
+        $footer_fixed = fastway_get_opts('footer_fixed', '0');
+        $footer_mode = fastway_get_opts('footer_mode', 'dark');
+        $css_classes = [
+            'site-footer',
+            'footer-'.$footer_mode,
+            'footer-'.$footer_top_column.'column'
+        ];
+        if($footer_fixed == '1') $css_classes[] = 'cms-footer-fixed';
+        echo trim(implode(' ', $css_classes));
+    }
 }
 
 /**
@@ -404,7 +436,8 @@ if(!function_exists('fastway_post_category')){
             'icon'       => 'fa fa-folder-open',
             'icon_class' => 'text-accent',
             'taxo'       => 'category',
-            'separator'  => ', '
+            'separator'  => ', ',
+            'post_id'    => get_the_ID()
         ]);
 
         if(!$args['show_cat']) return;
@@ -417,7 +450,7 @@ if(!function_exists('fastway_post_category')){
                 // cat text
                 if(!empty($args['text'])):  echo esc_html($args['text']).'&nbsp;'; endif; 
                 // cat list
-                the_terms( get_the_ID(), $args['taxo'], '', $args['separator'] );
+                the_terms( $args['post_id'], $args['taxo'], '', $args['separator'] );
             ?>
         </span>
     <?php
@@ -462,6 +495,28 @@ if(!function_exists('fastway_post_comment')){
     <?php
     }
 }
+/* Meta post author */
+if(!function_exists('fastway_post_date')){
+    function fastway_post_date($args = []){
+        $args = wp_parse_args($args, [
+            'show_date' => true,
+            'date_format' => get_option('date_format'),
+            'icon'       => 'fa fa-clock-o',
+            'icon_class' => 'text-accent',
+        ]);
+        if(!$args['show_date']) return;
+        ?>
+        <span class="post-date">
+            <?php 
+                // date icon
+                $icon_class = implode(' ', ['meta-icon', $args['icon'], $args['icon_class']]);
+                if(!empty($args['icon'])) echo '<span class="'.esc_attr($icon_class).'"></span>';
+            ?>
+            <span><?php echo get_the_date($args['date_format']); ?></span>
+        </span>
+        <?php
+    }
+}
 
 /**
  * Prints archive meta on blog
@@ -471,9 +526,11 @@ if ( ! function_exists( 'fastway_archive_meta' ) ) :
         $args = wp_parse_args($args,[
             'show_author' => fastway_get_opt( 'archive_author_on', false ),
             'show_cat'    => fastway_get_opt( 'archive_categories_on', true ),
-            'show_cmt' => fastway_get_opt( 'archive_comments_on', true ),
-            'show_date' => fastway_get_opt( 'archive_date_on', true ),
-            'class'     => ''
+            'show_cmt'    => fastway_get_opt( 'archive_comments_on', true ),
+            'show_date'   => fastway_get_opt( 'archive_date_on', true ),
+            'class'       => '',
+            'post_id'     => get_the_ID(),
+            'date_format' => get_option('date_format')
         ]);
        
         if($args['show_author'] || $args['show_cat'] || $args['show_cmt'] || $args['show_date']) : ?>
@@ -485,13 +542,14 @@ if ( ! function_exists( 'fastway_archive_meta' ) ) :
                         ?></li>
                     <?php endif;
                     if($args['show_date']) : ?>
-                        <li><?php 
-                            echo get_the_date(); 
+                        <li class="item-date"><?php 
+                            fastway_post_date(['date_format' => $args['date_format']])
                         ?></li>
                     <?php endif;
                     if($args['show_cat']) : ?>
                         <li class="item-category"><?php fastway_post_category([
                             'show_cat' => $args['show_cat'],
+                            'post_id'  => $args['post_id'],
                             'text'     =>  ''
                         ]);?></li>
                     <?php endif;
@@ -582,14 +640,18 @@ endif;
  * Post date
 **/
 if (!function_exists('fastway_post_featured_date')){
-    function fastway_post_featured_date($show_date = false){
-        if(!$show_date) return;
-        ?>
+    function fastway_post_featured_date($show_date = '0', $echo = true, $id = null){
+        if($show_date == '0') return;
+        $html = '
             <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
-                <div class="cms-post-date text-60 lh-60"><?php echo get_the_date('d'); ?></div>
-                <div class="cms-post-year bg-secondary text-12 text-uppercase"><?php echo get_the_date('F Y'); ?></div>
-            </div>
-        <?php
+                <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
+                <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
+            </div>';
+        if($echo){
+            printf('%s', $html);
+        } else {
+            return $html;
+        }
     }
 }
 
@@ -1005,13 +1067,16 @@ function fastway_product_nav() {
  * Social Icon
  */
 
-function fastway_social_header() {
-    $social_list = fastway_get_opt( 'social_list' );
+function fastway_header_social($args=[]) {
+    $args = wp_parse_args($args,[
+        'icon_class' => ''
+    ]);
+    $social_list = fastway_get_opts( 'social_list' );
     if($social_list && isset($social_list['enabled'])){
         foreach ($social_list['enabled'] as $social_key => $social_name){
             $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
             $social_link = !empty($social_link)?$social_link:'#';
-            if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
+            if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank" class="'.esc_attr($args['icon_class']).'"><span class="fa fa-' . esc_attr($social_key) . '"></span></a>';
         }
     }
 }
@@ -1024,129 +1089,6 @@ function fastway_social_footer() {
             $social_link = !empty($social_link)?$social_link:'#';
             if($social_key !== 'placebo')  echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
         }
-    }
-}
-
-if(!function_exists('fastway_get_post_grid')){
-    function fastway_get_post_grid($posts = [], $settings = []){
-        if(empty($posts) || !is_array($posts) || empty($settings) || !is_array($settings)){
-            return false;
-        }
-        extract($settings);
-        if($thumbnail_size != 'custom'){
-            $img_size = $thumbnail_size;
-        }
-        elseif(!empty($thumbnail_custom_dimension['width']) && !empty($thumbnail_custom_dimension['height'])){
-            $img_size = $thumbnail_custom_dimension['width'] . 'x' . $thumbnail_custom_dimension['height'];
-        }
-        else{
-            $img_size = 'full';
-        }
-        if (is_array($posts)):
-            foreach ($posts as $post):
-                $img_id = get_post_thumbnail_id($post->ID);
-                $img = etc_get_image_by_size( array(
-                    'attach_id'  => $img_id,
-                    'thumb_size' => $img_size,
-                    'class'      => '',
-                ));
-                $thumbnail = $img['thumbnail'];
-                $item_class = "grid-item col-xl-{$col_xl} col-lg-{$col_lg} col-md-{$col_md} col-sm-{$col_sm} col-{$col_xs}";
-                $filter_class = etc_get_term_of_post_to_class($post->ID, array_unique($tax));
-                $author = get_user_by('id', $post->post_author);
-                ?>
-                <div class="<?php echo esc_attr($item_class . ' ' . $filter_class); ?>">
-                    <div class="grid-item-inner">
-                        <?php if (has_post_thumbnail($post->ID) && wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), false) && $show_thumbnail == 'true'): ?>
-                            <div class="entry-featured">
-                                <div class="post-image">
-                                    <a href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo wp_kses_post($thumbnail); ?></a>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                        <div class="entry-body">
-                            <?php if($show_meta == 'true'): ?>
-                                <ul class="entry-meta">
-                                    <?php if($show_author == 'true'): ?>
-                                        <li class="author"><a href="<?php echo esc_url(get_author_posts_url($post->post_author, $author->user_nicename)); ?>"><?php echo esc_html($author->display_name); ?></a></li>
-                                    <?php endif; ?>
-                                    <?php if($show_post_date == 'true'): ?>
-                                        <li class="post-date"><?php $date_formart = get_option('date_format'); echo get_the_date($date_formart, $post->ID); ?></li>
-                                    <?php endif; ?>
-                                    <?php if($show_categories == 'true'): ?>
-                                        <li class="categories"><?php the_terms( $post->ID, 'category', '', ' ' ); ?></li>
-                                    <?php endif; ?>
-                                </ul>
-                            <?php endif; ?>
-                            <?php if($show_title == 'true'): ?>
-                            <<?php etc_print_html($title_tag);?> class="entry-title"><a href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo esc_attr(get_the_title($post->ID)); ?></a></<?php etc_print_html($title_tag);?>>
-                    <?php endif; ?>
-                        <?php if($show_excerpt == 'true'): ?>
-                            <div class="entry-content">
-                                <?php
-                                    if(!empty($post->post_excerpt)){
-                                        echo wp_trim_words( $post->post_excerpt, $num_words, $more = null );
-                                    }
-                                    else{
-                                        $content = strip_shortcodes( $post->post_content );
-                                        $content = apply_filters( 'the_content', $content );
-                                        $content = str_replace(']]>', ']]&gt;', $content);
-                                        $content = wp_trim_words( $content, $num_words, '&hellip;' );
-                                        echo wp_kses_post($content);
-                                    }
-                                ?>
-                            </div>
-                        <?php endif; ?>
-                        <?php if($show_button == 'true'): ?>
-                            <div class="entry-readmore">
-                                <a class="btn elementor-animation-<?php echo esc_attr($hover_animation); ?>" href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo wp_kses_post($button_text); ?></a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                </div>
-            <?php
-            endforeach;
-        endif;
-    }
-}
-
-add_action( 'wp_ajax_fastway_load_more_post_grid', 'fastway_load_more_post_grid' );
-add_action( 'wp_ajax_nopriv_fastway_load_more_post_grid', 'fastway_load_more_post_grid' );
-if(!function_exists('fastway_load_more_post_grid')){
-    function fastway_load_more_post_grid(){
-        try{
-            if(!isset($_POST['settings'])){
-                throw new Exception(__('Something went wrong while requesting. Please try again!', 'fastway'));
-            }
-            $settings = $_POST['settings'];
-            set_query_var('paged', $settings['paged']);
-            extract(etc_get_posts_of_grid('post', [
-                'source' => isset($settings['source'])?$settings['source']:'',
-                'orderby' => isset($settings['orderby'])?$settings['orderby']:'date',
-                'order' => isset($settings['order'])?$settings['order']:'desc',
-                'limit' => isset($settings['limit'])?$settings['limit']:'6',
-                'post_ids' => '',
-            ]));
-            ob_start();
-            fastway_get_post_grid($posts, $settings);
-            $html = ob_get_clean();
-            wp_send_json(
-                array(
-                    'status' => true,
-                    'message' => __('Load Successfully!', 'fastway'),
-                    'data' => array(
-                        'html' => $html,
-                        'paged' => $settings['paged'],
-                        'posts' => $posts,
-                    ),
-                )
-            );
-        }
-        catch (Exception $e){
-            wp_send_json(array('status' => false, 'message' => $e->getMessage()));
-        }
-        die;
     }
 }
 
@@ -1174,31 +1116,43 @@ if(!function_exists('fastway_header_top_quick_contact')){
             'tag'    => 'div',
             'class'  => ''
         ]);
+        $phone_icon    = fastway_get_opts('phone_icon','');
         $phone_label   = fastway_get_opts('phone_label','');
         $phone_number  = fastway_get_opts('phone_number','');
+        $email_icon    = fastway_get_opts('email_icon','');
         $email_label   = fastway_get_opts('email_label','');
         $email_address = fastway_get_opts('email_address','');
+        $time_icon     = fastway_get_opts('time_icon','');
         $time_label    = fastway_get_opts('time_label','');
         $time          = fastway_get_opts('time','');
         // html
         if(!empty($args['before']))  echo wp_kses_post($args['before']);
             echo '<'.$args['tag'].' class="'.implode(' ', ['cms-quick-contact', $args['class']]).'">';
-                if(!empty($phone_label) || !empty($phone_number)){
+                if( (!empty($phone_label) || !empty($phone_icon)) && !empty($phone_number)){
                     echo '<div class="qc-item qc-phone">';
-                        if(!empty($phone_label)) echo '<span class="qc-labelr phone-label">'.esc_html($phone_label).'</span>';
+                        if(!empty($phone_label)) echo '<span class="qc-icon phone-icon '.esc_attr($phone_icon).'"></span>';
+                        echo '<span>';
+                        if(!empty($phone_label)) echo '<span class="qc-label phone-label">'.esc_html($phone_label).'</span>';
                         if(!empty($phone_number)) echo '<span class="qc-value phone-number">'.esc_html($phone_number).'</span>';
+                        echo '</span>';
                     echo '</div>';
                 }
-                if(!empty($email_label) || !empty($email_address)) {
+                if((!empty($email_label) || !empty($email_icon)) && !empty($email_address)) {
                     echo '<div class="qc-item qc-email">';
-                        if(!empty($email_label)) echo '<span class="qc-labelr email-label">'.esc_html($email_label).'</span>';
+                        if(!empty($email_icon)) echo '<span class="qc-icon email-icon '.esc_attr($email_icon).'"></span>';
+                        echo '<span>';
+                        if(!empty($email_label)) echo '<span class="qc-label email-label">'.esc_html($email_label).'</span>';
                         if(!empty($email_address)) echo '<span class="qc-value email-address">'.esc_html($email_address).'</span>';
+                        echo '</span>';
                     echo '</div>';
                 }
-                if(!empty($time_label) || !empty($time)){
+                if((!empty($time_label) || !empty($time_icon)) && !empty($time)){
                     echo '<div class="qc-item qc-email">';
-                        if(!empty($time_label)) echo '<span class="qc-labelr time-label">'.esc_html($time_label).'</span>';
+                        if(!empty($time_icon)) echo '<span class="qc-icon time-icon '.esc_attr($time_icon).'"></span>';
+                        echo '<span>';
+                        if(!empty($time_label)) echo '<span class="qc-label time-label">'.esc_html($time_label).'</span>';
                         if(!empty($time)) echo '<span class="qc-value time">'.esc_html($time).'</span>';
+                        echo '</span>';
                     echo '</div>';
                 }
             echo '</'.$args['tag'].'>';
@@ -1237,13 +1191,156 @@ if(!function_exists('fastway_header_top')){
         <div class="container">
             <div class="row justify-content-center justify-content-lg-end">
                 <div class="col-auto"><?php
-                    fastway_header_top_social(['tag' => 'span']);
-                    fastway_header_top_quick_contact(['tag' => 'span', 'class' => 'd-inline-block vertical']);
-                    fastway_header_top_text(['tag' => 'span']);
+                    fastway_header_top_social(['tag' => 'span','class' => 'd-inline-block']);
+                    fastway_header_top_text(['tag' => 'span','class' => 'd-inline-block d-max-xs-none']);
                 ?></div>
             </div>
         </div>
     </div>
     <?php
+    }
+}
+// Header Button 
+if(!function_exists('fastway_header_button')){
+    function fastway_header_button($args=[]){
+        $args = wp_parse_args($args,[
+            'class' => '',
+            'text' => 'Your Text'
+        ]);
+        $h_btn_on = fastway_get_opts( 'h_btn_on', '0' );
+        $h_btn_text = fastway_get_opts( 'h_btn_text' );
+        $h_btn_link_type = fastway_get_opts( 'h_btn_link_type', 'page' );
+        $h_btn_link = fastway_get_opts( 'h_btn_link' );
+        $h_btn_link_custom = fastway_get_opts( 'h_btn_link_custom' );
+        $h_btn_target = fastway_get_opts( 'h_btn_target', '_self' );
+        if($h_btn_link_type == 'page') {
+            $h_btn_url = get_permalink($h_btn_link);
+        } else {
+            $h_btn_url = $h_btn_link_custom;
+        }
+        if($h_btn_on == '0') return;
+        ?>
+            <div class="cms-header-btn">
+                <a href="<?php echo esc_url( $h_btn_url ); ?>" target="<?php echo esc_attr($h_btn_target); ?>" class="btn h-btn"><?php 
+                    echo  !empty($h_btn_text) ?  esc_html( $h_btn_text ) : esc_html($args['text']); 
+                ?></a>
+            </div>
+    <?php
+    }
+}
+// Header Search
+if(!function_exists('fastway_header_search')){
+    function fastway_header_search($args=[]){
+        $args = wp_parse_args($args, [
+            'class' => '',
+            'icon'  => 'fa fa-search'
+        ]);
+        $search_on = fastway_get_opts('search_on', '0');
+        $css_class = ['cms-header-search header-icon', $args['class']];
+        if($search_on == '0') return;
+    ?>
+        <div class="<?php echo implode(' ', $css_class);?>">
+            <span class="h-btn-search menu-color cms-transition"><span class="<?php echo esc_attr($args['icon']);?>"></span></span>
+        </div>
+    <?php
+    }
+}
+
+// Header Cart
+if(!function_exists('fastway_header_cart')){
+    function fastway_header_cart($args=[]){
+        $cart_on = fastway_get_opts( 'cart_on', '0' );
+        if(!class_exists('Woocommerce') || $cart_on == '0') return;
+        $args = wp_parse_args($args,[
+            'class' => '',
+            'style' => '1',
+            'icon'  => 'fa fa-shopping-cart'
+        ]);
+        $css_class = ['cms-header-cart menu-right-item header-icon', $args['class']];
+    ?>
+        <div class="<?php echo implode(' ', $css_class); ?>">
+            <span class="h-btn-cart menu-color cms-transition">
+                <span class="<?php echo esc_attr($args['icon']);?>"></span>
+                <span class="header-count cart-count cart_total style-<?php echo esc_attr($args['style']);?>"><?php fastway_woocommerce_cart_counter(['style' => $args['style']]); ?></span>
+            </span>
+            <div class="widget_shopping_cart">
+                <div class="widget_shopping_cart_content">
+                    <?php woocommerce_mini_cart(); ?>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+}
+if(!function_exists('fastway_woocommerce_add_to_cart_fragments')){
+    add_filter('woocommerce_add_to_cart_fragments', 'fastway_woocommerce_add_to_cart_fragments', 10, 1 );
+    function fastway_woocommerce_add_to_cart_fragments( $fragments ) {
+        if(!class_exists('WooCommerce')) return;
+        ob_start();
+        $header_layout = fastway_get_opts('header_layout','1');
+        switch ($header_layout) {
+            case '5':
+                $cart_style = '2';
+                break;
+            
+            default:
+                $cart_style = '1';
+                break;
+        }
+        ?>
+        <span class="header-count cart-count cart_total style-<?php echo esc_attr($cart_style);?>"><?php fastway_woocommerce_cart_counter(['style' => $cart_style]); ?></span>
+        <?php
+        $fragments['.cart_total'] = ob_get_clean();
+        return $fragments;
+    }
+}
+
+if(!function_exists('fastway_woocommerce_cart_counter')){
+    function fastway_woocommerce_cart_counter($args=[]){
+        if(!class_exists('WooCommerce')) return;
+        $args = wp_parse_args($args, [
+            'style' => '1'
+        ]);
+        switch ($args['style']) {
+            case '2':
+                $count = WC()->cart->cart_contents_count;
+                break;
+            
+            default:
+                $count = WC()->cart->cart_contents_count;
+                break;
+        }
+        echo fastway_html($count);
+    }
+}
+
+// Mobile menu icon
+if(!function_exists('fastway_mobile_menu_icon')){
+    function fastway_mobile_menu_icon($args=[]){
+        $args = wp_parse_args($args,[
+            'class' => ''
+        ]);
+        $css_class = ['main-menu-mobile', $args['class']];
+        ?>
+            <div id="main-menu-mobile" class="<?php echo implode(' ', $css_class);?>">
+                <span class="btn-nav-mobile open-menu">
+                    <span></span>
+                </span>
+            </div>
+        <?php
+    }
+}
+// Menu Right Class
+if(!function_exists('fastway_site_menu_right_class')){
+    function fastway_site_menu_right_class($class=''){
+        $css_class = ['site-menu-right'];
+        $cart_on = fastway_get_opts('cart_on','0');
+        $search_on = fastway_get_opts('search_on','0');
+        $social_on = '0';
+        $social_list = fastway_get_opts( 'social_list' );
+        if(count($social_list['enabled']) > 1) $social_on = '1';
+        if($cart_on == '1' || $search_on == '1' || $social_on == '1') $css_class[] = 'has-atts';
+        $css_class[] =  $class;
+        echo implode(' ', $css_class);
     }
 }

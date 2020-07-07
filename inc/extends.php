@@ -32,7 +32,7 @@ function fastway_body_classes( $classes )
         $classes[] = 'hfeed';
     }
 
-    if (fastway_get_opt( 'site_boxed', false )) {
+    if (fastway_get_opts( 'site_boxed', false )) {
         $classes[] = 'site-boxed';
     }
 
@@ -44,9 +44,9 @@ function fastway_body_classes( $classes )
         $classes[] = 'redux-page';
     }
 
-    $body_default_font = fastway_get_opt( 'body_default_font', 'Rubik' );
-    $heading_default_font = fastway_get_opt( 'heading_default_font', 'Rubik' );
-    $sub_heading_default_font = fastway_get_opt( 'sub_heading_default_font', 'Shadows-Into-Light' );
+    $body_default_font = fastway_get_opts( 'body_default_font', 'Rubik' );
+    $heading_default_font = fastway_get_opts( 'heading_default_font', 'Rubik' );
+    $sub_heading_default_font = fastway_get_opts( 'sub_heading_default_font', 'Shadows-Into-Light' );
 
     if($body_default_font == 'Rubik') {
         $classes[] = 'body-default-font';
@@ -60,8 +60,12 @@ function fastway_body_classes( $classes )
         $classes[] = 'sub-heading-default-font';
     }
 
-    if (fastway_get_opt( 'sticky_on', false )) {
+    if (fastway_get_opts( 'sticky_on', false )) {
         $classes[] = 'header-sticky';
+    }
+
+    if(fastway_get_opts('footer_fixed', '0') == '1'){
+        $classes[] = 'cms-page-footer-fixed';
     }
 
     return $classes;

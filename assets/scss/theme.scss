@@ -56,9 +56,9 @@ $theme-colors: (
 @import "mixins";
 
 // Custom
-
 @import "spacing";
 @import "border";
+@import "opacity";
 // libs
 @import "_slick_slider";
 /*--------------------------------------------------------------
@@ -95,6 +95,8 @@ $theme-colors: (
 # Main Menu
 --------------------------------------------------------------*/
 @import "mainmenu";
+@import "menu_ontop";
+@import "menu_sticky";
 
 /*--------------------------------------------------------------
 # Page Title & Breadcrumb
@@ -142,4 +144,10 @@ $theme-colors: (
 # Elementor
 --------------------------------------------------------------*/
 @import "elementor";
+@import "elementor/elementor";
+
+/*--------------------------------------------------------------
+# Display
+--------------------------------------------------------------*/
+@import "display";
 

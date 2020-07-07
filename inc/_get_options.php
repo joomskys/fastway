@@ -151,8 +151,9 @@ function fastway_get_opts($opt_id, $default = false){
  * @param bool $default
  * @return bool|mixed
  */
-function fastway_get_post_format_value($post_format_key, $default = '')
+function fastway_get_post_format_value($id=null,$post_format_key, $default = '')
 {
     global $post;
-    return $value = (!empty($post->ID) && '' !== get_post_meta($post->ID, $post_format_key, true) ) ? get_post_meta($post->ID, $post_format_key, true) : $default;
+    if($id===null) $id = $post->ID;
+    return $value = (!empty($id) && '' !== get_post_meta($id, $post_format_key, true) ) ? get_post_meta($id, $post_format_key, true) : $default;
 }

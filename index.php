@@ -9,7 +9,6 @@
  *
  * @package FastWay
  */
-
 get_header();
 $sidebar_pos = fastway_get_opt( 'archive_sidebar_pos', 'right' );
 ?>
@@ -18,7 +17,6 @@ $sidebar_pos = fastway_get_opt( 'archive_sidebar_pos', 'right' );
         <div id="primary" <?php fastway_primary_class( $sidebar_pos, 'content-area' ); ?>>
             <div id="main" class="site-main">
             <?php
-
                 if ( have_posts() )
                 {
                     while ( have_posts() )

@@ -1,13 +1,20 @@
 .site-branding{
+	position: relative;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	.logo-light{
 		display: inline-block;
 	}
 	.logo-dark, .logo-mobile {
 		position: absolute;
 		top: 50%;
-		@include transform(translate(0, -50%));
-		left: 0;
+		left: 15px;
 		opacity: 0;
+		@include transform(translate(0, -50%));
+		[dir="rtl"] &{
+			left: auto;
+			right: 15px;
+		}
 	}
 	img {
 		vertical-align: middle;

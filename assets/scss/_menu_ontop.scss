@@ -1,0 +1,27 @@
+.header-ontop{
+	.primary-menu {
+		// Level 1
+        > li {
+            > a {
+                color: var(--ontop-regular);
+            }
+            /*Hover*/
+            &:hover > a{
+                color: var(--ontop-hover);
+            }
+            /* Active */
+            &.current_page_item > a,
+            &.current-menu-item > a,
+            &.current_page_ancestor > a,
+            &.current-menu-ancestor > a {
+                color: var(--ontop-active);
+            }
+        }
+	}
+	.menu-color{
+        color: var(--ontop-regular);
+        &:hover{
+            color: var(--ontop-hover);
+        }
+    }
+}

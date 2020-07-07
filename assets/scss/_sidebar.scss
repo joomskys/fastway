@@ -11,3 +11,19 @@
 		}
 	}
 }
+
+/* Sticky Sidebar */
+.sidebar-sticky, .sidebar-sticky > .vc_column-inner {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30px;
+}
+.admin-bar .sidebar-sticky, .admin-bar .sidebar-sticky > .vc_column-inner  {
+  top: 60px;
+}
+.header-sticky .sidebar-sticky, .header-sticky .sidebar-sticky > .vc_column-inner {
+  top: 110px;
+}
+.admin-bar.header-sticky .sidebar-sticky, .admin-bar.header-sticky .sidebar-sticky > .vc_column-inner {
+  top: 140px;
+}

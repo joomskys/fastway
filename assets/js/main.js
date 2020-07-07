@@ -14,15 +14,19 @@
         $(".cms-loader").fadeOut("slow");
         window_width = $(window).width();
         fastway_col_offset();
+        fastway_header_ontop();
         fastway_header_sticky();
         fastway_rtl();
+        fastway_footer_fixed();
         fastway_scroll_to_top();
         setTimeout(function () { $('.cms-grid-menu-layout5 .grid-filter-wrap .filter-item:nth-child(1)').trigger('click'); }, 100);
         fastway_post_gallery_slide();
+        fastway_video_size();
     });
     $(window).on('resize', function () {
         window_width = $(window).width();
         fastway_col_offset();
+        fastway_video_size();
     });
 
     $(window).on('scroll', function () {
@@ -38,14 +42,23 @@
         fastway_header_sticky();
         fastway_scroll_to_top();
     });
+    // Ajax Complete
+    $(document).ajaxComplete(function(event, xhr, settings){
+        "use strict";
+        fastway_post_gallery_slide();
+        fastway_video_size();
+        $.sep_grid_refresh(); // this need to add last function
+    });
 
     $.sep_grid_refresh = function (){
         $('.cms-grid-masonry').each(function () {
+            var _gutter = $(this).data('gutter');
             var iso = new Isotope(this, {
                 itemSelector: '.grid-item',
                 percentPosition: true,
                 masonry: {
                     columnWidth: '.grid-sizer',
+                    gutter: 0
                 },
                 containerStyle: null,
                 stagger: 30,
@@ -96,6 +109,12 @@
     $(document).on('click', '.cms-load-more', function(){
         var loadmore = $(this).data('loadmore');
         var _this = $(this).parents(".cms-grid");
+
+        if(_this.hasClass('cms-post-grid')){
+            var load_action = 'fastway_elementor_load_more_post_grid';
+        } else if(_this.hasClass('cms-post-list')) {
+            var load_action = 'fastway_elementor_load_more_post_list';
+        }
         var layout_type = _this.data('layout');
         loadmore.paged = parseInt(_this.data('start-page')) +1;
         $.ajax({
@@ -105,7 +124,7 @@
 
             },
             data: {
-                action: 'fastway_load_more_post_grid',
+                action: load_action,
                 settings: loadmore
             }
         })
@@ -141,6 +160,11 @@
         paged = paged.replace('#', '');
         loadmore.paged = parseInt(paged);
         query_vars.paged = parseInt(paged);
+        if(_this.hasClass('cms-post-grid')){
+            var load_action = 'fastway_elementor_load_more_post_grid';
+        } else if(_this.hasClass('cms-post-list')) {
+            var load_action = 'fastway_elementor_load_more_post_list';
+        }
         // reload pagination
         $.ajax({
             url: main_data.ajax_url,
@@ -173,7 +197,7 @@
 
             },
             data: {
-                action: 'fastway_load_more_post_grid',
+                action: load_action,
                 settings: loadmore
             }
         }).done(function (res) {
@@ -239,14 +263,6 @@
             $(this).parent().addClass('remove').removeClass('open');
             $(this).parents('.cms-modal').addClass('remove').removeClass('open');
             $(this).parents('#page').find('.site-overlay').removeClass('open');
-        });
-
-        /* Video 16:9 */
-        $('.entry-video iframe').each(function () {
-            var v_width = $(this).width();
-
-            v_width = v_width / (16 / 9);
-            $(this).attr('height', v_width + 35);
         });
         /* Images Light Box - Gallery:True */
         $('.images-light-box').each(function () {
@@ -420,6 +436,7 @@
      Column Absolute
      =================== */
     function fastway_col_offset() {
+        'use strict';
         var w_vc_row_lg = ($('#content').width() - 1230) / 2;
         if (window_width > 1200) {
             $('.col-offset-right > .vc_column-inner').css('padding-right', w_vc_row_lg + 'px');
@@ -428,8 +445,19 @@
             $('.col-offset-left > .col-offset-inner').css('padding-left', w_vc_row_lg + 'px');
         }
     }
-
+    // Header ontop
+    function fastway_header_ontop() {
+        'use strict';
+        var offsetTop = $('#cms-header-top').outerHeight();
+        if($('#site-header-wrap').hasClass('is-ontop')) {
+            $('#site-header-wrap').css({
+                'top': offsetTop
+            });
+        }
+    }
+    // header sticky
     function fastway_header_sticky() {
+        'use strict';
         var offsetTop = $('#site-header-wrap').outerHeight();
         var h_header = $('.fixed-height').outerHeight();
         var offsetTopAnimation = offsetTop + 200;
@@ -446,22 +474,34 @@
             });
         }
     }
-
+    /* =================
+    RTL
+    =================== */
     function fastway_rtl() {
-        /* =================
-        RTL
-        =================== */
+        'use strict';
         if ($('html').attr('dir') == 'rtl') {
             $('[data-vc-full-width="true"]').each(function (i, v) {
                 $(this).css('right', $(this).css('left')).css('left', 'auto');
             });
         }
     }
-
+    /* ====================
+      Fixed Footer
+     ====================== */
+     function fastway_footer_fixed(){
+        'use strict';
+        var offsetFooter = $('#cms-footer').outerHeight();
+        if($('#cms-footer').hasClass('cms-footer-fixed')) {
+            $('#cms-page').css({
+                'padding-bottom': offsetFooter
+            });
+        }
+     }
     /* ====================
      Scroll To Top
      ====================== */
     function fastway_scroll_to_top() {
+        'use strict';
         if (scroll_top < window_height) {
             $('.scroll-top').addClass('off').removeClass('on');
         }
@@ -473,9 +513,29 @@
      Post gallery
     ================ */
     function fastway_post_gallery_slide(){
-        $('.cms-post-gallery-slide ').slick({
-            dots: true,
-        });
+        'use strict';
+        if(typeof $.fn.slick !== 'undefined'){
+            $('.cms-post-gallery-slide ').slick({
+                dots: true,
+            });
+        }
+    }
+    /**
+     * Media Embed dimensions
+     * 
+     * Youtube, Vimeo, Iframe, Video, Audio.
+     * @author Chinh Duong Manh
+     */
+    function fastway_video_size() {
+        'use strict';
+        setTimeout(function(){
+            $('.cms-featured iframe , .cms-featured  video, .cms-featured .wp-video-shortcode').each(function(){
+                var v_width = $(this).parent().width();
+                var v_height = Math.floor(v_width / (16/9));
+                $(this).attr('width',v_width).css('width',v_width);
+                $(this).attr('height',v_height + 59).css('height',v_height + 59);
+            });
+        }, 100);
     }
 
 })(jQuery);

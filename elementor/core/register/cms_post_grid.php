@@ -29,8 +29,8 @@ etc_add_custom_widget(
                             'options' => [
                                 '1' => [
                                     'label' => esc_html__( 'Layout 1', 'fastway' ),
-                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_post_grid/layout1.png'
-                                ],
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_post_grid/layout/layout1.png'
+                                ]
                             ],
                         ),
                     ),
@@ -154,9 +154,9 @@ etc_add_custom_widget(
                             'label' => esc_html__( 'Item Gap', 'fastway' ),
                             'type' => \Elementor\Controls_Manager::NUMBER,
                             'control_type' => 'responsive',
-                            'default' => 15,
+                            'default' => 30,
                             'selectors' => [
-                                '{{WRAPPER}} .cms-post-grid .grid-item' => 'padding-left: {{VALUE}}px; padding-right: {{VALUE}}px;',
+                                //'{{WRAPPER}} .cms-post-grid .grid-item-inner' => 'padding-left: {{VALUE}}px; padding-right: {{VALUE}}px;',
                             ],
                         ),
                         array(

@@ -47,36 +47,37 @@ $show_button = $widget->get_setting('show_button', 'pagination');
 $hover_animation = $widget->get_setting('hover_animation', 'pagination');
 $button_text = $widget->get_setting('button_text', 'pagination');
 $load_more = array(
-    'startPage' => $paged,
-    'maxPages'  => $max,
-    'total'     => $total,
-    'perpage'   => $limit,
-    'nextLink'  => $next_link,
-    'source' => $source,
-    'orderby' => $orderby,
-    'order' => $order,
-    'limit' => $limit,
-    'post_ids' => $post_ids,
-    'col_xl'    => $col_xl,
-    'col_lg'    => $col_lg,
-    'col_md'    => $col_md,
-    'col_sm'    => $col_sm,
-    'col_xs'    => $col_xs,
-    'thumbnail_size'  => $thumbnail_size,
-    'thumbnail_custom_dimension'  => $thumbnail_custom_dimension,
-    'title_tag' => $title_tag,
-    'pagination_type' => $pagination_type,
-    'show_thumbnail' => $show_thumbnail,
-    'show_meta' => $show_meta,
-    'show_author' => $show_author,
-    'show_post_date' => $show_post_date,
-    'show_categories' => $show_categories,
-    'show_title' => $show_title,
-    'show_excerpt' => $show_excerpt,
-    'num_words' => $num_words,
-    'show_button' => $show_button,
-    'hover_animation' => $hover_animation,
-    'button_text' => $button_text,
+    'startPage'                  => $paged,
+    'maxPages'                   => $max,
+    'total'                      => $total,
+    'perpage'                    => $limit,
+    'nextLink'                   => $next_link,
+    'source'                     => $source,
+    'orderby'                    => $orderby,
+    'order'                      => $order,
+    'limit'                      => $limit,
+    'post_ids'                   => $post_ids,
+    'col_xl'                     => $col_xl,
+    'col_lg'                     => $col_lg,
+    'col_md'                     => $col_md,
+    'col_sm'                     => $col_sm,
+    'col_xs'                     => $col_xs,
+    'thumbnail_size'             => $thumbnail_size,
+    'thumbnail_custom_dimension' => $thumbnail_custom_dimension,
+    'title_tag'                  => $title_tag,
+    'pagination_type'            => $pagination_type,
+    'show_thumbnail'             => $show_thumbnail,
+    'show_meta'                  => $show_meta,
+    'show_author'                => $show_author,
+    'show_post_date'             => $show_post_date,
+    'show_categories'            => $show_categories,
+    'show_title'                 => $show_title,
+    'show_excerpt'               => $show_excerpt,
+    'num_words'                  => $num_words,
+    'show_button'                => $show_button,
+    'hover_animation'            => $hover_animation,
+    'button_text'                => $button_text,
+    'gap_item'                   => $gap_item
 );
 ?>
 
@@ -97,14 +98,15 @@ $load_more = array(
         </div>
     <?php endif; ?>
 
-    <div class="<?php echo esc_attr($grid_class); ?> animation-time" data-gutter="<?php echo esc_attr($gap_item); ?>">
+    <div class="<?php echo esc_attr($grid_class); ?> animation-time" data-gutter="<?php echo esc_attr($gap_item); ?>" style="margin-left: <?php echo esc_attr($gap_item*-1); ?>px;margin-right: <?php echo esc_attr($gap_item*-1); ?>px;">
+        
+        <?php
+        $load_more['tax'] = $tax;
+        fastway_elementor_get_post_grid($posts, $load_more);
+        ?>
         <?php if ($layout_type == 'masonry') : ?>
             <div class="grid-sizer <?php echo esc_attr($grid_sizer); ?>"></div>
         <?php endif; ?>
-        <?php
-        $load_more['tax'] = $tax;
-        fastway_get_post_grid($posts, $load_more);
-        ?>
     </div>
     <?php if ($layout_type == 'masonry' && $pagination_type == 'pagination') { ?>
         <div class="cms-grid-pagination" data-loadmore="<?php echo esc_attr(json_encode($load_more)); ?>" data-query="<?php echo esc_attr(json_encode($args)); ?>">

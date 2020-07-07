@@ -178,182 +178,36 @@ function fastway_page_options_register( $metabox ) {
 	 * Config page meta options
 	 *
 	 */
+	// Header Top
+	$metabox->add_section('page', fastway_header_top_opts());
+	// Main Header
 	$metabox->add_section( 'page',  fastway_header_opts([
 			'default'       => true,
-			'default_value' => '1'
+			'default_value' => '-1'
 		])
 	);
+	// Ontop Header
+	$metabox->add_section( 'page', fastway_header_ontop_opts([
+			'default'       => true,
+			'default_value' => '-1'
+		])
+	);
+	// Sticky Header
+	$metabox->add_section( 'page', fastway_header_sticky_opts([
+			'default'       => true,
+			'default_value' => '-1'
+		])
+	);
+	// Navigation
+	$metabox->add_section('page', fastway_navigation_opts());
+	// Attribute:  search, cart, ...
+	$metabox->add_section('page', fastway_header_atts_opts(['default' => true]));
+	// Page title
+	$metabox->add_section( 'page', fastway_page_title_opts(['default' => true]));
+	// Footer 
+	$metabox->add_section('page', fastway_footer_opts(['default' => true, 'default_value'=>'-1', 'subsection' => false]));
 
-	$metabox->add_section( 'page',  array(
-	    'title'      => esc_html__('Header Attribute', 'fastway'),
-	    'icon'       => 'el-icon-website',
-	    'subsection' => true,
-	    'fields'     => array(
-	        array(
-	            'id'       => 'sticky_on',
-	            'type'     => 'switch',
-	            'title'    => esc_html__('Sticky Header', 'fastway'),
-	            'subtitle' => esc_html__('Header will be sticked when applicable.', 'fastway'),
-	            'default'  => false
-	        ),
-	        array(
-	            'id'       => 'search_on',
-	            'type'     => 'switch',
-	            'title'    => esc_html__('Search Icon', 'fastway'),
-	            'default'  => false
-	        ),
-	        array(
-	            'id'       => 'cart_on',
-	            'type'     => 'switch',
-	            'title'    => esc_html__('Cart Icon', 'fastway'),
-	            'default'  => false
-	        ),
-	        array(
-	            'id'       => 'logo_dark',
-	            'type'     => 'media',
-	            'title'    => esc_html__('Logo Dark', 'fastway'),
-	            'default' => '',
-	            'required'     => array( 0 => 'custom_header', 1 => 'equals', 2 => '1' ),
-				'force_output' => true
-	        ),
-	    )
-	));
-	$metabox->add_section('page', fastway_header_top_opts());
-
-	$metabox->add_section( 'page', array(
-		'title'  => esc_html__( 'Page Title', 'fastway' ),
-		'icon'   => 'el el-indent-left',
-		'fields' => array(
-			array(
-				'id'           => 'custom_pagetitle',
-				'type'         => 'button_set',
-				'title'        => esc_html__( 'Page Title', 'fastway' ),
-				'options'      => array(
-					'themeoption'  => esc_html__( 'Theme Option', 'fastway' ),
-					'show'  => esc_html__( 'Custom', 'fastway' ),
-					'hide'  => esc_html__( 'Hide', 'fastway' ),
-				),
-				'default'      => 'themeoption',
-			),
-
-			array(
-	            'id'       => 'ptitle_layout',
-	            'type'     => 'image_select',
-	            'title'    => esc_html__('Layout', 'fastway'),
-	            'subtitle' => esc_html__('Select a layout for page title.', 'fastway'),
-	            'options'  => array(
-	                '' => get_template_directory_uri() . '/assets/images/ptitle-layout/p0.jpg',
-	                '1' => get_template_directory_uri() . '/assets/images/ptitle-layout/p1.jpg',
-	                '2' => get_template_directory_uri() . '/assets/images/ptitle-layout/p2.jpg',
-	                '3' => get_template_directory_uri() . '/assets/images/ptitle-layout/p3.jpg',
-	                '4' => get_template_directory_uri() . '/assets/images/ptitle-layout/p4.jpg',
-	            ),
-	            'default'  => '',
-	            'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-	        ),
-
-			array(
-				'id'           => 'custom_title',
-				'type'         => 'text',
-				'title'        => esc_html__( 'Title', 'fastway' ),
-				'subtitle'     => esc_html__( 'Use custom title for this page. The default title will be used on document title.', 'fastway' ),
-				'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-			),
-			array(
-				'id'           => 'sub_title',
-				'type'         => 'text',
-				'title'        => esc_html__( 'Sub Title', 'fastway' ),
-				'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-			),
-			array(
-	            'id'       => 'ptitle_bg',
-	            'type'     => 'background',
-	            'background-color'     => false,
-	            'background-repeat'     => false,
-	            'background-size'     => false,
-	            'background-attachment'     => false,
-	            'background-position'     => false,
-	            'title'    => esc_html__('Background', 'fastway'),
-	            'subtitle' => esc_html__('Page title background image.', 'fastway'),
-	            'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-	        ),
-	        array(
-	            'id'             => 'ptitle_padding',
-	            'type'           => 'spacing',
-	            'output'         => array('.site #pagetitle.page-title'),
-	            'right'   => false,
-	            'left'    => false,
-	            'mode'           => 'padding',
-	            'units'          => array('px'),
-	            'units_extended' => 'false',
-	            'title'          => esc_html__('Page Title Padding', 'fastway'),
-	            'desc'           => esc_html__('Default: Top-406px, Bottom-86px', 'fastway'),
-	            'default'            => array(
-	                'padding-top'   => '',
-	                'padding-bottom'   => '',
-	                'units'          => 'px',
-	            ),
-	            'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-	        ),
-		)
-	) );
-
-	$metabox->add_section( 'page', array(
-		'title'  => esc_html__( 'Content', 'fastway' ),
-		'desc'   => esc_html__( 'Settings for content area.', 'fastway' ),
-		'icon'   => 'el-icon-pencil',
-		'fields' => array(
-			array(
-				'id'       => 'content_bg_color',
-				'type'     => 'color_rgba',
-				'title'    => esc_html__( 'Background Color', 'fastway' ),
-				'subtitle' => esc_html__( 'Content background color.', 'fastway' ),
-				'output'   => array( 'background-color' => 'body' )
-			),
-			array(
-				'id'             => 'content_padding',
-				'type'           => 'spacing',
-				'output'         => array( '#content' ),
-				'right'          => false,
-				'left'           => false,
-				'mode'           => 'padding',
-				'units'          => array( 'px' ),
-				'units_extended' => 'false',
-				'title'          => esc_html__( 'Content Padding', 'fastway' ),
-				'desc'           => esc_html__( 'Default: Theme Option.', 'fastway' ),
-				'default'        => array(
-					'padding-top'    => '',
-					'padding-bottom' => '',
-					'units'          => 'px',
-				)
-			),
-			array(
-				'id'      => 'show_sidebar_page',
-				'type'    => 'switch',
-				'title'   => esc_html__( 'Show Sidebar', 'fastway' ),
-				'default' => false,
-				'indent'  => true
-			),
-			array(
-				'id'           => 'sidebar_page_pos',
-				'type'         => 'button_set',
-				'title'        => esc_html__( 'Sidebar Position', 'fastway' ),
-				'options'      => array(
-					'left'  => esc_html__( 'Left', 'fastway' ),
-					'right' => esc_html__( 'Right', 'fastway' ),
-				),
-				'default'      => 'right',
-				'required'     => array( 0 => 'show_sidebar_page', 1 => '=', 2 => '1' ),
-				'force_output' => true
-			),
-		)
-	) );
-
+	// Products
 	$metabox->add_section( 'product', array(
 		'title'  => esc_html__( 'Header', 'fastway' ),
 		'desc'   => esc_html__( 'Header settings for the page.', 'fastway' ),

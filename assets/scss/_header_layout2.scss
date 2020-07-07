@@ -1,0 +1,37 @@
+.header-layout2{
+	.site-branding{
+		padding-top: 20px;
+		padding-bottom: 20px;
+	    @media #{$min-md}{
+	    	&:after{
+		    	content: "";
+			    width: 3000px;
+			    height: 104%;
+			    background-color: $secondary_color;
+			    position: absolute;
+			    right: -88px;
+			    top: 0px;
+			    z-index: -1;
+			    @include transform(skew(20deg));
+			}
+		}
+		@media (max-width: 767px){
+			text-align: center;
+			.logo-dark,
+			.logo-mobile{
+				left: 50%;
+				@include transform(translate(-50%,-50%));
+			}
+		}
+	}
+	.cms-header-quick-contact{
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	@media #{$min-lg} {
+		.primary-menu > li > a{
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+	}
+}

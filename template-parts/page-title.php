@@ -1,8 +1,7 @@
 <?php
 $titles = fastway_get_page_titles();
-
-$pagetitle = fastway_get_opt( 'pagetitle', 'show' );
-$ptitle_layout = fastway_get_opt( 'ptitle_layout', '1' );
+$pagetitle = fastway_get_opts( 'pagetitle', '1' );
+$ptitle_layout = fastway_get_opts( 'ptitle_layout', '1' );
 
 $custom_pagetitle = fastway_get_page_opt( 'custom_pagetitle', 'themeoption');
 $ptitle_layout_page = fastway_get_page_opt( 'ptitle_layout', '');
@@ -25,66 +24,35 @@ $ptitle_breadcrumb_on = fastway_get_opt( 'ptitle_breadcrumb_on', 'show' );
 if(is_404()) {
     return true;
 }
-if($pagetitle == 'show') : ?>
+if($pagetitle == '1') : ?>
     <?php 
         switch ($ptitle_layout) {
-            case '2': ?>
-                <div id="pagetitle" class="page-title bg-overlay bg-image page-title-layout<?php echo esc_attr($ptitle_layout); ?>">
-                    <div class="container">
-                        <div class="page-title-inner">
-                            <?php if(is_singular('post')) {
-                                fastway_post_meta();
-                            } ?>
-                            <?php if(is_singular('event')) {
-                                fastway_post_meta_event();
-                            } ?>
-                            <?php if($ptitle_breadcrumb_on == 'show' && !is_singular('post') && !is_singular('event')) : ?>
-                                <h6 class="page-sub-title ft-sub">
-                                    <?php echo wp_kses_post( $sub_title ); ?>
-                                </h6>
-                            <?php endif; ?>
-                            <?php printf( '%s', wp_kses_post($titles_html)); ?>
-                        </div>
+            default: 
+        ?>
+            <div id="pagetitle" class="page-title page-title-layout<?php echo esc_attr($ptitle_layout); ?> relative d-flex">
+                <div class="cms-page-title-overlay"></div>
+                <div class="container d-flex">
+                    <div class="cms-page-title-inner align-self-end">
+                        <?php if(is_singular('post')) {
+                            fastway_post_meta();
+                        } ?>
+                        <?php if(is_singular('event')) {
+                            fastway_post_meta_event();
+                        } ?>
+                        <?php if($custom_pagetitle && !empty($sub_title) && !is_singular('post')) : ?>
+                            <h6 class="page-sub-title ft-sub">
+                                <?php echo wp_kses_post( $sub_title ); ?>
+                            </h6>
+                        <?php endif; ?>
+                        <?php printf( '%s', wp_kses_post($titles_html)); ?>
+                        <?php if($ptitle_breadcrumb_on == '1') : ?>
+                            <?php fastway_breadcrumb(); ?>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <?php break;
-
-            case '4': ?>
-                <div id="pagetitle" class="page-title page-title-layout<?php echo esc_attr($ptitle_layout); ?>">
-                    <div class="container">
-                        <div class="page-title-inner">
-                            <?php printf( '%s', wp_kses_post($titles_html)); ?>
-                            <?php if($ptitle_breadcrumb_on == 'show') : ?>
-                                <?php fastway_breadcrumb(); ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php break;
-            
-            default: ?>
-                <div id="pagetitle" class="page-title bg-overlay bg-image page-title-layout<?php echo esc_attr($ptitle_layout); ?>">
-                    <div class="container">
-                        <div class="page-title-inner">
-                            <?php if(is_singular('post')) {
-                                fastway_post_meta();
-                            } ?>
-                            <?php if(is_singular('event')) {
-                                fastway_post_meta_event();
-                            } ?>
-                            <?php if($custom_pagetitle && !empty($sub_title) && !is_singular('post')) : ?>
-                                <h6 class="page-sub-title ft-sub">
-                                    <?php echo wp_kses_post( $sub_title ); ?>
-                                </h6>
-                            <?php endif; ?>
-                            <?php printf( '%s', wp_kses_post($titles_html)); ?>
-                            <?php if($ptitle_breadcrumb_on == 'show' && !is_singular('post') && !is_singular('event')) : ?>
-                                <?php fastway_breadcrumb(); ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php break;
+            </div>
+        <?php 
+            break;
         }
     ?>
 <?php endif; ?>
