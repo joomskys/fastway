@@ -45,20 +45,23 @@
     // Ajax Complete
     $(document).ajaxComplete(function(event, xhr, settings){
         "use strict";
+        $.sep_grid_refresh(); // this need to add last function
         fastway_post_gallery_slide();
         fastway_video_size();
-        $.sep_grid_refresh(); // this need to add last function
     });
 
     $.sep_grid_refresh = function (){
         $('.cms-grid-masonry').each(function () {
             var _gutter = $(this).data('gutter');
+            var _layoutMode = $(this).data('layoutmode');
             var iso = new Isotope(this, {
+                layoutMode: _layoutMode,
                 itemSelector: '.grid-item',
                 percentPosition: true,
                 masonry: {
                     columnWidth: '.grid-sizer',
-                    gutter: 0
+                    gutter: 0,
+                    //fitRows: _fitRow
                 },
                 containerStyle: null,
                 stagger: 30,

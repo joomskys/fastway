@@ -63,6 +63,7 @@ if(!function_exists('fastway_post_gallery')){
         }
         $light_box = $args['light_box'];
         global $post;
+        wp_enqueue_script('jquery-slick');
         if('1' === $light_box ) {
             $gallery_classes = ['cms-gallery cms-gallery-lightbox'];
             wp_enqueue_script( 'magnific-popup' );
@@ -71,7 +72,7 @@ if(!function_exists('fastway_post_gallery')){
         else {
             $gallery_classes = ['cms-gallery-carousel'];
         }
-        wp_enqueue_script('jquery-slick');
+        
        
         if( !empty($gallery_list[0]) || has_post_thumbnail() ){
             if(!empty($gallery_list[0])){

@@ -448,6 +448,7 @@ Redux::setSection($opt_name, array(
         ),
     )
 ));
+Redux::setSection($opt_name, fastway_sidebar_opts());
 
 /*--------------------------------------------------------------
 # Shop

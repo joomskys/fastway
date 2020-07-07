@@ -130,7 +130,7 @@ function fastway_page_options_register( $metabox ) {
 	 *
 	 */
 	$metabox->add_section( 'post', array(
-		'title'  => esc_html__( 'Post Settings', 'fastway' ),
+		'title'  => esc_html__( 'Content Settings', 'fastway' ),
 		'icon'   => 'el el-refresh',
 		'fields' => array(
 			array(
@@ -173,6 +173,8 @@ function fastway_page_options_register( $metabox ) {
 			),
 		)
 	) );
+	// Post title
+	$metabox->add_section( 'post', fastway_page_title_opts(['default' => true]));
 
 	/**
 	 * Config page meta options
@@ -204,6 +206,8 @@ function fastway_page_options_register( $metabox ) {
 	$metabox->add_section('page', fastway_header_atts_opts(['default' => true]));
 	// Page title
 	$metabox->add_section( 'page', fastway_page_title_opts(['default' => true]));
+	// Sidebar
+	$metabox->add_section('page', fastway_sidebar_opts(['default' => true, 'subsection' => false]));
 	// Footer 
 	$metabox->add_section('page', fastway_footer_opts(['default' => true, 'default_value'=>'-1', 'subsection' => false]));
 

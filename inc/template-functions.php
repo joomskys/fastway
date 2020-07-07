@@ -111,6 +111,7 @@ function fastway_get_page_titles() {
 			$title = esc_html__( 'Search results', 'fastway' );
 		} else {
 			$title = get_post_meta( get_the_ID(), 'custom_title', true );
+			if(is_singular('post') && empty($title)) $title = esc_html__('Blog Post', 'fastway');
 			if ( ! $title ) {
 				$title = get_the_title();
 			}

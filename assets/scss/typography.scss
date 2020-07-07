@@ -37,7 +37,11 @@ a.active{
 }
 
 p {
-  margin-bottom: 15px;
+  line-height: 24px;
+  margin: 0 0 24px;
+  &:last-child{
+    margin-bottom: 0;
+  }
 }
 
 .site {

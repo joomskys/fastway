@@ -51,7 +51,7 @@ if(!function_exists('fastway_header_css_class')){
  **/
 function fastway_page_title_layout()
 {
-    get_template_part( 'template-parts/page-title', '' );
+    get_template_part( 'template-parts/page-title', fastway_get_opts('ptitle_layout', '1') );
 }
 
 /**
@@ -641,16 +641,17 @@ endif;
 **/
 if (!function_exists('fastway_post_featured_date')){
     function fastway_post_featured_date($show_date = '0', $echo = true, $id = null){
-        if($show_date == '0') return;
-        $html = '
-            <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
-                <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
-                <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
-            </div>';
-        if($echo){
-            printf('%s', $html);
-        } else {
-            return $html;
+        if($show_date == '1' || $show_date == 'true') {
+            $html = '
+                <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
+                    <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
+                    <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
+                </div>';
+            if($echo){
+                printf('%s', $html);
+            } else {
+                return $html;
+            }
         }
     }
 }

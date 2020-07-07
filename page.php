@@ -11,11 +11,7 @@
  */
 
 get_header();
-$sidebar_pos = '';
-$show_sidebar_page = fastway_get_page_opt( 'show_sidebar_page', false );
-if ($show_sidebar_page){
-    $sidebar_pos = fastway_get_page_opt( 'sidebar_page_pos' );
-}
+$sidebar_pos = fastway_get_opts( 'sidebar_page_pos' );
 ?>
     <div class="container content-container">
         <div class="row content-row">
@@ -40,9 +36,9 @@ if ($show_sidebar_page){
             </div><!-- #primary -->
 
             <?php if ( 'left' == $sidebar_pos || 'right' == $sidebar_pos ) : ?>
-                <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area sidebar-widget' ); ?>>
-                    <?php dynamic_sidebar( 'sidebar-page' ); ?>
-                </aside>
+                <aside id="secondary" <?php fastway_secondary_class( $sidebar_pos, 'widget-area sidebar-widget' ); ?>><?php 
+                    dynamic_sidebar('sidebar-page'); 
+                ?></aside>
             <?php endif; ?>
 
         </div>

@@ -558,10 +558,10 @@ if(!function_exists('fastway_page_title_opts')){
 			];
 		}
 		return array(
-		    'title'  => esc_html__('Page Title', 'fastway'),
-		    'icon'   => 'el-icon-map-marker',
-		    'fields' => array(
-
+			'title'      => esc_html__('Page Title', 'fastway'),
+			'icon'       => 'el-icon-map-marker',
+			'subsection' => $args['subsection'],
+			'fields'     => array(
 		        array(
 		            'id'           => 'pagetitle',
 		            'type'         => 'button_set',
@@ -570,7 +570,13 @@ if(!function_exists('fastway_page_title_opts')){
 		            'options'      => $sh_options,
 		            'default'      => $args['default_value'],
 		        ),
-
+		        array(
+					'id'           => 'custom_title',
+					'type'         => 'textarea',
+					'title'        => esc_html__( 'Title', 'fastway' ),
+					'subtitle'     => esc_html__( 'Use custom title for this page. The default title will be used on document title.', 'fastway' ),
+					'required' 		=> array( 0 => 'pagetitle', 1 => 'equals', 2 => '1' ),
+				),
 		        array(
 		            'id'       => 'ptitle_layout',
 		            'type'     => 'image_select',
@@ -580,7 +586,6 @@ if(!function_exists('fastway_page_title_opts')){
 		            'default'  => $args['default_value'],
 		            'required' => array( 0 => 'pagetitle', 1 => 'equals', 2 => '1' ),
 		        ),
-
 		        array(
 					'id'                    => 'ptitle_bg',
 					'type'                  => 'background',
@@ -703,6 +708,51 @@ if(!function_exists('fastway_footer_opts')){
                     'options'  => $color_options,
                     'default'  => $default_color_value,
                 ),
+            )
+		);
+	}
+}
+
+/**
+ * Sidebar
+*/
+if(!function_exists('fastway_sidebar_opts')){
+	function fastway_sidebar_opts($args = []){
+		$args = wp_parse_args($args, [
+			'default'       => false,
+			'default_value' => 'right',
+			'subsection'    => true
+		]);
+		if($args['default']){
+			$options = [
+				'-1'    => esc_html__('Default','fastway'),
+				'0'     => esc_html__('No Sidebar','fastway'),
+				'left'  => esc_html__('Left','fastway'),
+				'right' => esc_html__('Right','fastway'),
+			];
+			$default_value = '-1';
+		} else {
+			$options = [
+				'0'     => esc_html__('No Sidebar','fastway'),
+				'left'  => esc_html__('Left','fastway'),
+				'right' => esc_html__('Right','fastway'),
+			];
+			$default_value = '0';
+		}
+		// Return
+		return array(
+		    'title'      => esc_html__('Sidebar', 'fastway'),
+		    'icon'       => 'el-icon-website',
+		    'subsection' => $args['subsection'],
+		    'fields'     => array(
+		        array(
+                    'title'    => esc_html__('Sidebar Position', 'fastway'),
+                    'subtitle' => esc_html__('Choose position for sidebar', 'fastway'),
+                    'id'       => 'sidebar_page_pos',
+                    'type'     => 'button_set',
+                    'options'  => $options,
+                    'default'  => $default_value,
+                )
             )
 		);
 	}

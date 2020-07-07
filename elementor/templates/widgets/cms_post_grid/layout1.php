@@ -1,16 +1,16 @@
 <?php
-$html_id = etc_get_element_id($settings);
-$tax = array();
-$source = $widget->get_setting('source', '');
-$orderby = $widget->get_setting('orderby', 'date');
-$order = $widget->get_setting('order', 'desc');
-$limit = $widget->get_setting('limit', 6);
+$html_id  = etc_get_element_id($settings);
+$tax      = array();
+$source   = $widget->get_setting('source', '');
+$orderby  = $widget->get_setting('orderby', 'date');
+$order    = $widget->get_setting('order', 'desc');
+$limit    = $widget->get_setting('limit', 6);
 $post_ids = $widget->get_setting('post_ids', '');
 extract(etc_get_posts_of_grid('post', [
-    'source' => $source,
-    'orderby' => $orderby,
-    'order' => $order,
-    'limit' => $limit,
+    'source'   => $source,
+    'orderby'  => $orderby,
+    'order'    => $order,
+    'limit'    => $limit,
     'post_ids' => $post_ids,
 ]));
 $filter_default_title = $widget->get_setting('filter_default_title', 'All');
@@ -24,28 +24,30 @@ $gap = intval($widget->get_setting('gap', 30));
 $gap_item = intval($gap / 2);
 $grid_class = '';
 $layout_type = $widget->get_setting('layout_type', 'basic');
+$layout_mode = $widget->get_setting('layout_mode', 'masonry');
 if ($layout_type == 'masonry') {
     $grid_class = 'cms-grid-inner cms-grid-masonry row';
 } else {
     $grid_class = 'cms-grid-inner row';
 }
-$filter = $widget->get_setting('filter', 'false');
-$filter_alignment = $widget->get_setting('filter_alignment', 'center');
-$thumbnail_size = $widget->get_setting('thumbnail_size', '');
+$filter                     = $widget->get_setting('filter', 'false');
+$filter_alignment           = $widget->get_setting('filter_alignment', 'center');
+$thumbnail_size             = $widget->get_setting('thumbnail_size', '');
 $thumbnail_custom_dimension = $widget->get_setting('thumbnail_custom_dimension', '');
-$title_tag = $widget->get_setting('title_tag', 'h3');
-$pagination_type = $widget->get_setting('pagination_type', 'pagination');
-$show_thumbnail = $widget->get_setting('show_thumbnail', 'pagination');
-$show_meta = $widget->get_setting('show_meta', 'pagination');
-$show_author = $widget->get_setting('show_author', 'pagination');
-$show_post_date = $widget->get_setting('show_post_date', 'pagination');
-$show_categories = $widget->get_setting('show_categories', 'pagination');
-$show_title = $widget->get_setting('show_title', 'pagination');
-$show_excerpt = $widget->get_setting('show_excerpt', 'pagination');
-$num_words = $widget->get_setting('num_words', 'pagination');
-$show_button = $widget->get_setting('show_button', 'pagination');
-$hover_animation = $widget->get_setting('hover_animation', 'pagination');
-$button_text = $widget->get_setting('button_text', 'pagination');
+$title_tag                  = $widget->get_setting('title_tag', 'h3');
+$pagination_type            = $widget->get_setting('pagination_type');
+$show_thumbnail             = $widget->get_setting('show_thumbnail');
+$show_meta                  = $widget->get_setting('show_meta');
+$show_author                = $widget->get_setting('show_author');
+$show_post_date             = $widget->get_setting('show_post_date');
+$show_categories            = $widget->get_setting('show_categories');
+$show_cmt                   = $widget->get_setting('show_cmt');
+$show_title                 = $widget->get_setting('show_title');
+$show_excerpt               = $widget->get_setting('show_excerpt');
+$num_words                  = $widget->get_setting('num_words', '31');
+$show_button                = $widget->get_setting('show_button');
+$hover_animation            = $widget->get_setting('hover_animation');
+$button_text                = $widget->get_setting('button_text');
 $load_more = array(
     'startPage'                  => $paged,
     'maxPages'                   => $max,
@@ -71,6 +73,7 @@ $load_more = array(
     'show_author'                => $show_author,
     'show_post_date'             => $show_post_date,
     'show_categories'            => $show_categories,
+    'show_cmt'            => $show_cmt,
     'show_title'                 => $show_title,
     'show_excerpt'               => $show_excerpt,
     'num_words'                  => $num_words,
@@ -81,16 +84,16 @@ $load_more = array(
 );
 ?>
 
-<div id="<?php echo esc_attr($html_id) ?>" class="cms-grid cms-post-grid cms-post-grid--layout1" data-layout="<?php echo esc_attr($layout_type); ?>" data-start-page="<?php echo esc_attr($paged); ?>" data-max-pages="<?php echo esc_attr($max); ?>" data-total="<?php echo esc_attr($total); ?>" data-perpage="<?php echo esc_attr($limit); ?>" data-next-link="<?php echo esc_attr($next_link); ?>">
+<div id="<?php echo esc_attr($html_id) ?>" class="cms-grid cms-post-grid cms-post-grid-layout1" data-layout="<?php echo esc_attr($layout_type); ?>" data-start-page="<?php echo esc_attr($paged); ?>" data-max-pages="<?php echo esc_attr($max); ?>" data-total="<?php echo esc_attr($total); ?>" data-perpage="<?php echo esc_attr($limit); ?>" data-next-link="<?php echo esc_attr($next_link); ?>">
     <div class="cms-grid-overlay"></div>
     <?php if ($filter == "true" and $layout_type == 'masonry'): ?>
         <div class="grid-filter-wrap align-<?php echo esc_attr($filter_alignment); ?>">
             <span class="filter-item active" data-filter="*"><?php echo esc_html($filter_default_title); ?></span>
-            <?php foreach ($categories as $category): ?>
-                <?php $category_arr = explode('|', $category); ?>
-                <?php $tax[] = $category_arr[1]; ?>
-                <?php $term = get_term_by('slug',$category_arr[0], $category_arr[1]); ?>
-
+            <?php foreach ($categories as $category):
+                $category_arr = explode('|', $category);
+                $tax[] = $category_arr[1];
+                $term = get_term_by('slug',$category_arr[0], $category_arr[1]); 
+            ?>
                 <span class="filter-item" data-filter="<?php echo esc_attr('.' . $term->slug); ?>">
                     <?php echo esc_html($term->name); ?>
                 </span>
@@ -98,15 +101,14 @@ $load_more = array(
         </div>
     <?php endif; ?>
 
-    <div class="<?php echo esc_attr($grid_class); ?> animation-time" data-gutter="<?php echo esc_attr($gap_item); ?>" style="margin-left: <?php echo esc_attr($gap_item*-1); ?>px;margin-right: <?php echo esc_attr($gap_item*-1); ?>px;">
-        
-        <?php
-        $load_more['tax'] = $tax;
-        fastway_elementor_get_post_grid($posts, $load_more);
-        ?>
+    <div class="<?php echo esc_attr($grid_class); ?> animation-time" data-layoutmode="<?php echo esc_attr($layout_mode);?>" data-gutter="<?php echo esc_attr($gap); ?>" style="margin-left: <?php echo esc_attr($gap_item*-1); ?>px;margin-right: <?php echo esc_attr($gap_item*-1); ?>px;">
         <?php if ($layout_type == 'masonry') : ?>
-            <div class="grid-sizer <?php echo esc_attr($grid_sizer); ?>"></div>
+            <div class="grid-sizer"></div>
         <?php endif; ?>
+        <?php
+            $load_more['tax'] = $tax;
+            fastway_elementor_get_post_grid($posts, $load_more);
+        ?>
     </div>
     <?php if ($layout_type == 'masonry' && $pagination_type == 'pagination') { ?>
         <div class="cms-grid-pagination" data-loadmore="<?php echo esc_attr(json_encode($load_more)); ?>" data-query="<?php echo esc_attr(json_encode($args)); ?>">

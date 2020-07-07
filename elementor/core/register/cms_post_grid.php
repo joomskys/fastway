@@ -100,6 +100,19 @@ etc_add_custom_widget(
                             'default' => 'basic',
                         ),
                         array(
+                            'name' => 'layout_mode',
+                            'label' => esc_html__( 'Layout Mode', 'fastway' ),
+                            'type' => \Elementor\Controls_Manager::SELECT,
+                            'options' => [
+                                'masonry' => esc_html__( 'Masonry', 'fastway' ),
+                                'fitRows' => esc_html__( 'Fit Row', 'fastway' ),
+                            ],
+                            'default' => 'masonry',
+                            'condition' => [
+                                'layout_type' => 'masonry',
+                            ],
+                        ),
+                        array(
                             'name' => 'filter',
                             'label' => esc_html__( 'Filter on Masonry', 'fastway' ),
                             'type' => \Elementor\Controls_Manager::SELECT,
@@ -332,6 +345,15 @@ etc_add_custom_widget(
                                 'show_meta' => 'true'
                             ],
                         ),
+                        array(
+                            'name' => 'show_cmt',
+                            'label' => esc_html__( 'Show Comment', 'fastway' ),
+                            'type' => \Elementor\Controls_Manager::SWITCHER,
+                            'default' => 'true',
+                            'condition' => [
+                                'show_meta' => 'true'
+                            ],
+                        )
                     ),
                 ),
                 array(

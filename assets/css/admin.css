@@ -82,7 +82,7 @@
 	min-height: auto;
 }
 .post-type-post .redux-container .redux-sidebar {
-	display: none;
+	/*display: none;*/
 }
 .wp-admin [id*="mymetabox_revslider_"], .wp-admin [id^="mymetabox_revslider_"] {
 	display: none;

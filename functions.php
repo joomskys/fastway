@@ -21,6 +21,7 @@ if(!function_exists('fastway_configs')){
             'invalid_color'         => 'red',
             'color_red'             => 'red',
             'color_green'           => 'green',
+            'color_gray_light'      => '#eeeeee',
             'white'                 => 'white',
             // Typo
             'google_fonts'          => 'Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i',
@@ -648,20 +649,9 @@ if(!function_exists('fastway_require_folder')){
 }
 
 fastway_require_folder('inc', get_template_directory());
+fastway_require_folder('inc/classes', get_template_directory());
 fastway_require_folder('inc/extends', get_template_directory());
-
-/**
- * CSS Generator.
- */
-if ( ! class_exists( 'CSS_Generator' ) ) {
-    require_once get_template_directory() . '/inc/classes/class-css-generator.php';
-}
-
-/**
- * Breadcrumb.
- */
-require_once get_template_directory() . '/inc/classes/class-breadcrumb.php';
-
+fastway_require_folder('inc/theme-options', get_template_directory());
 
 /* Load lib Font */
 require_once get_template_directory() . '/inc/libs/fontawesome.php';

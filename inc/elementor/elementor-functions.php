@@ -1,4 +1,5 @@
 <?php
+
 if(!function_exists('fastway_elementor_get_post_grid')){
     function fastway_elementor_get_post_grid($posts = [], $settings = []){
         if(empty($posts) || !is_array($posts) || empty($settings) || !is_array($settings)){
@@ -28,54 +29,49 @@ if(!function_exists('fastway_elementor_get_post_grid')){
                 $author = get_user_by('id', $post->post_author);
                 ?>
                 <div class="<?php echo trim(esc_attr($item_class . ' ' . $filter_class)); ?>" >
-                    <div class="grid-item-inner" style="padding-left: <?php echo esc_attr($gap_item); ?>px;padding-right: <?php echo esc_attr($gap_item); ?>px;">
-                        <?php if (has_post_thumbnail($post->ID) && wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), false) && $show_thumbnail == 'true'): ?>
-                            <div class="entry-featured">
-                                <div class="post-image">
-                                    <a href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo wp_kses_post($thumbnail); ?></a>
-                                </div>
+                    <div class="grid-item-inner" style="padding-left: <?php echo esc_attr($gap_item); ?>px;padding-right: <?php echo esc_attr($gap_item); ?>px; padding-bottom: <?php echo esc_attr($gap_item*2);?>px;">
+                        <div class="grid-item-content">
+                            <?php fastway_post_media([
+                                'id'             => $post->ID, 
+                                'thumbnail_size' => $img_size,
+                                'after'          => fastway_post_featured_date($show_post_date, false, $post->ID)
+                            ]); ?>
+                            <div class="entry-body p-30">
+                                <?php if($show_meta == 'true'): 
+                                    fastway_archive_meta([
+                                        'show_date'   => false,
+                                        'show_author' => $show_author,
+                                        'show_cat'    => $show_categories,
+                                        'show_cmt'    => $show_cmt,
+                                        'post_id'     => $post->ID,
+                                        'class'       => 'bdr-b-1 bdr-solid bdr-gray-light p-b20 m-b15'  
+                                    ]);
+                                endif; ?>
+                                <?php if($show_title == 'true'): ?>
+                                    <<?php etc_print_html($title_tag);?> class="entry-title m-b15 text-uppercase"><a href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo esc_attr(get_the_title($post->ID)); ?></a></<?php etc_print_html($title_tag);?>>
+                                <?php endif; ?>
+                                <?php if($show_excerpt == 'true'): ?>
+                                    <div class="entry-content m-b30"><?php
+                                        if(!empty($post->post_excerpt)){
+                                            echo wp_trim_words( $post->post_excerpt, $num_words, $more = null );
+                                        }
+                                        else{
+                                            $content = strip_shortcodes( $post->post_content );
+                                            $content = apply_filters( 'the_content', $content );
+                                            $content = str_replace(']]>', ']]&gt;', $content);
+                                            $content = wp_trim_words( $content, $num_words, '&hellip;' );
+                                            echo wp_kses_post($content);
+                                        }
+                                    ?></div>
+                                <?php endif; ?>
+                                <?php if($show_button == 'true'): ?>
+                                    <div class="entry-readmore">
+                                        <a class="text-accent btn-text elementor-animation-<?php echo esc_attr($hover_animation); ?>" href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo wp_kses_post($button_text); ?></a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                        <?php endif; ?>
-                        <div class="entry-body">
-                            <?php if($show_meta == 'true'): ?>
-                                <ul class="entry-meta">
-                                    <?php if($show_author == 'true'): ?>
-                                        <li class="author"><a href="<?php echo esc_url(get_author_posts_url($post->post_author, $author->user_nicename)); ?>"><?php echo esc_html($author->display_name); ?></a></li>
-                                    <?php endif; ?>
-                                    <?php if($show_post_date == 'true'): ?>
-                                        <li class="post-date"><?php $date_formart = get_option('date_format'); echo get_the_date($date_formart, $post->ID); ?></li>
-                                    <?php endif; ?>
-                                    <?php if($show_categories == 'true'): ?>
-                                        <li class="categories"><?php the_terms( $post->ID, 'category', '', ' ' ); ?></li>
-                                    <?php endif; ?>
-                                </ul>
-                            <?php endif; ?>
-                            <?php if($show_title == 'true'): ?>
-                            <<?php etc_print_html($title_tag);?> class="entry-title"><a href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo esc_attr(get_the_title($post->ID)); ?></a></<?php etc_print_html($title_tag);?>>
-                    <?php endif; ?>
-                        <?php if($show_excerpt == 'true'): ?>
-                            <div class="entry-content">
-                                <?php
-                                    if(!empty($post->post_excerpt)){
-                                        echo wp_trim_words( $post->post_excerpt, $num_words, $more = null );
-                                    }
-                                    else{
-                                        $content = strip_shortcodes( $post->post_content );
-                                        $content = apply_filters( 'the_content', $content );
-                                        $content = str_replace(']]>', ']]&gt;', $content);
-                                        $content = wp_trim_words( $content, $num_words, '&hellip;' );
-                                        echo wp_kses_post($content);
-                                    }
-                                ?>
-                            </div>
-                        <?php endif; ?>
-                        <?php if($show_button == 'true'): ?>
-                            <div class="entry-readmore">
-                                <a class="btn elementor-animation-<?php echo esc_attr($hover_animation); ?>" href="<?php echo esc_url(get_permalink( $post->ID )); ?>"><?php echo wp_kses_post($button_text); ?></a>
-                            </div>
-                        <?php endif; ?>
+                        </div>
                     </div>
-                </div>
                 </div>
             <?php
             endforeach;

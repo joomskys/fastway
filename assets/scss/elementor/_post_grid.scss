@@ -1,6 +1,21 @@
-.cms-grid-masonry{
+.cms-grid-inner{
 	> div {
 		padding-left: 0;
 		padding-right: 0;
+	}
+	.grid-sizer{
+		width: 0;
+		height: 0;
+	}
+}
+.cms-grid-masonry{
+	+ .cms-grid-pagination{
+		margin-top: 0;
+	}
+}
+// Layout 1
+.cms-post-grid-layout1{
+	.grid-item-content{
+		border: 1px solid $color_gray_light;
 	}
 }
