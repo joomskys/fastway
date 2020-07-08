@@ -413,3 +413,11 @@ $color_text1: #00ff00;
         text-align: center;
     }
 }
+
+// Separator
+.cms-separator-1{
+    width: 50px;
+    height: 3px;
+    display: block;
+    background: $accent_color;
+}

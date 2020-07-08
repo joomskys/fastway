@@ -720,7 +720,7 @@ if(!function_exists('fastway_sidebar_opts')){
 	function fastway_sidebar_opts($args = []){
 		$args = wp_parse_args($args, [
 			'default'       => false,
-			'default_value' => 'right',
+			'default_value' => '0',
 			'subsection'    => true
 		]);
 		if($args['default']){

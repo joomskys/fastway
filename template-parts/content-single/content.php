@@ -26,14 +26,14 @@ $post_feature_image_on = fastway_get_opt( 'post_feature_image_on', true );
                 'class'       => 'mt-post-meta bdr-1 bdr-solid bdr-b-1 bdr-gray-light p-b20 m-b15'
             ]);
         ?>
-        <h2 class="entry-title text-uppercase m-b15">
+        <h3 class="entry-title text-uppercase m-b15">
             <a href="<?php echo esc_url( get_permalink()); ?>">
                 <?php if(is_sticky()) { ?>
                     <i class="fa fa-thumb-tack"></i>
                 <?php } ?>
                 <?php the_title(); ?>
             </a>
-        </h2>
+        </h3>
         <div class="entry-content clearfix">
             <?php
                 the_content();

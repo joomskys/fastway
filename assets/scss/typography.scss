@@ -96,6 +96,12 @@ h6, .h6 {
   font-size: $h6_size;
   line-height: 1.28571429;
 }
+@media (max-width: $screen-sm-min){
+  h2, .h2{
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
 
 img {
     width: auto;
@@ -145,6 +151,9 @@ blockquote {
         font-style: normal;
         z-index: -1;
         opacity: 0.2;
+    }
+    @media (max-width: $screen-md-max){
+      padding: 20px;
     }
 }
 // Unit Test

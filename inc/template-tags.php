@@ -482,8 +482,8 @@ if(!function_exists('fastway_post_comment')){
                 if($args['cmt_with_text']) 
                     echo comments_number(
                         esc_html__('No Comments', 'fastway'),
-                        esc_html__('Comment: 1', 'fastway'),
-                        esc_html__('Comments: %', 'fastway')); 
+                        esc_html__('1 Comment', 'fastway'),
+                        esc_html__('% Comments', 'fastway')); 
                 else 
                     echo comments_number(
                         '0',
@@ -695,7 +695,7 @@ if(!function_exists('fastway_post_author_info')){
             'class'       => '',  
             'show_author' => fastway_get_opt('post_author_info_on','0')
         ]);
-        //if($args['show_author'] != '1' || get_the_author_meta( 'description' ) == '' ) return;
+        if($args['show_author'] != '1' || get_the_author_meta( 'description' ) == '' ) return;
     ?>
         <div class="<?php echo trim(implode(' ', ['entry-author-info', $args['class']]));?>">
             <div class="author-post row">

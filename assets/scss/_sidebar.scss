@@ -27,3 +27,9 @@
 .admin-bar.header-sticky .sidebar-sticky, .admin-bar.header-sticky .sidebar-sticky > .vc_column-inner {
   top: 140px;
 }
+
+@media (max-width: $screen-md-max){
+	.sidebar-widget{
+		margin-top: 50px;
+	}
+}

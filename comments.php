@@ -19,7 +19,7 @@ $post_comments_form_on = fastway_get_opt( 'post_comments_form_on', true );
 
 if($post_comments_form_on) : ?>
 
-    <div id="comments" class="comments-area">
+    <div id="comments" class="comments-area m-t30">
 
         <?php
         // You can start editing here -- including this comment!

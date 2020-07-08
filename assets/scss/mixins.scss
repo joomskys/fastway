@@ -471,3 +471,9 @@ $mm-xl: "(min-width: 1200px) and (max-width: 1400px)";
   font-family: FontAwesome;
   content: $icon;
 }
+// text emphasis
+@mixin text-ellipsis(){
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

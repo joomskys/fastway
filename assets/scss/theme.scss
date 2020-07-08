@@ -41,11 +41,21 @@ $container-max-widths: (
   xl: 1170px
 ) !default;
 
-
 $theme-colors: (
 	"primary":    $primary_color_o,
-    "secondary":  $secondary_color_o,
+  "secondary":  $secondary_color_o,
 ) !default;
+
+/* Media break point */
+$desktop-screen: 1200px;
+$screen-sm-min: 576px;
+$screen-sm-max: 767px;
+$screen-md-min: 768px;
+$screen-md-max: 991px;
+$screen-lg-min: 992px;
+$screen-lg-max: 1199px;
+$screen-xl-min: 1200px;
+$screen-xxl-min: 1600px;
 
 @import 'bootstrap/bootstrap-grid';
 @import 'boostrap_theme';
