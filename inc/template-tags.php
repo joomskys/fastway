@@ -623,15 +623,19 @@ if ( ! function_exists( 'fastway_entry_tagged_in' ) ) :
     /**
      * Prints HTML with meta information for the current post-date/time.
      */
-    function fastway_entry_tagged_in()
+    function fastway_entry_tagged_in($args = [])
     {
+        $args = wp_parse_args($args, [
+            'title' => ''
+        ]);
         $tags_list = get_the_tag_list( '', ' ' );
         if ( $tags_list )
         {
             echo '<div class="entry-content-bottom clearfix">';
-            echo '<div class="entry-tags">';
-            printf('%2$s', '', $tags_list);
-            echo '</div>';
+                echo '<div class="entry-tags">';
+                    if($args['title'] != '') echo '<h4 class="text-uppercase">'.esc_html($args['title']).'</h4>';
+                    printf('%2$s', '', $tags_list);
+                echo '</div>';
             echo '</div>';
         }
     }
@@ -641,17 +645,16 @@ endif;
 **/
 if (!function_exists('fastway_post_featured_date')){
     function fastway_post_featured_date($show_date = '0', $echo = true, $id = null){
-        if($show_date == '1' || $show_date == 'true') {
-            $html = '
-                <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
-                    <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
-                    <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
-                </div>';
-            if($echo){
-                printf('%s', $html);
-            } else {
-                return $html;
-            }
+        if($show_date != '1') return;
+        $html = '
+            <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
+                <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
+                <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
+            </div>';
+        if($echo){
+            printf('%s', $html);
+        } else {
+            return $html;
         }
     }
 }
@@ -659,17 +662,58 @@ if (!function_exists('fastway_post_featured_date')){
 /**
  * List socials share for post.
  */
-function fastway_socials_share_default() { ?>
-    <div class="entry-socail">
-        <label class="label"><?php echo esc_html__('Share: ', 'fastway'); ?></label>
-        <a class="fb-social hover-effect" title="Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i></a>
-        <a class="tw-social hover-effect" title="Twitter" target="_blank" href="https://twitter.com/home?status=<?php the_permalink(); ?>"><i class="fa fa-twitter"></i></a>
-        <a class="g-social hover-effect" title="Google Plus" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus"></i></a>
-        <a class="pin-social hover-effect" title="Pinterest" target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo esc_url(the_post_thumbnail_url( 'full' )); ?>&media=&description=<?php the_title(); ?>"><i class="fa fa-pinterest"></i></a>
-    </div>
-    <?php
+if(!function_exists('fastway_socials_share_default')){
+    function fastway_socials_share_default($args = []) {
+        $args = wp_parse_args($args, [
+            'show_share' => '1',
+            'class'      => '',
+            'title'      => '<h4 class="text-uppercase">'.esc_html__('Share:','fastway').'</h4>',
+            'social_class' => 'social-icons social-square'
+        ]);
+        if($args['show_share'] != '1') return;
+    ?>
+        <div class="<?php echo trim(implode(' ',['entry-share row align-items-center',  $args['class']]));?>">
+            <?php if(!empty($args['title'])) printf('%s', $args['title']); ?>
+            <div class="<?php echo trim(implode(' ',['col-auto social-icons',  $args['social_class']]));?>">
+                <a class="fb-social hover-effect" title="Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i></a>
+                <a class="tw-social hover-effect" title="Twitter" target="_blank" href="https://twitter.com/home?status=<?php the_permalink(); ?>"><i class="fa fa-twitter"></i></a>
+                <a class="rss-social hover-effect" title="RSS" target="_blank" href="#"><i class="fa fa-rss"></i></a>
+                <a class="yt-social hover-effect" title="Youtube" target="_blank" href="#"><i class="fa fa-youtube"></i></a>
+                <a class="it-social hover-effect" title="Instagram" target="_blank" href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+        </div>
+        <?php
+    }
 }
 
+/**
+ * Post Author Info
+****/
+if(!function_exists('fastway_post_author_info')){
+    function fastway_post_author_info($args = []){
+        $args = wp_parse_args($args,[
+            'class'       => '',  
+            'show_author' => fastway_get_opt('post_author_info_on','0')
+        ]);
+        //if($args['show_author'] != '1' || get_the_author_meta( 'description' ) == '' ) return;
+    ?>
+        <div class="<?php echo trim(implode(' ', ['entry-author-info', $args['class']]));?>">
+            <div class="author-post row">
+                <div class="author-avatar col-auto">
+                        <?php echo get_avatar( get_the_author_meta( 'ID' ), 'full' ); ?>
+                    </div>
+                <div class="author-description col"><?php 
+                    echo '<h4 class="text-uppercase m-t0">'.get_the_author().'</h4>';
+                    the_author_meta( 'description' );
+                    fastway_get_user_social([
+                        'class' => 'social-square text-accent link-accent m-t20'
+                    ]); 
+                ?></div>
+            </div>
+        </div>
+    <?php 
+    }
+}
 /**
  * Footer Top
  */
@@ -753,47 +797,51 @@ function fastway_footer_top() {
 /**
  * Related Post
  */
-function fastway_related_post()
-{
-    $post_related_on = fastway_get_opt( 'post_related_on', false );
+if(!function_exists('fastway_related_post')){
+    function fastway_related_post($args = [])
+    {
+        $args = wp_parse_args($args, [
+            'class'          => '',
+            'show_related'   => fastway_get_opt( 'post_related_on', '0' ),
+            'title'          => esc_html__('Related Posts','fastway'),
+            'posts_per_page' => '2',
+            'post_type'      => 'post'
+        ]);
 
-    if($post_related_on) {
+        if($args['show_related'] != '1') return;
+        
         global $post;
         $current_id = $post->ID;
         $posttags = get_the_category($post->ID);
         if (empty($posttags)) return;
-
         $tags = array();
-
         foreach ($posttags as $tag) {
-
             $tags[] = $tag->term_id;
         }
-        $post_number = '6';
-        $query_similar = new WP_Query(array('posts_per_page' => $post_number, 'post_type' => 'post', 'post_status' => 'publish', 'category__in' => $tags));
+        $query_similar = new WP_Query(array(
+            'posts_per_page' => $args['posts_per_page'], 
+            'post_type'      => $args['post_type'], 
+            'post_status'    => 'publish', 
+            'category__in'   => $tags
+        ));
         if (count($query_similar->posts) > 1) {
-            wp_enqueue_script( 'owl-carousel' );
-            wp_enqueue_script( 'fastway-carousel' );
             ?>
-            <div class="cms-related-post">
-                <h4 class="widget-title"><?php echo esc_html__('Related Posts', 'fastway'); ?></h4>
-                <div class="cms-related-post-inner owl-carousel" data-item-xs="1" data-item-sm="2" data-item-md="3" data-item-lg="3" data-item-xl="3" data-item-xxl="3" data-margin="30" data-loop="false" data-autoplay="false" data-autoplaytimeout="5000" data-smartspeed="250" data-center="false" data-arrows="false" data-bullets="false" data-stagepadding="0" data-stagepaddingsm="0" data-rtl="false">
+            <div class="<?php echo trim(implode(' ', ['cms-related-post', $args['class']]));?>">
+                <?php if(!empty($args['title'])) echo '<h4 class="text-uppercase">'.esc_html($args['title']).'</h4>'; ?>
+                <div class="cms-related-post-inner row">
                     <?php foreach ($query_similar->posts as $post):
-                        $thumbnail_url = '';
-                        if (has_post_thumbnail(get_the_ID()) && wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), false)) :
-                            $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'fastway-blog-small', false);
-                        endif;
                         if ($post->ID !== $current_id) : ?>
-                            <div class="grid-item">
+                            <div class="grid-item col-lg-6 col-12">
                                 <div class="grid-item-inner">
-                                    <?php if (has_post_thumbnail()) { ?>
-                                        <div class="item-featured">
-                                            <a href="<?php the_permalink(); ?>"><img src="<?php echo esc_url($thumbnail_url[0]); ?>" /></a>
-                                        </div>
-                                    <?php } ?>
-                                    <h3 class="item-title">
+                                    <?php 
+                                        fastway_post_media([
+                                            'id'             => $post->ID,
+                                            'thumbnail_size' => 'medium'
+                                        ]);
+                                    ?>
+                                    <h4 class="item-title">
                                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                    </h3>
+                                    </h4>
                                 </div>
                             </div>
                         <?php endif;
@@ -801,9 +849,8 @@ function fastway_related_post()
                 </div>
             </div>
         <?php }
+        wp_reset_postdata();
     }
-
-    wp_reset_postdata();
 }
 
 /**
@@ -976,61 +1023,65 @@ function fastway_save_user_custom_fields( $user_id )
         update_user_meta( $user_id, 'user_yelp', $_POST['user_yelp'] );
 }
 /* Author Social */
-function fastway_get_user_social() {
+if(!function_exists('fastway_get_user_social')){
+    function fastway_get_user_social($args = []) {
+        $args = wp_parse_args($args,[
+            'class' => ''
+        ]);
+        $user_facebook = get_user_meta(get_the_author_meta( 'ID' ), 'user_facebook', true);
+        $user_twitter = get_user_meta(get_the_author_meta( 'ID' ), 'user_twitter', true);
+        $user_linkedin = get_user_meta(get_the_author_meta( 'ID' ), 'user_linkedin', true);
+        $user_skype = get_user_meta(get_the_author_meta( 'ID' ), 'user_skype', true);
+        $user_google = get_user_meta(get_the_author_meta( 'ID' ), 'user_google', true);
+        $user_youtube = get_user_meta(get_the_author_meta( 'ID' ), 'user_youtube', true);
+        $user_vimeo = get_user_meta(get_the_author_meta( 'ID' ), 'user_vimeo', true);
+        $user_tumblr = get_user_meta(get_the_author_meta( 'ID' ), 'user_tumblr', true);
+        $user_rss = get_user_meta(get_the_author_meta( 'ID' ), 'user_rss', true);
+        $user_pinterest = get_user_meta(get_the_author_meta( 'ID' ), 'user_pinterest', true);
+        $user_instagram = get_user_meta(get_the_author_meta( 'ID' ), 'user_instagram', true);
+        $user_yelp = get_user_meta(get_the_author_meta( 'ID' ), 'user_yelp', true);
 
-    $user_facebook = get_user_meta(get_the_author_meta( 'ID' ), 'user_facebook', true);
-    $user_twitter = get_user_meta(get_the_author_meta( 'ID' ), 'user_twitter', true);
-    $user_linkedin = get_user_meta(get_the_author_meta( 'ID' ), 'user_linkedin', true);
-    $user_skype = get_user_meta(get_the_author_meta( 'ID' ), 'user_skype', true);
-    $user_google = get_user_meta(get_the_author_meta( 'ID' ), 'user_google', true);
-    $user_youtube = get_user_meta(get_the_author_meta( 'ID' ), 'user_youtube', true);
-    $user_vimeo = get_user_meta(get_the_author_meta( 'ID' ), 'user_vimeo', true);
-    $user_tumblr = get_user_meta(get_the_author_meta( 'ID' ), 'user_tumblr', true);
-    $user_rss = get_user_meta(get_the_author_meta( 'ID' ), 'user_rss', true);
-    $user_pinterest = get_user_meta(get_the_author_meta( 'ID' ), 'user_pinterest', true);
-    $user_instagram = get_user_meta(get_the_author_meta( 'ID' ), 'user_instagram', true);
-    $user_yelp = get_user_meta(get_the_author_meta( 'ID' ), 'user_yelp', true);
+        ?>
+        <div class="<?php echo trim(implode(' ', ['user-social', $args['class']]));?>">
+            <?php if(!empty($user_facebook)) { ?>
+                <a href="<?php echo esc_url($user_facebook); ?>"><i class="fa fa-facebook"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_twitter)) { ?>
+                <a href="<?php echo esc_url($user_twitter); ?>"><i class="fa fa-twitter"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_linkedin)) { ?>
+                <a href="<?php echo esc_url($user_linkedin); ?>"><i class="fa fa-linkedin"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_rss)) { ?>
+                <a href="<?php echo esc_url($user_rss); ?>"><i class="fa fa-rss"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_instagram)) { ?>
+                <a href="<?php echo esc_url($user_instagram); ?>"><i class="fa fa-instagram"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_google)) { ?>
+                <a href="<?php echo esc_url($user_google); ?>"><i class="fa fa-google-plus"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_skype)) { ?>
+                <a href="<?php echo esc_url($user_skype); ?>"><i class="fa fa-skype"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_pinterest)) { ?>
+                <a href="<?php echo esc_url($user_pinterest); ?>"><i class="fa fa-pinterest"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_vimeo)) { ?>
+                <a href="<?php echo esc_url($user_vimeo); ?>"><i class="fa fa-vimeo"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_youtube)) { ?>
+                <a href="<?php echo esc_url($user_youtube); ?>"><i class="fa fa-youtube"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_yelp)) { ?>
+                <a href="<?php echo esc_url($user_yelp); ?>"><i class="fa fa-yelp"></i></a>
+            <?php } ?>
+            <?php if(!empty($user_tumblr)) { ?>
+                <a href="<?php echo esc_url($user_tumblr); ?>"><i class="fa fa-tumblr"></i></a>
+            <?php } ?>
 
-    ?>
-    <ul class="user-social">
-        <?php if(!empty($user_facebook)) { ?>
-            <li><a href="<?php echo esc_url($user_facebook); ?>"><i class="fa fa-facebook"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_twitter)) { ?>
-            <li><a href="<?php echo esc_url($user_twitter); ?>"><i class="fa fa-twitter"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_linkedin)) { ?>
-            <li><a href="<?php echo esc_url($user_linkedin); ?>"><i class="fa fa-linkedin"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_rss)) { ?>
-            <li><a href="<?php echo esc_url($user_rss); ?>"><i class="fa fa-rss"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_instagram)) { ?>
-            <li><a href="<?php echo esc_url($user_instagram); ?>"><i class="fa fa-instagram"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_google)) { ?>
-            <li><a href="<?php echo esc_url($user_google); ?>"><i class="fa fa-google-plus"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_skype)) { ?>
-            <li><a href="<?php echo esc_url($user_skype); ?>"><i class="fa fa-skype"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_pinterest)) { ?>
-            <li><a href="<?php echo esc_url($user_pinterest); ?>"><i class="fa fa-pinterest"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_vimeo)) { ?>
-            <li><a href="<?php echo esc_url($user_vimeo); ?>"><i class="fa fa-vimeo"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_youtube)) { ?>
-            <li><a href="<?php echo esc_url($user_youtube); ?>"><i class="fa fa-youtube"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_yelp)) { ?>
-            <li><a href="<?php echo esc_url($user_yelp); ?>"><i class="fa fa-yelp"></i></a></li>
-        <?php } ?>
-        <?php if(!empty($user_tumblr)) { ?>
-            <li><a href="<?php echo esc_url($user_tumblr); ?>"><i class="fa fa-tumblr"></i></a></li>
-        <?php } ?>
-
-    </ul> <?php
+        </div> <?php
+    }
 }
 
 function fastway_social_share_product() { ?>

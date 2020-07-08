@@ -4,9 +4,9 @@
  *
  * @package FastWay
  */
-$post_tags_on = fastway_get_opt( 'post_tags_on', true );
-$post_author_info_on = fastway_get_opt( 'post_author_info_on', false );
-$post_social_share_on = fastway_get_opt( 'post_social_share_on', false );
+$post_tags_on          = fastway_get_opt( 'post_tags_on', true );
+$post_author_info_on   = fastway_get_opt( 'post_author_info_on', false );
+$post_social_share_on  = fastway_get_opt( 'post_social_share_on', false );
 $post_feature_image_on = fastway_get_opt( 'post_feature_image_on', true );
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('single-hentry'); ?>>
@@ -19,11 +19,11 @@ $post_feature_image_on = fastway_get_opt( 'post_feature_image_on', true );
     <div class="entry-body p-t30">
         <?php 
             fastway_archive_meta([
-                'show_date' => false,
-                'show_author'  => fastway_get_opts('post_categories_on','0'),
-                'show_cat'  => fastway_get_opts('post_author_on','1'),
-                'show_cmt'  => fastway_get_opts('post_comments_on','1'),
-                'class' => 'mt-post-meta bdr-1 bdr-solid bdr-b-1 bdr-gray-light p-b20 m-b15'
+                'show_date'   => false,
+                'show_cat'    => fastway_get_opts('post_categories_on','0'),
+                'show_author' => fastway_get_opts('post_author_on','1'),
+                'show_cmt'    => fastway_get_opts('post_comments_on','1'),
+                'class'       => 'mt-post-meta bdr-1 bdr-solid bdr-b-1 bdr-gray-light p-b20 m-b15'
             ]);
         ?>
         <h2 class="entry-title text-uppercase m-b15">
@@ -44,28 +44,33 @@ $post_feature_image_on = fastway_get_opt( 'post_feature_image_on', true );
                     'link_after'  => '</span>',
                 ) );
             ?>
-        </div><!-- .entry-content -->
-        <?php if($post_tags_on) :
-            fastway_entry_tagged_in();
-        endif; ?>
-        <?php if($post_social_share_on) {
-            fastway_socials_share_default();
-        } ?>
-        <?php if($post_author_info_on) : ?>
-            <div class="entry-author-info">
-                <div class="author-post">
-                    <div class="author-avatar">
-                            <?php echo get_avatar( get_the_author_meta( 'ID' ), 'full' ); ?>
-                        </div>
-                    <div class="author-description">
-                        <p>
-                            <?php the_author_meta( 'description' ); ?>
-                        </p>
-                        <?php fastway_get_user_social(); ?>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-        <?php fastway_related_post(); ?>
+        </div>
+        <?php
+            // Post tag
+            // param: show_tag, title
+            fastway_entry_tagged_in([
+                'show_tag' => fastway_get_opt( 'post_tags_on', '1' ), 
+                'title'    => esc_html__('Tags','fastway')
+            ]);
+            // post share
+            // param: show_share, class, title, social_class
+            fastway_socials_share_default([
+                'class'      => 'm-t40',
+                'show_share' => fastway_get_opt( 'post_social_share_on', '0' ),   
+                'title'      => '<div class="col-auto"><div class="h4 text-uppercase">'.esc_html__('Share','fastway').'</div></div>',
+                'social_class' => 'text-accent link-accent social-square'
+            ]);
+            // Author info
+            // param: show_author, class
+            fastway_post_author_info([
+                'class'       => 'm-t40',
+                'show_author' => fastway_get_opt('post_author_info_on', '0')
+            ]);
+            // Related post
+            // param: class, show_related, title, posts_per_page, post_tyle
+            fastway_related_post([
+                'class' => 'm-t40'
+            ]);
+        ?>
     </div>
 </article><!-- #post -->

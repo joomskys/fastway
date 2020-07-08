@@ -518,7 +518,7 @@
     function fastway_post_gallery_slide(){
         'use strict';
         if(typeof $.fn.slick !== 'undefined'){
-            $('.cms-post-gallery-slide ').slick({
+            $('.cms-post-gallery-slide').slick({
                 dots: true,
             });
         }

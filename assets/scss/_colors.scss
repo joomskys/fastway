@@ -24,3 +24,13 @@ $meta_color_hover: $secondary_color;
 .text-accent{
 	color: $accent_color;
 }
+
+.link-accent{
+	color: $accent_color;
+	a{
+		color: $accent_color;
+		&:hover{
+			color: $primary_color;
+		}
+	}
+}

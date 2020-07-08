@@ -77,7 +77,7 @@ if(!function_exists('fastway_post_gallery')){
         if( !empty($gallery_list[0]) || has_post_thumbnail() ){
             if(!empty($gallery_list[0])){
             ?>
-                <div class="cms-post-gallery-slide <?php if($light_box) {echo 'images-light-box';} ?>" >
+                <div class="cms-post-gallery-slide cms-slick-slide <?php if($light_box) {echo 'images-light-box';} ?>" >
 	                <?php
 	                foreach ($gallery_list as $img_id):
 	                    ?>

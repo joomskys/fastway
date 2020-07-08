@@ -269,54 +269,6 @@ function fastway_footer_code() {
 add_action( 'wp_footer', 'fastway_footer_code' );
 
 /**
- * Custom Comment List
- */
-function fastway_comment_list( $comment, $args, $depth ) {
-	if ( 'div' === $args['style'] ) {
-        $tag       = 'div';
-        $add_below = 'comment';
-    } else {
-        $tag       = 'li';
-        $add_below = 'div-comment';
-    }
-	?>
-    <<?php echo ''.$tag ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
-    <?php if ( 'div' != $args['style'] ) : ?>
-        <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-		<?php endif; ?>
-		    <div class="comment-inner">
-		        <?php if ($args['avatar_size'] != 0) echo get_avatar($comment, 90); ?>
-		        <div class="comment-content">
-		            <h4 class="comment-title">
-		            	<?php printf( '%s', get_comment_author_link() ); ?>
-		            </h4>
-		            <div class="comment-meta">
-		            	<span class="comment-date">
-	                        <?php echo get_comment_date().' - '.get_comment_time(); ?>
-	                    </span>
-		            </div>
-		            <div class="comment-text"><?php comment_text(); ?></div>
-		            <div class="comment-reply">
-						<?php comment_reply_link( array_merge( $args, array(
-							'add_below' => $add_below,
-							'depth'     => $depth,
-							'max_depth' => $args['max_depth']
-						) ) ); ?>
-		            </div>
-		        </div>
-		    </div>
-		<?php if ( 'div' != $args['style'] ) : ?>
-        </div>
-	<?php endif;
-}
-
-function fastway_comment_reply_text( $link ) {
-$link = str_replace( 'Reply', '<span>'.esc_html__('Reply', 'fastway').'</span>', $link );
-return $link;
-}
-add_filter( 'comment_reply_link', 'fastway_comment_reply_text' );
-
-/**
  * Add field subtitle to post.
  */
 function fastway_add_subtitle_field() {

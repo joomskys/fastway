@@ -356,15 +356,6 @@ Redux::setSection($opt_name, array(
     'subsection' => true,
     'fields'     => array(
         array(
-            'id'          => 'post_bg_color',
-            'type'        => 'color',
-            'title'       => esc_html__('Content Background Color', 'fastway'),
-            'transparent' => false,
-            'default'     => '',
-            'required' => array( 0 => 'single_post_layout', 1 => 'equals', 2 => 'real-estate' ),
-            'force_output' => true
-        ),
-        array(
             'id'       => 'post_sidebar_pos',
             'type'     => 'button_set',
             'title'    => esc_html__('Sidebar Position', 'fastway'),
@@ -381,70 +372,70 @@ Redux::setSection($opt_name, array(
             'title'    => esc_html__('Author', 'fastway'),
             'subtitle' => esc_html__('Show author name on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => false
+            'default'  => '0'
         ),
         array(
             'id'       => 'post_author_info_on',
             'title'    => esc_html__('Author Info', 'fastway'),
             'subtitle' => esc_html__('Show author info name on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => false
+            'default'  => '0'
         ),
         array(
             'id'       => 'post_date_on',
             'title'    => esc_html__('Date', 'fastway'),
             'subtitle' => esc_html__('Show date on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => true
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_categories_on',
             'title'    => esc_html__('Categories', 'fastway'),
             'subtitle' => esc_html__('Show category names on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => false
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_tags_on',
             'title'    => esc_html__('Tags', 'fastway'),
             'subtitle' => esc_html__('Show tag names on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => true
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_comments_on',
             'title'    => esc_html__('Comments', 'fastway'),
             'subtitle' => esc_html__('Show comments count on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => true
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_social_share_on',
             'title'    => esc_html__('Social Share', 'fastway'),
             'subtitle' => esc_html__('Show social share on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => false,
+            'default'  => '0',
         ),
         array(
             'id'       => 'post_comments_form_on',
             'title'    => esc_html__('Comments Form', 'fastway'),
             'subtitle' => esc_html__('Show comments form on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => true
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_feature_image_on',
             'title'    => esc_html__('Feature Image', 'fastway'),
             'subtitle' => esc_html__('Show feature image on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => true
+            'default'  => '1'
         ),
         array(
             'id'       => 'post_related_on',
             'title'    => esc_html__('Related Post', 'fastway'),
             'subtitle' => esc_html__('Show related on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => false
+            'default'  => '1'
         ),
     )
 ));

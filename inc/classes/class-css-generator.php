@@ -160,6 +160,7 @@ class CSS_Generator {
         printf('$invalid_color:%s;',fastway_configs('invalid_color'));
         printf('$color_red:%s;',fastway_configs('color_red'));
         printf('$color_green:%s;',fastway_configs('color_green'));
+        printf('$color_gray:%s;',fastway_configs('color_gray'));
         printf('$color_gray_light:%s;',fastway_configs('color_gray_light'));
         printf('$white:%s;',fastway_configs('white'));
 

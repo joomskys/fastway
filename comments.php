@@ -47,36 +47,7 @@ if($post_comments_form_on) : ?>
             endif;
 
         endif; // Check for have_comments().
-
-    $args = array(
-            'id_form'           => 'commentform',
-            'id_submit'         => 'submit',
-            'title_reply'       => esc_attr__( 'Leave A Comment', 'fastway'),
-            'title_reply_to'    => esc_attr__( 'Leave A Comment To ', 'fastway') . '%s',
-            'cancel_reply_link' => esc_attr__( 'Cancel Comment', 'fastway'),
-            'label_submit'      => esc_attr__( 'Submit Comment', 'fastway'),
-            'comment_notes_before' => '',
-            'fields' => apply_filters( 'comment_form_default_fields', array(
-
-                    'author' =>
-                    '<div class="row"><div class="comment-form-author col-lg-4 col-md-4 col-sm-12">'.
-                    '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-                    '" size="30" placeholder="'.esc_attr__('Name:', 'fastway').'"/></div>',
-
-                    'email' =>
-                    '<div class="comment-form-email col-lg-4 col-md-4 col-sm-12">'.
-                    '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-                    '" size="30" placeholder="'.esc_attr__('Email:', 'fastway').'"/></div>',
-
-                    'website' =>
-                    '<div class="comment-form-website col-lg-4 col-md-4 col-sm-12">'.
-                    '<input id="website" name="website" type="text" value="" size="30" placeholder="'.esc_attr__('Website:', 'fastway').'"/></div></div>',
-            )
-            ),
-            'comment_field' =>  '<div class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="'.esc_attr__('Comment:', 'fastway').'" aria-required="true">' .
-            '</textarea></div>',
-    );
-    comment_form($args);
+        comment_form(fastway_comment_form_args());
     ?>
 
     </div><!-- #comments -->

@@ -1,108 +1,124 @@
-.comments-area {
-	.comment-list {
-		list-style: none;
-		margin: 0;
-		> .comment {
-			.comment-body {
-				border-top: 1px dashed #dbdbdb;
-				margin-top: 24px;
-				padding-top: 30px;
-			}
-			&:first-child > .comment-body {
-				border-top: none;
-				padding-top: 0;
-				margin-top: 0;
-			}
-			> .children {
-				list-style: none;
-				margin: 0;
-				padding-left: 90px;
-				@media #{$max-sm} {
-					padding-left: 0;
-				}
-			}
-		}
-		> .pingback + .pingback {
-			border-top: 1px solid #d9d9d9;
-			margin-top: 24px;
-			padding-top: 30px;
-		}
-		.children {
-			list-style: none;
-		}
+.comments-area{
+	padding: 30px;
+	background-color: $color_gray;
+}
+.comment-list-wrap{
+	.comments-title{
+		text-transform: uppercase;
+    	font-size: 20px;
+    	line-height: 40px;
+    	margin-bottom: 24px;
 	}
-	.comment-inner {
-		display: flex;
-		flex-wrap: nowrap;
-		img.avatar {
-			max-width: 70px;
-			min-width: 70px;
-			max-height: 70px;
-			margin-right: 20px;
-			@include border-radius(2px);
-		}
-		.comment-content {
-			padding-top: 6px;
-			.comment-title {
-				font-size: 14px;
-				font-weight: 700;
-				margin-bottom: 0px;
-			}
-			.comment-meta {
-				font-size: 13px;
-				color: #9b9b9b;
-				margin-bottom: 7px;
-			}
-			.comment-text {
-				margin-bottom: 7px;
-				font-size: 14px;
-				line-height: 24px;
-				color: #9b9b9b;
-				p:last-child {
-					margin-bottom: 0;
-				}
-			}
-			.comment-reply {
-				font-size: 13px;
-				font-weight: 700;
-				color: $primary_color;
-			}
-		}
+}
+
+.comment-list{
+	list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    li{
+    	position: relative;
+    	padding: 0;
+    }
+    .comment-body{
+    	position: relative;
+	    padding: 20px 30px;
+	    margin-bottom: 40px;
+	    position: relative;
+	    border: 1px solid #f2f2f2;
+	    border-left: 5px solid #eaeaea;
+	    background-color: $white;
+    }
+    .comment-content{
+    	position: unset;
+    }
+    .comment-meta{
+    	color: #000;
+	    margin-bottom: 15px;
+	    font-size: 12px;
+	    text-transform: uppercase;
+	    line-height: normal;
+	    font-weight: 600;
+    }
+    .comment-title{
+	    font-size: 14px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    font-style: normal;
+	    padding: 0;
+	    margin: 0 0 10px;
+    }
+    p{
+    	line-height: 18px;
+    	margin: 0 0 5px;
+    }
+    .comment-reply-link{
+    	position: absolute;
+		top: 50px;
+		right: 30px;
+		margin-top: -5px;
+		color: #ff5e14;
+		font-weight: 600;
+    }
+    // Children
+    .children{
+    	list-style: none;
+    	margin-left: 80px;
+    }
+}
+
+.comment-respond{
+	padding: 30px;
+	background-color: $white;
+	.comment-reply-title{
+		font-size: 16px;
+    	font-weight: 600;
+    	text-transform: uppercase;
+    	line-height: 30px;
+    	margin: 0 0 20px;
 	}
-	.comment-list-wrap {
-		margin-bottom: 40px;
+}
+
+.comment-form-field{
+	position: relative;
+	margin-bottom: 30px;
+	&:before {
+	    display: inline-block;
+	    position: absolute;
+	    left: 15px;
+	    top: 0px;
+	    font-size: 16px;
+	    color: #8f8f8f;
+	    width: 40px;
+	    height: 40px;
+	    line-height: 40px;
+	    border: none;
+	    text-align: center;
 	}
-	#commentform {
-		input, textarea {
-			margin-bottom: 30px;
-		}
-		.submit {
-			width: 100%;
-			margin-bottom: 0;
-			&:hover {
-				background-color: #222;
-				border-color: #222;
-				color: #fff;
-			}
-		}
-		.form-submit {
-			margin-bottom: 0;
-		}
+	&.comment-form-author:before{
+		@include font-awesome("\f007");
 	}
-	.comment-content a {
-	    word-wrap: break-word;
+	&.comment-form-email:before{
+		@include font-awesome("\f0e0");
 	}
-	.bypostauthor {
-	    display: block;
+	&.comment-form-website:before{
+		@include font-awesome("\f0ac");
 	}
-	.logged-in-as {
-		color: #9b9b9b;
-		a {
-			color: #9b9b9b;
-			&:hover {
-				color: $primary_color;
-			}
-		}
+	&.comment-form-comment:before{
+		@include font-awesome("\f040");
+	}
+	input,
+	textarea{
+		width: 100%;
+		padding: 10px 10px 10px 40px;
+	    border: none;
+	    background-color: #f3f3f3;
+	    vertical-align: top;
+	    font-weight: 600;
+		font-size: 14px;
+		font-family: $BodyFont;
+	}
+	input{
+		height: 40px;
 	}
 }
 .comment-form-cookies-consent {

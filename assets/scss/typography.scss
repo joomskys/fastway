@@ -55,8 +55,10 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: $color_dark;
   clear: both;
-  margin: 0 0 15px;
   font-weight: 700;
+}
+h1, h2, h3, h4, h5, h6{
+  margin-bottom: 15px;
 }
 .heading-default-font {
   h1, h2, h3, h4, h5, h6,
@@ -106,6 +108,45 @@ label {
   margin-bottom: 0;
 }
 
+blockquote {
+    padding: 30px 20px 30px 80px;
+    font-size: 18px;
+    font-style: italic;
+    color: #555555;
+    margin: 40px 0;
+    line-height: 30px;
+    position: relative;
+    z-index: 1;
+    background: #f6f6f6;
+    clear: both;
+    border: none;
+    p{
+      line-height: inherit;
+    }
+    cite {
+        padding-top: 15px;
+        margin-bottom: 30px;
+        display: block;
+        clear: both;
+        font-size: 14px;
+        color: #555555;
+        &:empty{
+          display: none;
+        }
+    }
+    &:before{
+        content: '\f10d';
+        font-family: "FontAwesome";
+        color: $accent_color;
+        font-size: 100px;
+        position: absolute;
+        left: 20px;
+        top: 38px;
+        font-style: normal;
+        z-index: -1;
+        opacity: 0.2;
+    }
+}
 // Unit Test
 //--------------------------------------------------
 

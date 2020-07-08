@@ -21,6 +21,7 @@ if(!function_exists('fastway_configs')){
             'invalid_color'         => 'red',
             'color_red'             => 'red',
             'color_green'           => 'green',
+            'color_gray'            => '#f5f6f6',
             'color_gray_light'      => '#eeeeee',
             'white'                 => 'white',
             // Typo
@@ -96,7 +97,7 @@ if(!function_exists('fastway_configs')){
             'ptitle_bg_img'   => '../images/ptitle-layout/bg.jpg',
             'ptitle_overlay_color'   => 'rgba(0,0,0,0.7)',
             // Comments 
-            'cmt_avatar_size'  => 100,
+            'cmt_avatar_size'  => 90,
             'cmt_border'       => '1px solid #DDDDDD',
             // WooCommerce,
             'fastway_product_single_image_w' => '455',
@@ -419,18 +420,6 @@ function fastway_fonts_url() {
     );
     return $font_url;
 }
-
-/**
- * Commnet Form
- */
-function fastway_comment_field_to_bottom( $fields ) {
-	$comment_field = $fields['comment'];
-	unset( $fields['comment'] );
-	$fields['comment'] = $comment_field;
-
-	return $fields;
-}
-add_filter( 'comment_form_fields', 'fastway_comment_field_to_bottom' );
 
 /**
  * Add Template Woocommerce

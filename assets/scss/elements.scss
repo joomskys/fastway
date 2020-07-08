@@ -442,26 +442,6 @@ body .mfp-bottom-bar {
 
 // Cms Blockquote
 //--------------------------------------------------
-blockquote {
-    border-left: 6px solid $color_dark;
-    font-size: 20px;
-    line-height: 28px;
-    font-style: italic;
-    line-height: 1.4;
-    @include font-family-heading($heading_default_font);
-    padding-left: 30px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    margin: 0 0 32px;
-    cite {
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        color: $color_dark;
-        display: block;
-        margin-top: 10px;
-    }
-}
 .cms-blockquotes-wrapper{
     blockquote {
         margin: 0;
