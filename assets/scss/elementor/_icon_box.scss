@@ -1,0 +1,48 @@
+.cms-icon-box-wrapper{
+	border: 1px solid #ddd;
+	padding: 30px;
+	text-align: center;
+	.cms-icon-box-icon{
+		width: 80px;
+		height: 80px;
+		display: inline-block;
+		margin: 0 auto 20px;
+		i{
+    		line-height: 80px;
+    		font-size: 30px;
+    	}
+		
+	}
+	.cms-icon-box-title{
+		margin-bottom: 15px;
+	}
+}
+.cms-icon-box-layout1{
+	.cms-icon-box-icon{
+		background: $accent_color;
+		color: $white;
+		@include border-radius(6px);
+	}
+}
+.cms-icon-box-layout2{
+	.cms-icon-box-icon{
+		background: $accent_color;
+		color: $white;
+		@include border-radius(50%);
+	}
+}
+.cms-icon-box-layout3{
+	.cms-icon-box-icon{
+		border: 2px solid $accent_color;
+		color: $accent_color;
+		@include border-radius(50%);
+	}
+}
+.cms-icon-box-layout4{
+	.cms-icon-box-icon{
+		color: $accent_color;
+		i{
+			font-size: 80px;
+    	}
+	}
+}

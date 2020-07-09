@@ -20,12 +20,23 @@ etc_add_custom_widget(
                             'name' => 'layout',
                             'label' => esc_html__( 'Templates', 'fastway' ),
                             'type' => Elementor_Theme_Core::LAYOUT_CONTROL,
-                            //'prefix_class' => 'cms-icon-box-layout',
                             'default' => '1',
                             'options' => [
                                 '1' => [
                                     'label' => esc_html__( 'Layout 1', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout1.png'
+                                ],
+                                '2' => [
+                                    'label' => esc_html__( 'Layout 2', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout2.png'
+                                ],
+                                '3' => [
+                                    'label' => esc_html__( 'Layout 3', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout3.png'
+                                ],
+                                '4' => [
+                                    'label' => esc_html__( 'Layout 4', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout4.png'
                                 ],
                             ],
                         ),

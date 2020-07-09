@@ -3,6 +3,12 @@
 	&:empty{
 		display: none;
 	}
+	.cms-heading-inner:empty + .cms-separator{
+		display: none;
+		+ .cms-heading-desc{
+			margin-top: 0;
+		}
+	}
 }
 .cms-heading-layout1{
 	text-align: center;
@@ -11,16 +17,12 @@
 	    color: rgba(210, 210, 210, 0.3);
 	    font-weight: 900;
 	    font-size: 90px;
-	    text-transform: uppercase;
 	    white-space: normal;
 	    top: 50%;
 	    left: 50%;
 	    width: 100%;
 	    @include transform (translate(-50%, -50%));
 	    @include text-ellipsis();
-	}
-	.cms-heading{
-		text-transform: uppercase;
 	}
 	.cms-separator{
 		margin: 26px auto 0;

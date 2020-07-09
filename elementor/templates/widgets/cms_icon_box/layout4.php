@@ -32,7 +32,7 @@ $widget->add_inline_editing_attributes( 'description_text' );
 
 $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 ?>
-<div class="cms-icon-box-wrapper cms-icon-box-layout3">
+<div class="cms-icon-box-wrapper cms-icon-box-layout4">
     <?php if ( $has_icon ) : ?>
     <div class="cms-icon-box-icon">
         <<?php echo implode( ' ', [ $icon_tag, $icon_attributes, $link_attributes ] ); ?>>

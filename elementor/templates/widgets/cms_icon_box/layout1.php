@@ -1,5 +1,5 @@
 <?php
-$widget->add_render_attribute( 'selected_icon', 'class', [ 'elementor-icon', 'elementor-animation-' . $settings['hover_animation'] ] );
+$widget->add_render_attribute( 'selected_icon', 'class', ['elementor-animation-' . $settings['hover_animation'] ] );
 
 $icon_tag = 'span';
 $has_icon = ! empty( $settings['selected_icon'] );
@@ -47,9 +47,9 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
     </div>
     <?php endif; ?>
     <div class="cms-icon-box-content">
-        <<?php etc_print_html($settings['title_size']); ?> class="cms-icon-box-title">
+        <div class="h4 cms-icon-box-title">
             <<?php echo implode( ' ', [ $icon_tag, $link_attributes ] ); ?><?php etc_print_html($widget->get_render_attribute_string( 'title_text' )); ?>><?php echo esc_html($settings['title_text']); ?></<?php etc_print_html($icon_tag); ?>>
-        </<?php etc_print_html($settings['title_size']); ?>>
-        <p <?php etc_print_html($widget->get_render_attribute_string( 'description_text' )); ?>><?php echo esc_html($settings['description_text']); ?></p>
+        </div>
+        <p><?php echo esc_html($settings['description_text']); ?></p>
     </div>
 </div>
