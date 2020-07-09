@@ -3,8 +3,8 @@
 etc_add_custom_widget(
     array(
         'name' => 'cms_heading',
-        'title' => esc_html__( 'Heading', 'fastway' ),
-        'icon' => 'eicon-type-tool',
+        'title' => esc_html__( 'CMS Heading', 'fastway' ),
+        'icon' => 'eicon-t-letter',
         'categories' => array( Elementor_Theme_Core::ETC_CATEGORY_NAME ),
         'scripts' => array(
 
@@ -22,6 +22,10 @@ etc_add_custom_widget(
                             'type' => Elementor_Theme_Core::LAYOUT_CONTROL,
                             'default' => '1',
                             'options' => [
+                                '2' => [
+                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout2.png'
+                                ],
                                 '1' => [
                                     'label' => esc_html__( 'Layout 1', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout1.png'
@@ -50,6 +54,9 @@ etc_add_custom_widget(
                             'default' => esc_html__( 'This is the sub heading', 'fastway' ),
                             'placeholder' => esc_html__( 'Enter your sub title', 'fastway' ),
                             'label_block' => true,
+                            'condition' => [
+                                'layout' => '1',
+                            ],
                         ),
                         array(
                             'name' => 'description_text',
@@ -59,6 +66,9 @@ etc_add_custom_widget(
                             'placeholder' => esc_html__( 'Enter your description', 'fastway' ),
                             'rows' => 10,
                             'show_label' => false,
+                            'condition' => [
+                                'layout' => '1',
+                            ],
                         )
                     ),
                 )

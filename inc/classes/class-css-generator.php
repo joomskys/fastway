@@ -198,6 +198,11 @@ class CSS_Generator {
 		printf('$body_default_font:%s;', fastway_configs('body_font'));
 		printf('$heading_default_font:%s;', fastway_configs('heading_font'));
 		printf('$sub_heading_default_font:%s;', fastway_configs('heading_font'));
+		printf('$heading_font:%s;', fastway_configs('heading_font'));
+		printf('$sub_heading_font:%s;', fastway_configs('heading_font'));
+		printf('$heading_color:%s;', fastway_configs('heading_color'));
+		printf('$heading_color_hover:%s;', fastway_configs('heading_color_hover'));
+		printf('$heading_font_weight:%s;', fastway_configs('heading_font_weight'));
 
 		return ob_get_clean();
 	}

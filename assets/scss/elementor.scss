@@ -1,6 +1,27 @@
-.elementor-page .content-inner > .container{
-  max-width: 1210px;
+.elementor-section-wrap .elementor-section .elementor-container{
+  display: block;
 }
+
+@if $enable-grid-classes {
+  .elementor .elementor-section.elementor-section-stretched.elementor-section-boxed>.elementor-container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+}
+
+.elementor-container .elementor-row{
+  width: unset;
+  flex-wrap: wrap;
+}
+.elementor-section >.elementor-column-gap-default{
+  > .elementor-row{
+    margin: -15px;
+    >.elementor-column>.elementor-element-populated{
+      padding: 15px;
+    }
+  }
+}
+
 /* reset heading margin*/
 .slick-slide:focus {
   outline: none;

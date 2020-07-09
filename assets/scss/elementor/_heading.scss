@@ -9,6 +9,13 @@
 			margin-top: 0;
 		}
 	}
+	.cms-heading{
+		position: relative;
+		z-index: 1;
+	}
+	.cms-heading-sub{
+		font-family: $heading_font;
+	}
 }
 .cms-heading-layout1{
 	text-align: center;
@@ -17,12 +24,12 @@
 	    color: rgba(210, 210, 210, 0.3);
 	    font-weight: 900;
 	    font-size: 90px;
-	    white-space: normal;
+	    white-space: nowrap;
 	    top: 50%;
 	    left: 50%;
 	    width: 100%;
 	    @include transform (translate(-50%, -50%));
-	    @include text-ellipsis();
+	    //@include text-ellipsis();
 	}
 	.cms-separator{
 		margin: 26px auto 0;
