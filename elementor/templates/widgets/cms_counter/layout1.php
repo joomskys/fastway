@@ -11,7 +11,7 @@ if ( ! empty( $settings['thousand_separator'] ) ) {
 }
 $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 ?>
-<div class="cms-counter-wrapper">
+<div class="cms-counter-wrapper cms-counter-layout1 text-center main-bdr">
     <?php if($settings['icon_type'] == 'icon'): ?>
         <div class="cms-counter-icon">
             <?php if(!empty($settings['counter_icon'])): ?>
@@ -21,8 +21,8 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
                 ?>
                 <?php
                 else:
-                    $widget->add_render_attribute( 'i', 'class', $settings['counter_icon'] );
-                    $widget->add_render_attribute( 'i', 'aria-hidden', 'true' );
+                    $widget->add_render_attribute( 'span', 'class', $settings['counter_icon'] );
+                    $widget->add_render_attribute( 'span', 'aria-hidden', 'true' );
                 ?>
                     <i <?php etc_print_html($widget->get_render_attribute_string( 'i' )); ?>></i>
                 <?php endif; ?>

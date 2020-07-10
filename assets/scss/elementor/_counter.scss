@@ -1,0 +1,36 @@
+.cms-counter-number-wrapper{
+	font-size: 26px;
+    line-height: 32px;
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+// layout 1
+.cms-counter-layout1{
+	padding: 20px;
+	.cms-counter-icon{
+		width: 80px;
+		margin: 0 auto 20px;
+		color: $accent_color;
+	    i{
+	    	font-size: 60px;
+	    	line-height: 60px;
+	    }
+	}
+	.cms-counter-image{
+		margin-bottom: 20px;
+	}
+}
+// layout 2
+.cms-counter-layout2,
+.cms-counter-layout3{
+	padding: 10px;
+	.cms-counter-icon{
+		i{
+			font-size: 45px;
+			line-height: 45px;
+		}
+	}
+	.cms-counter-image{
+		width: 60px;
+	}
+}

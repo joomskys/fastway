@@ -18,6 +18,7 @@
     font-size: 15px;
     line-height: 23px;
 }
+
 .z-index-top {
     z-index: 888;
     position: relative;
@@ -239,6 +240,13 @@ $color_text1: #00ff00;
 .text-center, .align-center {
   text-align: center;
 }
+.text-start{
+    text-align: start;
+}
+.text-end{
+    text-align: end;
+}
+
 .align-justified{
     width: 100%;
 }

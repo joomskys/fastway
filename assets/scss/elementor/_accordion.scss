@@ -12,7 +12,7 @@
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
-	[dir="rtl"] {
+	[dir="rtl"] &{
 		padding: 5px 15px 5px 0;
 		border-left: 0;
 		border-right: 2px solid $accent_color;
@@ -30,10 +30,10 @@
 	max-width: calc(100% - 20px);
 	color: #3d474a;
 	.ac-title-icon{
-		margin-right: 5px;
-		[dir="rtl"] {
+		margin-right: 10px;
+		[dir="rtl"] &{
 			margin-right: 0;
-			margin-left: 5px;
+			margin-left: 10px;
 		}
 	}
 }

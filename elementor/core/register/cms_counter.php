@@ -3,7 +3,7 @@
  etc_add_custom_widget(
     array(
         'name' => 'cms_counter',
-        'title' => esc_html__('Counter', 'fastway'),
+        'title' => esc_html__('CMS Counter', 'fastway'),
         'icon' => 'eicon-counter-circle',
         'categories' => array(Elementor_Theme_Core::ETC_CATEGORY_NAME),
         'scripts' => array(
@@ -21,12 +21,20 @@
                             'name' => 'layout',
                             'label' => esc_html__( 'Templates', 'fastway' ),
                             'type' => Elementor_Theme_Core::LAYOUT_CONTROL,
-                            'prefix_class' => 'cms-counter-layout',
-                            'default' => '1',
+                            //'prefix_class' => 'cms-counter-layout',
+                            //'default' => '1',
                             'options' => [
                                 '1' => [
                                     'label' => esc_html__( 'Layout 1', 'fastway' ),
-                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout1.png'
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout1.png'
+                                ],
+                                '2' => [
+                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout2.png'
+                                ],
+                                '3' => [
+                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout3.png'
                                 ],
                             ],
                         ),
