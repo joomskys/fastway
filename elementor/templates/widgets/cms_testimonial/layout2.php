@@ -71,9 +71,9 @@ $widget->add_render_attribute( 'carousel', [
                                     <?php } ?>
                                     <div class="cms-ttmn-content col">
                                         <span class="cms-quote-icon fa fa-quote-left"></span>
+                                        <div class="cms-ttmn-desc"><?php echo esc_attr($value['description']); ?></div>
                                         <div class="cms-ttmn-title text-uppercase"><?php echo esc_attr($value['title']); ?></div>
                                         <div class="cms-ttmn-position text-accent"><?php echo esc_attr($value['position']); ?></div>
-                                        <div class="cms-ttmn-desc"><?php echo esc_attr($value['description']); ?></div>
                                     </div>
                                 </div>
                             </div>
