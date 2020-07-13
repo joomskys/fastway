@@ -1,0 +1,64 @@
+.cms-pricing-wrap{
+	padding: 20px;
+}
+.cms-pricing-inner{
+	position: relative;
+	overflow: hidden;
+}
+.cms-pricing-badge{
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: $accent_color;
+	color: $white;
+	padding: 5px 10px;
+	[dir="rtl"] &{
+		right: auto;
+		left: 0;
+	}
+}
+.cms-pricing-icon{
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 80px;
+	text-align: center;
+	margin: 20px auto;
+	background: $accent_color;
+	color: $white;
+	@include border-radius(50%);
+}
+.cms-pricing-title{
+	color: $accent_color;
+	font-family: $heading_font;
+	padding: 20px;
+	font-size: $h3_size;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.cms-pricing-price{
+	padding: 7px 10px;
+	font-weight: 600;
+	color: $heading_color;
+}
+.cms-price-wrap{
+	font-size: 72px;
+}
+.cms-price-package{
+	font-size: 14px;
+}
+.cms-pricing-list{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	li{
+		    padding: 12px;
+    border-bottom: 1px solid #E9E9E9;
+	}
+}
+.cms-pricing-description{
+	padding: 20px;
+}
+.cms-pricing-button-wrap{
+	padding: 19px 20px 20px;
+}

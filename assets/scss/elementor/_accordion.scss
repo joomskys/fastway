@@ -72,12 +72,14 @@
 		    width: 0;
 		    height: 0;
 		    border-top: 25px solid transparent;
-		    border-right: 25px solid #ff5e14;
+		    border-right: 25px solid $accent_color;
 		    border-bottom: 25px solid transparent;
 		    z-index: 1;
 		    [dir="rtl"] &{
 		    	right: auto;
 		    	left: 0;
+		    	border-left: 25px solid $accent_color;
+		    	border-right: 25px solid transparent;
 		    }
 		}
 		.cms-ac-title-icon{

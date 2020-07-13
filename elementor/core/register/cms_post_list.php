@@ -6,7 +6,7 @@ $post_term_options = etc_get_grid_term_options('post');
 etc_add_custom_widget(
     array(
         'name' => 'cms_post_list',
-        'title' => esc_html__( 'Post List', 'fastway' ),
+        'title' => esc_html__( 'CMS Post List', 'fastway' ),
         'icon' => 'eicon-posts-list',
         'categories' => array( Elementor_Theme_Core::ETC_CATEGORY_NAME ),
         'scripts' => [

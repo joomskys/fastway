@@ -1,0 +1,99 @@
+.cms-slick-slider{
+	.slick-arrow{
+		background-color: #000;
+	    border-color: #000;
+	    color: #ffffff;
+	    padding: 8px 12px;
+	    font-size: 0;
+	    display: inline-block;
+	    cursor: pointer;
+	    border-width: 1px;
+	    border-style: solid;
+	    border-radius: 0;
+	    -webkit-border-radius: 0;
+	    -moz-border-radius: 0;
+	    position: absolute;
+	    top: 50%;
+	    margin: -15px 0;
+	    z-index: 1;
+	    &.cms-slick-prev{
+	    	left: 0;
+	    	&:before{
+	    		content: "\f053";
+	    	}
+	    }
+	    &.cms-slick-next{
+	    	right: 0;
+	    	&:before{
+	    		content: "\f054";
+	    	}
+	    }
+	    &:before{
+	    	font: normal normal normal 14px/1 FontAwesome;
+	    	font-size: 12px;
+	    	display: inline-block;
+		    text-rendering: auto;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+	    }
+	}
+	.cms-slick-dots{
+		bottom: 0px;
+	    padding: 15px 25px;
+	    margin: 0;
+	    position: absolute;
+	    width: 100%;
+	    text-align: center;
+	    li{
+	    	display: inline-block;
+	    	button{
+	    		width: 13px;
+			    height: 13px;
+			    margin: 5px 7px;
+			    padding: 0;
+			    background: #bbbbbb;
+			    display: block;
+			    -webkit-backface-visibility: visible;
+			    -webkit-transition: opacity 200ms ease;
+			    -moz-transition: opacity 200ms ease;
+			    -ms-transition: opacity 200ms ease;
+			    -o-transition: opacity 200ms ease;
+			    transition: opacity 200ms ease;
+			    -webkit-border-radius: 50%;
+			    border-radius: 50%;
+			    border:0;
+			    font-size: 0;
+			    text-indent: -9999px;
+	    	}
+	    	&.slick-active,
+	    	&:hover{
+	    		button{
+	    			background-color: $accent_color;
+	    		}
+	    	}
+	    }
+	}
+}
+
+
+// nav & dots out mode
+.cms-slick-nav-out-vertical{
+	.slick-arrow{
+		&.cms-slick-prev{
+			left: -65px;
+		}
+		&.cms-slick-next{
+			right: -65px;
+		}
+	}
+}
+
+.cms-slick-dots-out{
+	.cms-slick-dots{
+		position: unset;
+		margin-top: 1px;
+	}
+	&.cms-slick-nav-out-vertical .slick-arrow{
+		margin-top: -39.5px;
+	}
+}

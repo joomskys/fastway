@@ -1,0 +1,41 @@
+.cms-ttmn-item-inner{
+	padding: 0 20px;
+	background-color: $white;
+}
+.cms-ttmn-title{
+	font-size: 20px;
+	font-family: $heading_font;
+	color: $heading_color;
+	font-weight: 600;
+}
+.cms-ttmn-image,
+.cms-ttmn-content{
+	position: relative;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.cms-ttmn-slider1{
+	.cms-ttmn-image img{
+	    border: 5px solid #FFF;
+	    @include box-shadow('2px 3px 6px -3px rgba(0, 0, 0, 0.35)');
+	}
+	.cms-ttmn-title{
+		padding-bottom: 18px;
+	}
+	.cms-ttmn-position{
+		padding-bottom: 12px;
+	}
+	.cms-quote-icon{
+		position: absolute;
+	    left: 15px;
+	    top: 0;
+	    font-size: 90px;
+	    color: $accent_color;
+	    z-index: -1;
+	    opacity: 0.1;
+	    [dir="rtl"] &{
+	    	left: auto;
+	    	right: 15px;
+	    }
+	}
+}

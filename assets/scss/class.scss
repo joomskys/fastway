@@ -429,3 +429,8 @@ $color_text1: #00ff00;
     display: block;
     background: $accent_color;
 }
+// Block shadow 
+.cms-block-shadow{
+    @include css3-prefix('box-shadow', '0 10px 30px 0 rgba(50, 50, 50, .16)');
+    @include transition(all 0.5s linear);
+}

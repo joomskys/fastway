@@ -16,7 +16,7 @@ if($elementor_templates){
 etc_add_custom_widget(
     array(
         'name' => 'cms_tabs_anything',
-        'title' => esc_html__( 'Tabs Anything', 'fastway' ),
+        'title' => esc_html__( 'CMS Tabs Anything', 'fastway' ),
         'icon' => 'eicon-tabs',
         'categories' => array( Elementor_Theme_Core::ETC_CATEGORY_NAME ),
         'scripts' => [

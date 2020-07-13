@@ -70,7 +70,8 @@ $screen-xxl-min: 1600px;
 @import "border";
 @import "opacity";
 // libs
-@import "_slick_slider";
+@import "slick_slider";
+@import "slick_slider_theme";
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/

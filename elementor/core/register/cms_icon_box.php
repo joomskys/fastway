@@ -3,7 +3,7 @@
 etc_add_custom_widget(
     array(
         'name' => 'cms_icon_box',
-        'title' => esc_html__( 'Icon Box', 'fastway' ),
+        'title' => esc_html__( 'CMS Icon Box', 'fastway' ),
         'icon' => 'eicon-icon-box',
         'categories' => array( Elementor_Theme_Core::ETC_CATEGORY_NAME ),
         'scripts' => array(

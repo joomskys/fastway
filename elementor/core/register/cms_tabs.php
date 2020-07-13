@@ -4,7 +4,7 @@
 etc_add_custom_widget(
     array(
         'name' => 'cms_tabs',
-        'title' => esc_html__( 'Tabs', 'fastway' ),
+        'title' => esc_html__( 'CMS Tabs', 'fastway' ),
         'icon' => 'eicon-tabs',
         'categories' => array( Elementor_Theme_Core::ETC_CATEGORY_NAME ),
         'scripts' => [
@@ -57,6 +57,16 @@ etc_add_custom_widget(
                                     'label_block' => true,
                                 ),
                                 array(
+                                    'name' => 'tab_title_icon',
+                                    'label' => esc_html__( 'Title Icon', 'fastway' ),
+                                    'type' => \Elementor\Controls_Manager::ICONS,
+                                    'fa4compatibility' => 'icon',
+                                    'default' => [
+                                        'value' => '',
+                                        'library' => '',
+                                    ],
+                                ),
+                                array(
                                     'name' => 'tab_content',
                                     'label' => esc_html__( 'Content', 'fastway' ),
                                     'type' => \Elementor\Controls_Manager::WYSIWYG,
@@ -78,16 +88,17 @@ etc_add_custom_widget(
                             'title_field' => '{{{ tab_title }}}',
                         ),
                         array(
-                            'name' => 'type',
-                            'label' => esc_html__( 'Type', 'fastway' ),
-                            'type' => \Elementor\Controls_Manager::SELECT,
+                            'name'    => 'type',
+                            'label'   => esc_html__( 'Type', 'fastway' ),
+                            'type'    => \Elementor\Controls_Manager::SELECT,
                             'default' => 'horizontal',
                             'options' => [
-                                'horizontal' => esc_html__( 'Horizontal', 'fastway' ),
-                                'vertical' => esc_html__( 'Vertical', 'fastway' ),
+                                'horizontal'     => esc_html__( 'Horizontal', 'fastway' ),
+                                'vertical'       => esc_html__( 'Vertical', 'fastway' ),
+                                'vertical right' => esc_html__( 'Vertical (Right)', 'fastway' ),
                             ],
                             'prefix_class' => 'cms-tabs-view-',
-                            'separator' => 'before',
+                            'separator'    => 'before',
                         ),
                     ),
                 ),
