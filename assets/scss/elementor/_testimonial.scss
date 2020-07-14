@@ -1,6 +1,7 @@
 .cms-ttmn-item-inner{
 	padding: 0 20px;
 	background-color: $white;
+	position: relative;
 }
 .cms-ttmn-title{
 	font-size: 20px;
@@ -14,11 +15,11 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+.cms-ttmn-image img{
+    border: 5px solid #FFF !important;
+    @include box-shadow('2px 3px 6px -3px rgba(0, 0, 0, 0.35) !important') ;
+}
 .cms-ttmn-slider1{
-	.cms-ttmn-image img{
-	    border: 5px solid #FFF;
-	    @include box-shadow('2px 3px 6px -3px rgba(0, 0, 0, 0.35)');
-	}
 	.cms-ttmn-title{
 		padding-bottom: 18px;
 	}
@@ -37,5 +38,31 @@
 	    	left: auto;
 	    	right: 15px;
 	    }
+	}
+}
+.cms-ttmn-slider2{
+	.cms-quote-icon{
+		font-size: 50px;
+	}
+	.cms-ttmn-desc{
+		padding: 10px 0 15px;
+	}
+	@media (min-width: $screen-md-min){
+		.cms-ttmn-item-inner{
+			margin-left: 60px;
+		}
+		.cms-ttmn-image{
+			position: absolute;
+			top: 20%;
+			left: -75px;
+			img{
+				max-width: 110px;
+			}
+		}
+		.cms-ttmn-content{
+			margin-left: 60px;
+			padding-top: 40px;
+			padding-bottom: 45px;
+		}
 	}
 }
