@@ -47,7 +47,7 @@
             'padding-left':gutter,
             'padding-right':gutter
         });
-        .carousel.on('breakpoint', function(event,slick){
+        carousel.on('breakpoint', function(event,slick){
             $('.slick-slide').css({
                 'padding-left':gutter,
                 'padding-right':gutter

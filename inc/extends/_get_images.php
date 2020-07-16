@@ -306,30 +306,29 @@ if ( ! function_exists( 'fastway_resize_thumbnail' ) ) {
 if(!function_exists('fastway_image_by_size')){
     function fastway_image_by_size( $args = []) {
         $default = [
-            'id'      => null , 
-            'size'    => 'medium', 
-            'class'   => '', 
-            'echo'    => true , 
-            'default' => false,
-            'before'  => '',
-            'after'   => '',
+            'id'         => null , 
+            'size'       => 'medium', 
+            'class'      => '', 
+            'echo'       => true , 
+            'default'    => false,
+            'before'     => '',
+            'after'      => '',
             'show_image' => true
         ];
         $args = wp_parse_args($args, $default);
         extract($args);
-
         if(empty($size)) $size = 'medium';
         global $post, $_wp_additional_image_sizes;
-        if($id === null) {
+        /*if($id === null) {
             $id = get_post_thumbnail_id($post->ID);
         } else {
             $id = get_post_thumbnail_id($id);
-        }
+        }*/
         $class .= ' cms-img';
         $mime_type  = get_post_mime_type($id);
         if($mime_type === 'image/svg+xml') $class .= ' svg';
         if(empty($id) ){
-            $fastway_image_by_size = fastway_default_image_thumbnail(['size' => $size, 'class' => $class]);
+            $fastway_image_by_size = fastway_default_image_thumbnail(['size' => $size, 'class' => trim($class)]);
         } elseif ( is_string( $size ) && ( ( ! empty( $_wp_additional_image_sizes[ $size ] ) && is_array( $_wp_additional_image_sizes[ $size ] ) ) || in_array( $size, array(
                     'thumbnail',
                     'thumb',
@@ -341,7 +340,7 @@ if(!function_exists('fastway_image_by_size')){
                     'full',
                 ) ) )
         ) {
-            $fastway_image_by_size =  wp_get_attachment_image( $id, $size, '', array('class' => $class) );
+            $fastway_image_by_size =  wp_get_attachment_image( $id, $size, '', array('class' => trim($class)) );
         } else {
             if ( is_string( $size ) ) {
                 preg_match_all( '/\d+/', $size, $thumb_matches );
