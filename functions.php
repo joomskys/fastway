@@ -321,9 +321,8 @@ add_action( 'widgets_init', 'fastway_widgets_init' );
  */
 function fastway_scripts() {
 	$theme = wp_get_theme( get_template() );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '4.7.0' );
-	wp_enqueue_style( 'font-material-icon', get_template_directory_uri() . '/assets/css/material-design-iconic-font.min.css', array(), '2.2.0' );
-    wp_enqueue_style( 'font-flaticon', get_template_directory_uri() . '/assets/css/font-flaticon.css', array(), $theme->get( 'Version' ) );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/fonts/awesome/css/font-awesome.min.css', array(), '4.7.0' );
+    wp_enqueue_style( '-flaticon', get_template_directory_uri() . '/assets/fonts/flaticon/font-flaticon.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0' );
 	wp_enqueue_style( 'fastway-theme', get_template_directory_uri() . '/assets/css/theme.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'fastway-menu', get_template_directory_uri() . '/assets/css/menu.css', array(), $theme->get( 'Version' ) );
@@ -331,7 +330,7 @@ function fastway_scripts() {
 	wp_enqueue_style( 'fastway-google-fonts', fastway_fonts_url() );
 
 	/* Lib JS */
-    wp_enqueue_script('jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array( 'jquery' ), '1.4.1', true);
+    wp_enqueue_script( 'jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array( 'jquery' ), '1.4.1', true);
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '4.0.0', true );
     wp_enqueue_script( 'nice-select', get_template_directory_uri() . '/assets/js/nice-select.min.js', array( 'jquery' ), 'all', true );
     wp_enqueue_script( 'enscroll', get_template_directory_uri() . '/assets/js/enscroll.js', array( 'jquery' ), 'all', true );
@@ -361,8 +360,7 @@ function fastway_scripts() {
     wp_register_script( 'cms-progressbar-widget-js', get_template_directory_uri() . '/elementor/js/cms-progressbar-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
     // Clients List Widget
     wp_register_script( 'cms-clients-list-widget-js', get_template_directory_uri() . '/elementor/js/cms-clients-list-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
-    // Teams List Widget
-    wp_register_script( 'cms-teams-list-widget-js', get_template_directory_uri() . '/elementor/js/cms-teams-list-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
+    
     // Pie Charts Widget
     wp_register_script( 'cms-piecharts-widget-js', get_template_directory_uri() . '/elementor/js/cms-piecharts-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
     // CMS Post Carousel Widget
@@ -401,7 +399,6 @@ add_action( 'admin_init', 'fastway_add_editor_styles' );
 function fastway_admin_style() {
 	$theme = wp_get_theme( get_template() );
 	wp_enqueue_style( 'fastway-admin-style', get_template_directory_uri() . '/assets/css/admin.css' );
-	wp_enqueue_style( 'font-material-icon', get_template_directory_uri() . '/assets/css/material-design-iconic-font.min.css', array(), '2.2.0' );
 }
 
 add_action( 'admin_enqueue_scripts', 'fastway_admin_style' );

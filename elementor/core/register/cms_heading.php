@@ -40,6 +40,14 @@ etc_add_custom_widget(
                                     'label' => esc_html__( 'Layout 1', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout5.png'
                                 ],
+                                '6' => [
+                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout6.png'
+                                ],
+                                '7' => [
+                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout7.png'
+                                ],
                             ],
                         ),
                     ),
@@ -65,7 +73,7 @@ etc_add_custom_widget(
                             'placeholder' => esc_html__( 'Enter your sub title', 'fastway' ),
                             'label_block' => true,
                             'condition'   => [
-                                'layout!' => '2',
+                                'layout' => ['1','3','4','7'],
                             ],
                         ),
                         array(
@@ -77,7 +85,7 @@ etc_add_custom_widget(
                             'rows'        => 10,
                             'show_label'  => false,
                             'condition'   => [
-                                'layout' => ['4'],
+                                'layout' => ['4','6'],
                             ],
                         ),
                         array(
@@ -87,7 +95,7 @@ etc_add_custom_widget(
                             'default'     => esc_html__('Read More', 'fastway'),
                             'placeholder' => esc_html__('Read More', 'fastway'),
                             'condition'   => [
-                                'layout' => ['4'],
+                                'layout' => ['4','6'],
                             ],
                         ),
                         array(
@@ -99,7 +107,7 @@ etc_add_custom_widget(
                                 'url' => '#',
                             ],
                             'condition' => [
-                                'layout' => ['4'],
+                                'layout' => ['4','6'],
                             ],
                         ),
                     ),

@@ -38,6 +38,10 @@ etc_add_custom_widget(
                                     'label' => esc_html__( 'Layout 4', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout4.png'
                                 ],
+                                '5' => [
+                                    'label' => esc_html__( 'Layout 5', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout5.png'
+                                ],
                             ],
                         ),
                     ),

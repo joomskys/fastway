@@ -56,6 +56,7 @@ h1, h2, h3, h4, h5, h6,
   color: $color_dark;
   clear: both;
   font-weight: 700;
+  @include transition();
 }
 h1, h2, h3, h4, h5, h6{
   margin-bottom: 15px;

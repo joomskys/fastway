@@ -7,6 +7,7 @@
         var breakpoints = elementorFrontend.config.breakpoints;
         var carousel = $scope.find(".cms-slick-slider");
         var data = carousel.data();
+        var gutter = data.gutter;
         var slickOptions = {
             fade: true === data.fade,
             slidesToShow: data.slidestoshow,
@@ -21,6 +22,8 @@
             prevArrow : '<div class="cms-slick-prev"><span class="cms-slick-prev-icon"></span></div>',
             nextArrow : '<div class="cms-slick-next"><span class="cms-slick-next-icon"></span></div>',
             dotsClass: 'cms-slick-dots',
+            slidesToShow: data.slidestoshow,
+            slidesToScroll: data.slidestoscroll,
             responsive: [
                 {
                     breakpoint: breakpoints.lg,
@@ -40,11 +43,22 @@
             adaptiveHeight: true
         };
         carousel.slick(slickOptions);
+        carousel.find('.slick-slide').css({
+            'padding-left':gutter,
+            'padding-right':gutter
+        });
+        .carousel.on('breakpoint', function(event,slick){
+            $('.slick-slide').css({
+                'padding-left':gutter,
+                'padding-right':gutter
+            });
+        });
     };
 
     // Make sure you run this code under Elementor.
     $( window ).on( 'elementor/frontend/init', function() {
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_image_carousel.default', CMSSlickSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_testimonial.default', CMSSlickSliderHandler );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_teams_list.default', CMSSlickSliderHandler );
     } );
 } )( jQuery );

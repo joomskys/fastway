@@ -46,3 +46,29 @@
     	}
 	}
 }
+
+.cms-icon-box-layout5{
+	cursor: pointer;
+    border: 1px solid rgba(221, 221, 221, 0.1) !important;
+    @include box-shadow(0 0px 0px 0 rgba(50, 50, 50, .16));
+    @include transition(all 0.5s linear);
+	.cms-icon-box-icon{
+		width: 80px;
+    	height: 80px;
+    	border: 2px solid $white;
+    	@include border-radius(50%);
+    	color: $accent_color;
+		i{
+			font-size: 38px;
+    	}
+	}
+	.cms-icon-box-title{
+		color: $accent_color;
+	}
+	&:hover{
+		background-color: $secondary_color;
+		.cms-icon-box-title{
+			color: $white;
+		}
+	}
+}
