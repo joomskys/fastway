@@ -164,14 +164,14 @@ if(!function_exists('fastway_slick_slider_settings')){
         $slidesToScrollMobile = !empty($slides_to_scroll_mobile)?$slides_to_scroll_mobile:1;
 
         $slides_gutter  = (int) $widget->get_setting('slides_gutter', '30')/2;
-        $arrows         = $widget->get_setting('arrows','false');
+        $arrows         = $widget->get_setting('arrows');
         $arrows_pos     = $widget->get_setting('arrows_pos','in-vertical');
-        $dots           = $widget->get_setting('dots','true');
+        $dots           = $widget->get_setting('dots');
         $dots_pos       = $widget->get_setting('dots_pos','out');
-        $pause_on_hover = $widget->get_setting('pause_on_hover','true');
-        $autoplay       = $widget->get_setting('autoplay', 'true');
+        $pause_on_hover = $widget->get_setting('pause_on_hover');
+        $autoplay       = $widget->get_setting('autoplay');
         $autoplay_speed = $widget->get_setting('autoplay_speed', '5000');
-        $infinite       = $widget->get_setting('infinite','true');
+        $infinite       = $widget->get_setting('infinite');
         $speed          = $widget->get_setting('speed', '500');
 
         $dir = $widget->get_setting('dir', 'ltr');
@@ -200,6 +200,67 @@ if(!function_exists('fastway_slick_slider_settings')){
     }
 }
 
+
+
+// Add custom field to column
+if(!function_exists('fastway_custom_column_params')){
+    //add_filter('etc-custom-column/custom-params', 'fastway_custom_column_params');
+    function fastway_custom_column_params(){
+        return array(
+            'sections' => array(
+                array(
+                    'name' => 'custom_section',
+                    'label' => esc_html__( 'Custom Settings', 'fastway' ),
+                    'tab' => Elementor_Theme_Core::ETC_TAB_NAME,
+                    'controls' => array(
+                        // this field hasn't config prefix_class
+                        // its value will be handled at fastway_custom_column_classes function
+                        // screen shot - http://prntscr.com/tjco9g
+                        array(
+                            'name' => 'custom_style',
+                            'label' => esc_html__( 'Style Settings', 'fastway' ),
+                            'type' => \Elementor\Controls_Manager::SELECT,
+                            'options' => array(
+                                '' => esc_html__( 'Default', 'fastway' ),
+                                '1' => esc_html__( 'Style 1', 'fastway' ),
+                                '2' => esc_html__( 'Style 2', 'fastway' ),
+                                '3' => esc_html__( 'Style 3', 'fastway' ),
+                            ),
+                            'default' => '',
+                        ),
+                        // this field has config prefix_class
+                        // it mean that the class will be added directly to wrapper
+                        // screen shot - http://prntscr.com/tjcnjg
+                        array(
+                            'name' => 'custom_position',
+                            'label' => esc_html__( 'Position Settings', 'fastway' ),
+                            'type' => \Elementor\Controls_Manager::SELECT,
+                            'options' => array(
+                                '' => esc_html__( 'Default', 'fastway' ),
+                                '1' => esc_html__( 'Postion 1', 'fastway' ),
+                                '2' => esc_html__( 'Postion 2', 'fastway' ),
+                                '3' => esc_html__( 'Postion 3', 'fastway' ),
+                            ),
+                            'prefix_class' => 'fastway-',
+                            'default' => '',
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+}
+
+// handle custom class will be added to column
+if(!function_exists('fastway_custom_column_classes')){
+    //add_filter('etc-custom-column-classes', 'fastway_custom_column_classes', 10, 2);
+    function fastway_custom_column_classes($classes, $settings){
+        if(isset($settings['custom_style']) && !empty($settings['custom_style'])){
+            $classes[] = 'style-' . $settings['custom_style'];
+        }
+        return $classes;
+    }
+}
 
 // Scan element (need add to bottom of this file)
 $files = scandir(get_template_directory() . '/elementor/core/register');

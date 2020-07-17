@@ -453,3 +453,68 @@ function fastway_add_cms_ticket_link($url)
 add_filter('cms_video_tutorial_link',function(){
      return '#';
 });
+
+
+// Add custom field to section
+if(!function_exists('fastway_custom_section_params')){
+    add_filter('etc-custom-section/custom-params', 'fastway_custom_section_params');
+    function fastway_custom_section_params(){
+        return array(
+            'sections' => array(
+                array(
+                    'name'     => 'cms_custom_layout',
+                    'label'    => esc_html__( 'Custom Settings', 'fastway' ),
+                    //'tab'      => Elementor_Theme_Core::ETC_TAB_NAME,
+                    'tab' => \Elementor\Controls_Manager::TAB_LAYOUT,
+                    'controls' => array(
+                        // this field hasn't config prefix_class
+                        // its value will be handled at fastway_custom_section_classes function
+                        // screen shot - http://prntscr.com/tjco9g
+                        array(
+                            'name'    => 'column_hori_align',
+                            'label'   => esc_html__( 'Horizontal Align', 'fastway' ),
+                            'type'    => \Elementor\Controls_Manager::SELECT,
+                            'options' => array(
+                                ''        => esc_html__( 'Default', 'fastway' ),
+                                'start'   => esc_html__( 'Start', 'fastway' ),
+                                'center'  => esc_html__( 'Center', 'fastway' ),
+                                'end'     => esc_html__( 'End', 'fastway' ),
+                                'around'  => esc_html__( 'Space Around', 'fastway' ),
+                                'between' => esc_html__( 'Space Between', 'fastway' ),
+                            ),
+                            'prefix_class' => 'justify-content-',
+                            'default'      => '',
+                        ),
+                        // this field has config prefix_class
+                        // it mean that the class will be added directly to wrapper
+                        // screen shot - http://prntscr.com/tjcnjg
+                        /*array(
+                            'name'    => 'custom_position',
+                            'label'   => esc_html__( 'Position Settings', 'fastway' ),
+                            'type'    => \Elementor\Controls_Manager::SELECT,
+                            'options' => array(
+                                ''  => esc_html__( 'Default', 'fastway' ),
+                                '1' => esc_html__( 'Postion 1', 'fastway' ),
+                                '2' => esc_html__( 'Postion 2', 'fastway' ),
+                                '3' => esc_html__( 'Postion 3', 'fastway' ),
+                            ),
+                            'prefix_class' => 'fastway-',
+                            'default'      => '',
+                        ),*/
+                    ),
+                ),
+            ),
+        );
+    }
+}
+
+// handle custom class will be added to section
+if(!function_exists('fastway_custom_section_classes')){
+    add_filter('etc-custom-section-classes', 'fastway_custom_section_classes', 10, 2);
+    function fastway_custom_section_classes($classes, $settings){
+        if(isset($settings['column_hori_align']) && !empty($settings['column_hori_align'])){
+            $classes[] = 'style-' . $settings['column_hori_align'];
+        }
+        return $classes;
+    }
+}
