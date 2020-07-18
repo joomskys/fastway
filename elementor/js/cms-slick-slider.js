@@ -60,5 +60,6 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_image_carousel.default', CMSSlickSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_testimonial.default', CMSSlickSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_teams_list.default', CMSSlickSliderHandler );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_clients_list.default', CMSSlickSliderHandler );
     } );
 } )( jQuery );

@@ -1,10 +1,35 @@
+// Gutters 
+$theme-gutters: (
+	10: 5px,
+	20 : 10px
+);
 .row{
-	&.gutters-15{
-		margin-left: -7.5px;
-		margin-right: -7.5px;
-		> [class*='col']{
-			padding-left: 7.5px;
-			padding-right: 7.5px;
+	@each $gutter, $value in $theme-gutters{
+		.gutters-#{$gutter}{
+			margin-left: -$value;
+			margin-right: -$value;
+			> [class*='col']{
+				padding-left: $value;
+				padding-right: $value;
+			}
+		}
+	}
+}
+// max widh
+$theme-width: (
+	40,
+	60
+);
+@each $width in $theme-width{
+	.maxw-#{$width}{
+		&.init{
+			max-width: #{$width}px;
+			+ .depend-maxw{
+				max-width: calc( 100% - #{$width}px);
+			}
+		}
+		&.percent{
+			//max-width: #{$width}#{%};
 		}
 	}
 }

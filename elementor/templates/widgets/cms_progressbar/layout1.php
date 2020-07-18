@@ -1,5 +1,4 @@
 <?php
-
 if(isset($settings['progressbar_list']) && !empty($settings['progressbar_list'])):
     foreach ($settings['progressbar_list'] as $key => $progressbar):
         $wrapper_key = $widget->get_repeater_setting_key( 'wrapper', 'progressbar_list', $key );

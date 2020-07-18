@@ -358,9 +358,6 @@ function fastway_scripts() {
     wp_register_script( 'cms-counter-widget-js', get_template_directory_uri() . '/elementor/js/cms-counter-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
     // Progress Bar Widget
     wp_register_script( 'cms-progressbar-widget-js', get_template_directory_uri() . '/elementor/js/cms-progressbar-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
-    // Clients List Widget
-    wp_register_script( 'cms-clients-list-widget-js', get_template_directory_uri() . '/elementor/js/cms-clients-list-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
-    
     // Pie Charts Widget
     wp_register_script( 'cms-piecharts-widget-js', get_template_directory_uri() . '/elementor/js/cms-piecharts-widget.js', [ 'jquery' ], $theme->get( 'Version' ) );
     // CMS Post Carousel Widget
@@ -644,7 +641,10 @@ fastway_require_folder('inc/theme-options', get_template_directory());
  * Additional widgets for the theme
  */
 fastway_require_folder('widgets', get_template_directory());
-
+/**
+ * Custom post type
+*/
+fastway_require_folder('inc/custom-post', get_template_directory());
 /**
  * Elementor
 */

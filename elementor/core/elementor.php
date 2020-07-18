@@ -141,7 +141,7 @@ if(!function_exists('fastway_elementor_slick_slider_settings')){
 }
 
 if(!function_exists('fastway_slick_slider_settings')){
-    function fastway_slick_slider_settings($widget){
+    function fastway_slick_slider_settings($widget, $class=''){
         $slides_to_show          = $widget->get_setting('slides_to_show', '3');
         $slides_to_show_tablet   = $widget->get_setting('slides_to_show_tablet', '2');
         $slides_to_show_mobile   = $widget->get_setting('slides_to_show_mobile', '1');
@@ -177,7 +177,7 @@ if(!function_exists('fastway_slick_slider_settings')){
         $dir = $widget->get_setting('dir', 'ltr');
 
         $widget->add_render_attribute( 'cms-slider-settings', [
-            'class'                     => 'cms-slick-slider',
+            'class'                     => trim('cms-slick-slider '.$class),
             'data-arrows'               => $arrows,
             'data-dots'                 => $dots,
             'data-pauseOnHover'         => $pause_on_hover,

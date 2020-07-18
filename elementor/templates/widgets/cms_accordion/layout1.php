@@ -45,7 +45,7 @@ if(!empty($accordions)) : ?>
                                 $ac_title_icon,
                                 [
                                     'aria-hidden' => 'true',
-                                    'class' => 'ac-title-icon'
+                                    'class'       => 'ac-title-icon'
                                 ]
                             );
                         }

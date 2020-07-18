@@ -463,6 +463,11 @@ if(!function_exists('fastway_custom_section_presets')){
                     'preset' => [ 33, 33, 33, 33, 33, 33 ],
                 ],
             ],
+            3 => [
+                [
+                    'preset' => [ 100, 50, 50 ],
+                ],
+            ],
         ];
     }
 }

@@ -1,3 +1,8 @@
+.elementor-page .site-content{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .elementor-section-wrap .elementor-section .elementor-container{
   display: block;
 }
@@ -15,9 +20,16 @@
 }
 .elementor-section >.elementor-column-gap-default{
   > .elementor-row{
-    margin: -15px;
-    >.elementor-column>.elementor-element-populated{
-      padding: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    >.elementor-column{
+      padding-left: 15px;
+      padding-right: 15px;
+      //margin-top: -15px;
+      //margin-bottom: -15px;
+      > .elementor-element-populated{
+        padding: 15px 0;
+      }
     }
   }
 }
