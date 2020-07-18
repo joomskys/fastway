@@ -322,7 +322,7 @@ add_action( 'widgets_init', 'fastway_widgets_init' );
 function fastway_scripts() {
 	$theme = wp_get_theme( get_template() );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/fonts/awesome/css/font-awesome.min.css', array(), '4.7.0' );
-    wp_enqueue_style( '-flaticon', get_template_directory_uri() . '/assets/fonts/flaticon/font-flaticon.css', array(), $theme->get( 'Version' ) );
+    wp_enqueue_style( 'flaticon', get_template_directory_uri() . '/assets/fonts/flaticon/font-flaticon.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0' );
 	wp_enqueue_style( 'fastway-theme', get_template_directory_uri() . '/assets/css/theme.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'fastway-menu', get_template_directory_uri() . '/assets/css/menu.css', array(), $theme->get( 'Version' ) );

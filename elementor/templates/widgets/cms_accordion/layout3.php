@@ -15,13 +15,14 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 if(!empty($accordions)) : ?>
     <div id="<?php echo esc_attr($html_id); ?>" class="cms-accordion cms-accordion-layout3">
         <?php foreach ($accordions as $key => $value):
-            $is_active = ($key + 1) == $active_section;
-            $_id = isset($value['_id']) ? $value['_id'] : '';
-            $ac_title = isset($value['ac_title']) ? $value['ac_title'] : '';
-            $ac_title_icon = isset($value['ac_title_icon']) ? $value['ac_title_icon'] : '';
-            $ac_content = isset($value['ac_content']) ? $value['ac_content'] : '';
+			$is_active             = ($key + 1) == $active_section;
+			$_id                   = isset($value['_id']) ? $value['_id'] : '';
+			$ac_title              = isset($value['ac_title']) ? $value['ac_title'] : '';
+			$default_ac_title_icon = is_rtl() ? 'left' : 'right';
+			$ac_title_icon         = isset($value['ac_title_icon']) ? $value['ac_title_icon'] : '';
+			$ac_content            = isset($value['ac_content']) ? $value['ac_content'] : '';
+			$title_key             = $widget->get_repeater_setting_key( 'ac_title', 'cms_accordion', $key );
 
-            $title_key = $widget->get_repeater_setting_key( 'ac_title', 'cms_accordion', $key );
             $widget->add_render_attribute( $title_key, [
                 'class' => [ 'cms-ac-title-text' ],
             ] );
@@ -30,7 +31,7 @@ if(!empty($accordions)) : ?>
             $content_key = $widget->get_repeater_setting_key( 'ac_content', 'cms_accordion', $key );
             $widget->add_render_attribute( $content_key, [
                 'id' => $_id,
-                'class' => [ 'cms-ac-content' ],
+                'class' => [ 'cms-ac-content p-tb15' ],
             ] );
             if($is_active){
                 $widget->add_render_attribute( $content_key, 'style', 'display:block;' );
@@ -40,16 +41,17 @@ if(!empty($accordions)) : ?>
             <div class="cms-accordion-item">
                 <<?php etc_print_html($title_html_tag); ?> class="cms-ac-title <?php echo esc_attr($is_active?'active':''); ?>" data-target="<?php echo esc_attr('#' . $_id); ?>">
                     <a <?php etc_print_html($widget->get_render_attribute_string( $title_key )); ?>><?php 
-                        if($is_new){
+                    	//var_dump($is_new);
+                        if($is_new && !empty($ac_title_icon['value'])){
                             \Elementor\Icons_Manager::render_icon(
                                 $ac_title_icon,
                                 [
-                                    'aria-hidden' => 'true',
-                                    'class' => 'ac-title-icon'
+									'aria-hidden' => 'true',
+									'class'       => 'ac-title-icon'
                                 ]
                             );
                         } else {
-
+                        	echo '<i aria-hidden="true" class="ac-title-icon fa fa-long-arrow-'.esc_attr($default_ac_title_icon).'"></i>';
                         }
                         echo esc_html($ac_title); 
                     ?></a>
