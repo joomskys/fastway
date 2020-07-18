@@ -640,11 +640,6 @@ fastway_require_folder('inc/classes', get_template_directory());
 fastway_require_folder('inc/extends', get_template_directory());
 fastway_require_folder('inc/theme-options', get_template_directory());
 
-/* Load lib Font */
-require_once get_template_directory() . '/inc/libs/fontawesome.php';
-require_once get_template_directory() . '/inc/libs/materialdesign.php';
-
-
 /**
  * Additional widgets for the theme
  */

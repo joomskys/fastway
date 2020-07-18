@@ -1,5 +1,4 @@
 <?php
-
 if(!function_exists('fastway_elementor_get_post_grid')){
     function fastway_elementor_get_post_grid($posts = [], $settings = []){
         if(empty($posts) || !is_array($posts) || empty($settings) || !is_array($settings)){

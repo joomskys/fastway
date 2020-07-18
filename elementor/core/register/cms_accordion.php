@@ -30,6 +30,10 @@ etc_add_custom_widget(
                                     'label' => esc_html__( 'Layout 2', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_accordion/layout/layout2.png'
                                 ],
+                                '3' => [
+                                    'label' => esc_html__( 'Layout 2', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_accordion/layout/layout3.png'
+                                ],
                             ],
                         ),
                     ),
