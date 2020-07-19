@@ -433,3 +433,11 @@ $color_text1: #00ff00;
     @include css3-prefix('box-shadow', '0 10px 30px 0 rgba(50, 50, 50, .16)');
     @include transition(all 0.5s linear);
 }
+
+// icon size
+.icon-sm{
+    i{
+        font-size: 30px;
+        line-height: 30px;
+    }
+}

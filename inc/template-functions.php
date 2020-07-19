@@ -453,21 +453,3 @@ function fastway_add_cms_ticket_link($url)
 add_filter('cms_video_tutorial_link',function(){
      return '#';
 });
-
-if(!function_exists('fastway_custom_section_presets')){
-    add_filter('etc-custom-section/custom-presets', 'fastway_custom_section_presets');
-    function fastway_custom_section_presets(){
-        return [
-            6 => [
-                [
-                    'preset' => [ 33, 33, 33, 33, 33, 33 ],
-                ],
-            ],
-            3 => [
-                [
-                    'preset' => [ 100, 50, 50 ],
-                ],
-            ],
-        ];
-    }
-}

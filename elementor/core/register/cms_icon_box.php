@@ -43,8 +43,12 @@ etc_add_custom_widget(
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout5.png'
                                 ],
                                 '6' => [
-                                    'label' => esc_html__( 'Layout 5', 'fastway' ),
+                                    'label' => esc_html__( 'Layout 6', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout6.png'
+                                ],
+                                '7' => [
+                                    'label' => esc_html__( 'Layout 7', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout7.png'
                                 ],
                             ],
                         ),
