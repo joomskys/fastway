@@ -123,7 +123,7 @@
 			overflow: hidden;
 		}
 		.cms-overlay-content-inner{
-			min-width: 200px;
+			min-width: 300px;
 			> *{
 				justify-content: center;
 			}
@@ -136,21 +136,19 @@
 		    			margin: -11px -7px;
 					}
 				}
-				&.added{
-					display: none;
-				}
+				&.added{}
 			}
 			.added_to_cart{
-				padding: 0;
+				padding: 7px 10px;
 				margin: 0 5px 10px;
 			    position: relative;
-			    width: 46px;
+			    //width: 46px;
 			    height: 46px;
 			    border: 3px solid $white;
-			    font-size: 0;
-			    text-indent: -9999px;
+			    //font-size: 0;
+			    //text-indent: -9999px;
 			    color: $white;
-			    &:before{
+			    /* &:before{
 			    	@include font-awesome("\f07a", 900);
 			    	text-indent: 0;
 			    	font-size: 14px;
@@ -158,7 +156,7 @@
 			    	top: 50%;
 			    	left: 50%;
 			    	@include transform(translate(-50%,-50%));
-			    }
+			    } */
 			    &:hover{
 			    	border-color: $accent_color;
 			    	color: $accent_color;

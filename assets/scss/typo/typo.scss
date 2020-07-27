@@ -49,6 +49,9 @@ img {
     max-width: 100%;
     height: auto;
     vertical-align: top;
+    [dir="rtl"] &{
+      @include transform(scaleX(-1));
+    }
 }
 
 label {
@@ -82,8 +85,7 @@ blockquote {
         }
     }
     &:before{
-        content: '\f10d';
-        font-family: "FontAwesome";
+        @include font-awesome('\f10d',900);
         color: $accent_color;
         font-size: 100px;
         position: absolute;

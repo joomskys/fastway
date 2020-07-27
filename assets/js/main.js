@@ -13,6 +13,7 @@
     // Fire on document ready.
     $( document ).ready( function() {
         // WooCommerce
+        fastway_open_cart_popup();
         fastway_wc_single_product_gallery();
         fastway_quantity_plus_minus();
         fastway_quantity_plus_minus_action();
@@ -548,6 +549,13 @@
      * WooCommerce
      * Single Product
     */
+    // open cart popup
+    function fastway_open_cart_popup(){
+        $('.h-btn-cart').on('click', function (e) {
+            e.preventDefault();
+            $(this).next('.widget_shopping_cart').toggleClass('open');
+        });
+    }
     //quantity number field custom
     function fastway_quantity_plus_minus(){
         "use strict";
@@ -702,10 +710,9 @@
     })(jQuery);   
     function fastway_background_moving(){
         "use strict";
-        //jQuery( function() {              
-            $('.cms-bg-moving-h').bgscroll({scrollSpeed:20 , direction:'h' });
-            $('.cms-bg-moving-v').bgscroll({scrollSpeed:20 , direction:'v' });
-        //});
+        $('.cms-bg-moving-h').bgscroll({scrollSpeed:20 , direction:'h' });
+        $('.cms-bg-moving-v').bgscroll({scrollSpeed:20 , direction:'v' });
+        $('.cms-bg-moving-d').bgscroll({scrollSpeed:20 , direction:'d' });
     }
 
 })(jQuery);

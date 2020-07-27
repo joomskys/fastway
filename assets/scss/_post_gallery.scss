@@ -25,17 +25,16 @@
 	    &.slick-prev{
 	    	left: 0;
 	    	&:before{
-	    		content: "\f053";
+	    		@include font-awesome("\f053");
 	    	}
 	    }
 	    &.slick-next{
 	    	right: 0;
 	    	&:before{
-	    		content: "\f054";
+	    		@include font-awesome("\f054")
 	    	}
 	    }
 	    &:before{
-	    	font: normal normal normal 14px/1 FontAwesome;
 	    	font-size: 12px;
 	    	display: inline-block;
 		    text-rendering: auto;

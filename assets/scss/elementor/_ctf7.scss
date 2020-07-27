@@ -72,5 +72,9 @@
 	    transform: rotate(-90deg);
 	    background: $white;
 	    color: $accent_color;
+	    [dir="rtl"] &{
+	    	right: auto;
+	    	left: -70px;
+	    }
 	}
 }

@@ -6,8 +6,9 @@
     var CMSSlickSliderHandler = function( $scope, $ ) {
         var breakpoints = elementorFrontend.config.breakpoints;
         var carousel = $scope.find(".cms-slick-slider");
-        console.log(carousel);
-        //if(carousel.length()<1) return;
+        if(carousel.length == 0){
+            return false;
+        }
         var data = carousel.data();
         var gutter = data.gutter;
         var slickOptions = {

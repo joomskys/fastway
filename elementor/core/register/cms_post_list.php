@@ -79,7 +79,7 @@ etc_add_custom_widget(
                     ),
                 ),
                 array(
-                    'name' => 'layout_section',
+                    'name' => 'item_layout_section',
                     'label' => esc_html__( 'Layout', 'fastway' ),
                     'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
                     'controls' => array(

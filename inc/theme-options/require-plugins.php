@@ -18,52 +18,54 @@ add_action( 'tgmpa_register', 'fastway_register_required_plugins' );
  * TGM_Plugin_Activation class constructor.
 */
 function fastway_register_required_plugins() {
-
     /**
      * Array of plugin arrays. Required keys are name and slug.
      * If the source is NOT from the .org repo, then source is also required.
      */
     $default_path = 'https://7oroof.com/tfdemos/7oroofplugins/';
     $plugins = array(
-
         /* CMS Plugin */
-
         array(
             'name'               => esc_html__('1 Redux Framework', 'fastway'),
             'slug'               => 'redux-framework',
             'required'           => true,
         ),
-
         array(
             'name'               => esc_html__('Elementor', 'fastway'),
             'slug'               => 'elementor',
             'required'           => true,
         ),
-
-//        array(
-//            'name'               => esc_html__('Theme Core', 'fastway'),
-//            'slug'               => 'elementor-theme-core',
-//            'source'             => 'elementor-theme-core.zip',
-//            'required'           => true,
-//        ),
-
+        array(
+            'name'               => esc_html__('Theme Core', 'fastway'),
+            'slug'               => 'elementor-theme-core',
+            'source'             => 'elementor-theme-core.zip',
+            'required'           => true,
+        ),
         array(
             'name'               => esc_html__('SWA Import Export', 'fastway'),
             'slug'               => 'swa-import-export',
             'source'             => 'swa-import-export.zip',
             'required'           => true,
         ),
-
         array(
             'name'               => esc_html__('Revolution Slider', 'fastway'),
             'slug'               => 'revslider',
             'source'             => 'revslider.zip',
             'required'           => true,
         ),
-
         array(
             'name'               => esc_html__('Contact Form 7', 'fastway'),
             'slug'               => 'contact-form-7',
+            'required'           => true,
+        ),
+        array(
+            'name'               => esc_html__('Newslettes', 'fastway'),
+            'slug'               => 'newsletter',
+            'required'           => true,
+        ),
+        array(
+            'name'               => esc_html__('Instagram Feed', 'fastway'),
+            'slug'               => 'instagram-feed',
             'required'           => true,
         ),
     );

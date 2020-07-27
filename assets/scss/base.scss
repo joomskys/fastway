@@ -216,13 +216,21 @@
     height: 60px;
     padding-left: 0;
     padding-right: 60px;
-    color: #fff;
+    color: $white;
     font-size: 25px;
     font-weight: 600;
+    &:active,
+    &:hover,
+    &:focus{
+      color: $white;
+    }
+  }
+  .search-field::-webkit-input-placeholder{
+    color: $white;
   }
   .search-submit {
     font-size: 28px;
-    color: $primary_color;
+    color: $accent_color;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -233,6 +241,12 @@
     top: 0;
     right: 0;
     text-align: right;
+    &:before,
+    &:after{
+      display: none;
+      visibility: hidden;
+      @include opacity(0);
+    }
   }
 }
 .cms-hidden-sidebar {

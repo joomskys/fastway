@@ -95,4 +95,12 @@
     @media (max-width: $screen-md-max){
         right: 0;
     }
+    [dir="rtl"] &{
+        right: auto;
+        left: 40px;
+        @media (max-width: $screen-md-max){
+            right: auto;
+            left: 0;
+        }
+    }
 }

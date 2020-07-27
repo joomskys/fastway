@@ -33,6 +33,12 @@ $meta_color_hover: $secondary_color;
 	color: $accent_color!important;
 }
 
+.menu-color{
+	color: var(--main-menu-color-regular);
+	&:hover{
+		color: var(--main-menu-color-hover);
+	}
+}
 
 // Link Colors
 @each $name, $color in $theme_colors {

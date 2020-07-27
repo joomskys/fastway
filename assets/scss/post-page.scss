@@ -71,6 +71,10 @@
   top: 15px;
   width: 100px;
   z-index: 1;
+  [dir="rtl"] &{
+    left: auto;
+    right: 15px;
+  }
   .cms-post-date{
     font-size: 60px;
     padding: 10px 5px;
@@ -119,6 +123,11 @@
     margin-bottom: 30px;
     .entry-content{
       margin-bottom: 30px;
+    }
+    &.type-page{
+      .cms-post-featured-date{
+        display: none;
+      }
     }
   }
 }

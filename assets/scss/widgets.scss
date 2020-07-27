@@ -373,8 +373,7 @@ ul.menu {
             }
         }
         &:after{
-            content: "\f1d8";
-            font-family: FontAwesome;
+            @include font-awesome("\f1d8");
             text-rendering: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -397,9 +396,12 @@ ul.menu {
             margin-bottom: 0;
         }
     }
-    .entry-media img{
-        max-width: 80px;
-        display: block;
+    .entry-media {
+        max-width: 95px;
+        img{
+            max-width: 80px;
+            display: block;
+        }
     }
     .entry-content{
         max-width: calc(100% - 95px);

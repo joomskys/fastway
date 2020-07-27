@@ -169,11 +169,11 @@ Redux::setSection($opt_name, array(
             'description' => 'no minimize , generate css over time...',
             'default'  => false
         ),
-        array(
+        /*array(
             'id'       => 'test123321',
             'type'     => 'cms_iconpicker',
             'title'    => esc_html__('Test 12312312321', 'fastway'),
-        ),
+        ),*/
     )
 ));
 /**
