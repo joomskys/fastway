@@ -3,10 +3,12 @@
 @import 'counter';
 @import 'heading';
 @import 'icon_box';
+@import 'image_gallery';
 @import 'post_grid';
 @import 'post_list';
 @import 'pricing_table';
 @import 'progressbar';
+@import 'service';
 @import 'tabs';
 @import 'teams_list';
 @import 'testimonial';
@@ -15,4 +17,7 @@
 // custom some default elementor element
 @import 'custom';
 @import 'el_list';
+@import 'el_text_editor';
 @import 'el_video';
+// 3rd extenstions
+@import 'ctf7';

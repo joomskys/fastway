@@ -24,16 +24,40 @@ $meta_color_hover: $secondary_color;
 .bg-white{
 	background-color: $white;
 }
+
+.bg-hover-secondary:hover{
+	background-color: $secondary_color;
+}
+
 .text-accent{
 	color: $accent_color!important;
 }
 
-.link-accent{
-	color: $accent_color;
-	a{
-		color: $accent_color;
-		&:hover{
-			color: $primary_color;
+
+// Link Colors
+@each $name, $color in $theme_colors {
+	.link-#{$name} {
+		color: $color;
+		a{
+			color: $color;
 		}
 	}
+	.link-hover-#{$name}{
+		&:hover{
+			color: $color;
+		}
+		a:hover{
+			color: $color;
+		}
+	}
+	.text-#{$name}{
+		color: $color;
+	}
+	.text-hover-#{$name}:hover{
+		color: $color!important;
+	}
+	a.text-hover-#{$name}:hover{
+		color: $color!important;
+	}
 }
+

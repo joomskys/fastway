@@ -3,7 +3,6 @@ $widget->add_inline_editing_attributes('pricing_table_title_text');
 $widget->add_inline_editing_attributes('pricing_table_description_text', 'advanced');
 $widget->add_inline_editing_attributes('pricing_table_button_text');
 
-$title_tag = $settings['pricing_table_title_size'];
 $link_type = $settings['pricing_table_button_url_type'];
 
 $target = $rel = '';

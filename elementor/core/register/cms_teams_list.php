@@ -43,6 +43,7 @@ etc_add_custom_widget(
                         array(
                             'name'         => 'team_image_size',
                             'type'         => \Elementor\Group_Control_Image_Size::get_type(),
+                            'control_type' => 'group',
                             'default'      => 'full',
                         ),
                     ),

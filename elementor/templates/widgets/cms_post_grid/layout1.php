@@ -1,17 +1,15 @@
 <?php
-$html_id  = etc_get_element_id($settings);
-$tax      = array();
-$source   = $widget->get_setting('source', '');
-$orderby  = $widget->get_setting('orderby', 'date');
-$order    = $widget->get_setting('order', 'desc');
-$limit    = $widget->get_setting('limit', 6);
-$post_ids = $widget->get_setting('post_ids', '');
+$html_id   = etc_get_element_id($settings);
+$tax       = array();
+$source    = $widget->get_setting('source', '');
+$orderby   = $widget->get_setting('orderby', 'date');
+$order     = $widget->get_setting('order', 'desc');
+$limit     = $widget->get_setting('limit', 6);
 extract(etc_get_posts_of_grid('post', [
     'source'   => $source,
     'orderby'  => $orderby,
     'order'    => $order,
     'limit'    => $limit,
-    'post_ids' => $post_ids,
 ]));
 $filter_default_title = $widget->get_setting('filter_default_title', 'All');
 $col_xl = 12 / intval($widget->get_setting('col_xl', 4));
@@ -24,7 +22,7 @@ $gap = intval($widget->get_setting('gap', 30));
 $gap_item = intval($gap / 2);
 $grid_class = '';
 $layout_type = $widget->get_setting('layout_type', 'basic');
-$layout_mode = $widget->get_setting('layout_mode', 'masonry');
+$masonry_layout_mode = $widget->get_setting('masonry_layout_mode', 'masonry');
 if ($layout_type == 'masonry') {
     $grid_class = 'cms-grid-inner cms-grid-masonry row';
 } else {
@@ -58,7 +56,6 @@ $load_more = array(
     'orderby'                    => $orderby,
     'order'                      => $order,
     'limit'                      => $limit,
-    'post_ids'                   => $post_ids,
     'col_xl'                     => $col_xl,
     'col_lg'                     => $col_lg,
     'col_md'                     => $col_md,
@@ -101,13 +98,13 @@ $load_more = array(
         </div>
     <?php endif; ?>
 
-    <div class="<?php echo esc_attr($grid_class); ?> animation-time" data-layoutmode="<?php echo esc_attr($layout_mode);?>" data-gutter="<?php echo esc_attr($gap); ?>" style="margin-left: <?php echo esc_attr($gap_item*-1); ?>px;margin-right: <?php echo esc_attr($gap_item*-1); ?>px;">
+    <div class="<?php echo esc_attr($grid_class); ?> animation-time justify-content-center" data-layoutmode="<?php echo esc_attr($masonry_layout_mode);?>" data-gutter="<?php echo esc_attr($gap); ?>" style="margin-left: <?php echo esc_attr($gap_item*-1); ?>px;margin-right: <?php echo esc_attr($gap_item*-1); ?>px;">
         <?php if ($layout_type == 'masonry') : ?>
             <div class="grid-sizer"></div>
         <?php endif; ?>
         <?php
             $load_more['tax'] = $tax;
-            fastway_elementor_get_post_grid($posts, $load_more);
+            fastway_elementor_get_post_grid($posts, $load_more, $widget);
         ?>
     </div>
     <?php if ($layout_type == 'masonry' && $pagination_type == 'pagination') { ?>

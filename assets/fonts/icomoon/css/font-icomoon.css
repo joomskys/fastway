@@ -12,7 +12,11 @@
   font-style: normal;
 }
 
-[class^="iconmoon-"], [class*=" iconmoon-"] {
+[class^="iconmoon-"],
+[class^=" iconmoon-"],
+[class*="iconmoon-"],
+[class*=" iconmoon-"],
+.iconmoon {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;

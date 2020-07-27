@@ -104,7 +104,7 @@ ul.menu {
             position: absolute;
             border-top: 3px solid var(--accent-color);
             background: var(--dropdown-bg);
-            padding: 10px 0;
+            padding: 0;
             top: 100%;
             left: 0;
             margin: 20px 0 0;
@@ -116,26 +116,63 @@ ul.menu {
             @include transition(all 0.3s ease);
             clip: rect(1px, 1px, 1px, 1px);
             li {
-                padding: 0 25px;
+                padding: 0;
+                font-weight: 600;
                 a {
                     color: var(--dropdown-regular);
                     font-size: 13px;
                     line-height: normal;
-                    padding: 10px 0;
+                    padding: 14px 20px;
                     position: relative;
-                    border-bottom: 1px solid rgba(255,255,255,0.06);
-                }
-                &:last-child > a {
-                    border-bottom: none;
+                    color: #000;
+                    &:after{
+                        content: "";
+                        position: absolute;
+                        left: 0px;
+                        bottom: 0px;
+                        width: 0%;
+                        height: 2px;
+                        background-color: var(--dropdown-hover);
+                        @include transition(all 0.3s ease);
+                        [dir="rtl"] &{
+                            left: auto;
+                            right: 0;
+                        }
+                    }
                 }
                 > a:hover{
-                    color: var(--dropdown-hover)
+                    color: var(--dropdown-hover);
+                    background-color: #f6f6f6;
+                    padding-left: 25px;
+                    &:after{
+                        width: 30px;
+                        left: 25px;         
+                    }
+                    [dir="rtl"] &{
+                        padding-right: 25px;
+                        &:after{
+                            left: auto;
+                            right: 25px;
+                        }
+                    }
                 }
                 &.current_page_item > a,
                 &.current-menu-item > a,
                 &.current_page_ancestor > a,
                 &.current-menu-ancestor > a {
                     color: var(--dropdown-active) ;
+                    background-color: #f6f6f6;
+                    &:after{
+                        width: 30px;
+                        left: 25px;         
+                    }
+                    [dir="rtl"] &{
+                        padding-right: 25px;
+                        &:after{
+                            left: auto;
+                            right: 25px;
+                        }
+                    }
                 }
             }
 

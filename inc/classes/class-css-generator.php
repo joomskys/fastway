@@ -137,10 +137,22 @@ class CSS_Generator {
 	 * @access protected
 	 * @return string
 	 */
+	protected function print_scss_opt($variable){
+		if(is_array($variable)){
+			$x = [];
+			foreach ($variable as $key => $value) {
+				$x[] =  $key.':'.$value;
+			}
+			return implode(',', $x);
+		} else {
+			return $variable;
+		}
+	}
 	protected function options_output() {
 		ob_start();
-
-		 //Colors
+		// Theme colors
+		printf('$theme_colors:(%s);',$this->print_scss_opt(fastway_configs('theme_colors')));
+		//Colors
         $primary_color          = 'var(--primary-color)';
         $accent_color           = 'var(--accent-color)';
         $darkent_accent_accent  = 'var(--darkent-accent-color)';
@@ -158,10 +170,10 @@ class CSS_Generator {
         printf('$thirdary_color:%s;',$thirdary_color);
         printf('$fourth_color:%s;',$fourth_color);
         printf('$invalid_color:%s;',fastway_configs('invalid_color'));
-        printf('$color_red:%s;',fastway_configs('color_red'));
-        printf('$color_green:%s;',fastway_configs('color_green'));
-        printf('$color_gray:%s;',fastway_configs('color_gray'));
-        printf('$color_gray_light:%s;',fastway_configs('color_gray_light'));
+        printf('$red_color:%s;',fastway_configs('color_red'));
+        printf('$green_color:%s;',fastway_configs('color_green'));
+        printf('$gray_color:%s;',fastway_configs('color_gray'));
+        printf('$gray_light_color:%s;',fastway_configs('color_gray_light'));
         printf('$white:%s;',fastway_configs('white'));
 
         // Typography
@@ -196,6 +208,7 @@ class CSS_Generator {
 		/* Font */
 		printf('$BodyFont:%s;', fastway_configs('body_font'));
 		printf('$body_default_font:%s;', fastway_configs('body_font'));
+		printf('$body_font_color:%s;', fastway_configs('body_font_color'));
 		printf('$heading_default_font:%s;', fastway_configs('heading_font'));
 		printf('$sub_heading_default_font:%s;', fastway_configs('heading_font'));
 		printf('$heading_font:%s;', fastway_configs('heading_font'));

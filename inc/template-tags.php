@@ -59,9 +59,6 @@ function fastway_page_title_layout()
  **/
 function fastway_footer()
 {
-    if(is_404()) {
-        return true;
-    }
     $footer_layout = fastway_get_opt( 'footer_layout', '1' );
     get_template_part( 'template-parts/footer-layout', $footer_layout );
 }
@@ -391,11 +388,9 @@ function fastway_posts_pagination( $query = null, $ajax = false )
     if ( $links ):
     ?>
     <nav class="navigation posts-pagination <?php echo esc_attr($ajax?'ajax':''); ?>">
-        <div class="posts-page-links">
-            <?php
-                printf($links);
-            ?>
-        </div>
+        <?php
+            printf($links);
+        ?>
     </nav>
     <?php
     endif;
@@ -645,16 +640,17 @@ endif;
 **/
 if (!function_exists('fastway_post_featured_date')){
     function fastway_post_featured_date($show_date = '0', $echo = true, $id = null){
-        if($show_date != '1') return;
-        $html = '
-            <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
-                <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
-                <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
-            </div>';
-        if($echo){
-            printf('%s', $html);
-        } else {
-            return $html;
+        if($show_date == '1' || $show_date == 'true'){
+            $html = '
+                <div class="cms-post-featured-date bg-accent text-center text-white font-style-600">
+                    <div class="cms-post-date text-60 lh-60">'.get_the_date('d', $id).'</div>
+                    <div class="cms-post-year bg-secondary text-12 text-uppercase">'.get_the_date('F Y', $id).'</div>
+                </div>';
+            if($echo){
+                printf('%s', $html);
+            } else {
+                return $html;
+            }
         }
     }
 }
@@ -675,11 +671,11 @@ if(!function_exists('fastway_socials_share_default')){
         <div class="<?php echo trim(implode(' ',['entry-share row align-items-center',  $args['class']]));?>">
             <?php if(!empty($args['title'])) printf('%s', $args['title']); ?>
             <div class="<?php echo trim(implode(' ',['col-auto social-icons',  $args['social_class']]));?>">
-                <a class="fb-social hover-effect" title="Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook"></i></a>
-                <a class="tw-social hover-effect" title="Twitter" target="_blank" href="https://twitter.com/home?status=<?php the_permalink(); ?>"><i class="fa fa-twitter"></i></a>
-                <a class="rss-social hover-effect" title="RSS" target="_blank" href="#"><i class="fa fa-rss"></i></a>
-                <a class="yt-social hover-effect" title="Youtube" target="_blank" href="#"><i class="fa fa-youtube"></i></a>
-                <a class="it-social hover-effect" title="Instagram" target="_blank" href="#"><i class="fa fa-instagram"></i></a>
+                <a class="fb-social hover-effect" title="Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fab fa-facebook-f"></i></a>
+                <a class="tw-social hover-effect" title="Twitter" target="_blank" href="https://twitter.com/home?status=<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
+                <a class="rss-social hover-effect" title="RSS" target="_blank" href="#"><i class="fas fa-rss"></i></a>
+                <a class="yt-social hover-effect" title="Youtube" target="_blank" href="#"><i class="fab fa-youtube"></i></a>
+                <a class="it-social hover-effect" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <?php
@@ -754,14 +750,14 @@ function fastway_footer_top() {
                             <div class="footer-widget-content">
                                 <?php if(!empty($footer_contact_phone)) : ?>
                                     <div class="quick-contact-item">
-                                        <label><?php echo esc_attr( $footer_contact_phone_label ); ?></label>
-                                        <a class="ft-pn-sb" href="tel:<?php echo esc_attr( $footer_contact_phone ); ?>"><?php echo esc_attr( $footer_contact_phone ); ?></a>
+                                        <label><?php echo esc_html( $footer_contact_phone_label ); ?></label>
+                                        <a class="ft-pn-sb" href="tel:<?php echo esc_attr( $footer_contact_phone ); ?>"><?php echo esc_html( $footer_contact_phone ); ?></a>
                                     </div>
                                 <?php endif; ?>
                                 <?php if(!empty($footer_contact_email)) : ?>
                                     <div class="quick-contact-item">
-                                        <label><?php echo esc_attr( $footer_contact_email_label ); ?></label>
-                                        <a class="ft-pn-sb" href="mailto:<?php echo esc_attr( $footer_contact_email ); ?>"><?php echo esc_attr( $footer_contact_email ); ?></a>
+                                        <label><?php echo esc_html( $footer_contact_email_label ); ?></label>
+                                        <a class="ft-pn-sb" href="mailto:<?php echo esc_attr( $footer_contact_email ); ?>"><?php echo esc_html( $footer_contact_email ); ?></a>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -1044,7 +1040,7 @@ if(!function_exists('fastway_get_user_social')){
         ?>
         <div class="<?php echo trim(implode(' ', ['user-social', $args['class']]));?>">
             <?php if(!empty($user_facebook)) { ?>
-                <a href="<?php echo esc_url($user_facebook); ?>"><i class="fa fa-facebook"></i></a>
+                <a href="<?php echo esc_url($user_facebook); ?>"><i class="fab fa-facebook-f"></i></a>
             <?php } ?>
             <?php if(!empty($user_twitter)) { ?>
                 <a href="<?php echo esc_url($user_twitter); ?>"><i class="fa fa-twitter"></i></a>
@@ -1128,7 +1124,7 @@ function fastway_header_social($args=[]) {
         foreach ($social_list['enabled'] as $social_key => $social_name){
             $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
             $social_link = !empty($social_link)?$social_link:'#';
-            if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank" class="'.esc_attr($args['icon_class']).'"><span class="fa fa-' . esc_attr($social_key) . '"></span></a>';
+            if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank" class="'.esc_attr($args['icon_class']).'"><span class="fab fa-' . esc_attr($social_key) . '"></span></a>';
         }
     }
 }
@@ -1139,7 +1135,7 @@ function fastway_social_footer() {
         foreach ($social_list['enabled'] as $social_key => $social_name){
             $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
             $social_link = !empty($social_link)?$social_link:'#';
-            if($social_key !== 'placebo')  echo '<a href="'. esc_url($social_link) .'" target="_blank"><i class="fa fa-' . esc_attr($social_key) . '"></i></a>';
+            if($social_key !== 'placebo')  echo '<a href="'. esc_url($social_link) .'" target="_blank"><span class="fab fa-' . esc_attr($social_key) . '"></span></a>';
         }
     }
 }
@@ -1226,7 +1222,8 @@ if(!function_exists('fastway_header_top_social')){
                     foreach ($social_list['enabled'] as $social_key => $social_name){
                         $social_link = fastway_get_opt( 'social_' . $social_key . '_url' );
                         $social_link = !empty($social_link)?$social_link:'#';
-                        if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank"><span class="cms-icon fa fa-' . esc_attr($social_key) . '"></span></a>';
+                        if($social_key == 'facebook') $social_key = $social_key.'-f';
+                        if($social_key !== 'placebo') echo '<a href="'. esc_url($social_link) .'" target="_blank"><span class="cms-icon fab fa-' . esc_attr($social_key) . '"></span></a>';
                     }
                 }
             echo '</'.$args['tag'].'>';

@@ -16,6 +16,7 @@ etc_add_custom_widget(
         ),
         'params' => array(
             'sections' => array(
+                fastway_elementor_slick_slider_settings(),
                 array(
                     'name' => 'layout_section',
                     'label' => esc_html__( 'Layout', 'fastway' ),
@@ -57,118 +58,7 @@ etc_add_custom_widget(
                             'default'      => 'large',
                         ),
                     ),
-                ),
-                array(
-                    'name'     => 'section_carousel_settings',
-                    'label'    => esc_html__('Carousel', 'fastway'),
-                    'tab'      => \Elementor\Controls_Manager::TAB_CONTENT,
-                    'controls' => array(
-                        array(
-                            'name' => 'slide_mode',
-                            'label' => esc_html__('Slide mode', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SELECT,
-                            'options' => [
-                                'true' => esc_html__('Fade', 'fastway'),
-                                'false' => esc_html__('Slide', 'fastway'),
-                            ],
-                            'default' => 'slide',
-                        ),
-                        array(
-                            'name'         => 'slides_to_show',
-                            'label'        => esc_html__('Slides to Show', 'fastway'),
-                            'type'         => \Elementor\Controls_Manager::SELECT,
-                            'control_type' => 'responsive',
-                            'options'      => [
-                                    '' => esc_html__( 'Default', 'fastway' ),
-                                ] + $slides_to_show,
-                            'default'      => '',
-                            'condition'    => [
-                                'slide_mode' => 'false',
-                            ],
-                        ),
-                        array(
-                            'name'         => 'slides_to_scroll',
-                            'label'        => esc_html__('Slides to Scroll', 'fastway'),
-                            'type'         => \Elementor\Controls_Manager::SELECT,
-                            'control_type' => 'responsive',
-                            'options'      => [
-                                    '' => esc_html__( 'Default', 'fastway' ),
-                                ] + $slides_to_show,
-                            'default'      => '',
-                            'condition'    => [
-                                'slides_to_show!' => '1',
-                            ],
-                        ),
-                        array(
-                            'name'         => 'slides_gutter',
-                            'label'        => esc_html__('Gutter', 'fastway'),
-                            'type'         => \Elementor\Controls_Manager::NUMBER,
-                            'control_type' => 'responsive',
-                            'default'      => 30,
-                            'condition'    => [
-                                'slides_to_show!' => '1',
-                            ],
-                            'selectors' => [
-                                //'{{WRAPPER}} .cms-slick-carousel .slick-list .slick-slide' => 'padding: {{VALUE}}px;',
-                            ],
-                        ),
-                        array(
-                            'name' => 'arrows',
-                            'label' => esc_html__('Show Arrows', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SWITCHER,
-                            'default' => 'true',
-                        ),
-                        array(
-                            'name' => 'dots',
-                            'label' => esc_html__('Show Dots', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SWITCHER,
-                            'default' => 'true',
-                        ),
-                        array(
-                            'name' => 'pause_on_hover',
-                            'label' => esc_html__('Pause on Hover', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SWITCHER,
-                            'default' => 'true',
-                        ),
-                        array(
-                            'name' => 'autoplay',
-                            'label' => esc_html__('Autoplay', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SWITCHER,
-                            'default' => 'true',
-                        ),
-                        array(
-                            'name' => 'autoplay_speed',
-                            'label' => esc_html__('Autoplay Speed', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::NUMBER,
-                            'default' => 5000,
-                            'condition' => [
-                                'autoplay' => 'true'
-                            ]
-                        ),
-                        array(
-                            'name' => 'infinite',
-                            'label' => esc_html__('Infinite Loop', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SWITCHER,
-                            'default' => 'true',
-                        ),
-                        array(
-                            'name' => 'speed',
-                            'label' => esc_html__('Animation Speed', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::NUMBER,
-                            'default' => 500,
-                        ),
-                        array(
-                            'name' => 'dir',
-                            'label' => esc_html__('Direction', 'fastway'),
-                            'type' => \Elementor\Controls_Manager::SELECT,
-                            'options' => [
-                                'ltr' => esc_html__('Left', 'fastway'),
-                                'rtl' => esc_html__('Right', 'fastway'),
-                            ],
-                            'default' => 'ltr',
-                        )
-                    )
-                ) 
+                )
             )
         )
     ),

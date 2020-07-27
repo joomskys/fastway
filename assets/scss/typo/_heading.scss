@@ -1,0 +1,55 @@
+// Headings
+//--------------------------------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $color_dark;
+  clear: both;
+  font-weight: 700;
+  @include transition();
+}
+h1, h2, h3, h4, h5, h6{
+  margin-bottom: 15px;
+}
+.heading-default-font {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family:  $heading_default_font;
+  }
+}
+
+h1, .h1 {
+  font-size: $h1_size;
+  line-height: 1.111;
+}
+
+h2, .h2 {
+  font-size: $h2_size;
+  line-height: 1.15;
+}
+
+h3, .h3 {
+  font-size: $h3_size;
+  line-height: 1.25;
+}
+
+h4, .h4 {
+  font-size: $h4_size;
+  line-height: 1.333;
+}
+
+h5, .h5 {
+  font-size: $h5_size;
+  line-height: 1.375;
+}
+
+h6, .h6 {
+  font-size: $h6_size;
+  line-height: 1.28571429;
+}
+@media (max-width: $screen-sm-min){
+  h2, .h2{
+    font-size: 26px;
+    line-height: 32px;
+  }
+}

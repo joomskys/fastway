@@ -319,11 +319,7 @@ if(!function_exists('fastway_image_by_size')){
         extract($args);
         if(empty($size)) $size = 'medium';
         global $post, $_wp_additional_image_sizes;
-        /*if($id === null) {
-            $id = get_post_thumbnail_id($post->ID);
-        } else {
-            $id = get_post_thumbnail_id($id);
-        }*/
+        
         $class .= ' cms-img';
         $mime_type  = get_post_mime_type($id);
         if($mime_type === 'image/svg+xml') $class .= ' svg';

@@ -65,6 +65,10 @@ add_filter( 'comment_reply_link', 'fastway_comment_reply_text' );
 if(!function_exists('fastway_comment_form_args')){
 	function fastway_comment_form_args($args = []){
 		$args = wp_parse_args($args, []);
+		$commenter = [
+			'comment_author' => '',
+			'comment_author_email' => ''
+		];
 		$fields = array(
 			'id_form'              => 'commentform',
 			'id_submit'            => 'submit',

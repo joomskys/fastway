@@ -1,19 +1,23 @@
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder, 
+textarea::-moz-placeholder {
     color: #999;
     opacity: 1;
     text-overflow: ellipsis;
 }
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder {
     color: #999;
     opacity: 1;
     text-overflow: ellipsis;
 }
-input::-o-placeholder, textarea::-o-placeholder {
+input::-o-placeholder, 
+textarea::-o-placeholder {
     color: #999;
     opacity: 1;
     text-overflow: ellipsis;
 }
-input::-ms-placeholder, textarea::-ms-placeholder {
+input::-ms-placeholder, 
+textarea::-ms-placeholder {
     color: #999;
     opacity: 1;
     text-overflow: ellipsis;
@@ -26,11 +30,9 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
-
-input{
-    font-family: inherit;
-}
-
+$FF_Color: #9b9b9b;
+$FF_Padding: 9px 12px;
+$FF_Border: 1px solid #dbdbdb;
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -49,10 +51,10 @@ input[type="color"],
 textarea, select, .nice-select {
     background-color: #fff;
     @include border-radius(2px);
-    border: 1px solid #dbdbdb;
-    color: #9b9b9b;
-    padding: 8px 20px;
-    line-height: normal;
+    border: $FF_Border;
+    color: $FF_Color;
+    padding: $FF_Padding;
+    line-height: 20px;
     height: 50px;
     font-size: 13px;
     @include font-family-heading($heading_default_font);
@@ -62,6 +64,7 @@ textarea, select, .nice-select {
     outline: none;
     &:focus, &:active {
         border-color: $primary_color;
+        color: $primary_color;
     }
 }
 select {
@@ -69,9 +72,11 @@ select {
 }
 textarea {
     line-height: normal;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    height: 104px;
+    
+    min-height: 104px;
+    &.mh-143{
+        min-height: 143px;
+    }
 }
 input[type="text"],
 input[type="email"],
@@ -93,6 +98,11 @@ textarea, select {
         outline: 0;
         border-color: $primary_color;
     }
+}
+input,
+select, 
+textarea{
+    vertical-align: top;
 }
 .cms-select {
     form {
@@ -121,6 +131,50 @@ textarea, select {
         @include transform(translate(0px, -50%));
     }
 }
+
+
+.cms-form-layout2{
+    input:not([type="text"]),
+    input:not([type="button"]),
+    textarea, select {
+       background: #f6f7f8;
+       border: none;
+    }
+    input:not([type="text"]),
+    input:not([type="button"]),
+    select{
+        height: 40px;
+        padding: 10px 20px;
+    }
+    input::-moz-placeholder, 
+    textarea::-moz-placeholder {
+        color: $primary_color;
+        font-weight: bold;
+    }
+    input::-webkit-input-placeholder, 
+    textarea::-webkit-input-placeholder {
+        color: $primary_color;
+        font-weight: bold;
+    }
+    input::-o-placeholder, 
+    textarea::-o-placeholder {
+        color: $primary_color;
+        font-weight: bold;
+    }
+    input::-ms-placeholder, 
+    textarea::-ms-placeholder {
+        color: $primary_color;
+        font-weight: bold;
+    }
+    textarea{
+        min-height: 80px;
+    }
+    .wpcf7-form .wpcf7-form-control-wrap{
+        margin-bottom: 24px;
+    }
+}
+
+
 .wpcf7-form {
     .wpcf7-form-control-wrap {
         margin-bottom: 30px;

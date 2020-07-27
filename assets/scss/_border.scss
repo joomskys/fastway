@@ -1,12 +1,57 @@
-.bdr-1{
-	border-width: 1px;
+$border-width: (
+	0,
+	1,
+	2,
+	3,
+	4,
+	5,
+	6,
+	7,
+	8,
+	9,
+	10
+);
+@each $width in $border-width{
+	.bdr-#{$width}{
+		border-width: #{$width}px;
+	}
+}
+$border-color: (
+	'white' : $white,
+	'accent' : $accent_color,
+	'primary' : $primary_color,
+	'secondary' : $secondary_color,
+	'gray' : $gray_color,
+	'gray-light': $gray_light_color,
+	'gray-white': rgba(221, 221, 221, 0.1)
+);
+@each $name, $color in $border-color{
+	.bdr-#{$name}{
+		border-color: $color;
+	}
+	.bdr-hover-#{$name}:hover{
+		border-color: $color;
+	}
+}
+$border-style: (
+	'solid',
+	'dashed',
+	'dotted',
+	'double',
+	'groove',
+	'inset',
+	'outset',
+	'ridge'
+);
+@each $name in $border-style{
+	.bdr-#{$name}{
+		border-style: $name;
+	}
 }
 .bdr-solid {
     border-style: solid;
 }
-.bdr-gray-light {
-    border-color: #eeeeee;
-}
+
 .bdr-b-1 {
     border-width: 0px 0px 1px 0px;
 }

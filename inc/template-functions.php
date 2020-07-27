@@ -301,56 +301,6 @@ function fastway_save_meta_boxes( $post_id ) {
 
 add_action( 'save_post', 'fastway_save_meta_boxes' );
 
-
-add_filter( 'cms_extra_post_types', 'fastway_add_posttype' );
-function fastway_add_posttype( $postypes ) {
-//	$postypes['portfolio'] = array(
-//		'status' => false,
-//		'args'       => array(
-//			'rewrite'             => array(
-//                'slug'       => ''
-// 		 	),
-//		),
-//	);
-
-	$gallery_slug = fastway_get_opt( 'gallery_slug', 'gallery' );
-	$postypes['gallery'] = array(
-		'status'     => true,
-		'item_name'  => esc_html__( 'Gallery', 'fastway' ),
-		'items_name' => esc_html__( 'Gallery', 'fastway' ),
-		'args'       => array(
-			'menu_icon'          => 'dashicons-format-gallery',
-			'supports'           => array(
-				'title',
-				'thumbnail',
-			),
-			'public'             => true,
-			'publicly_queryable' => true,
-			'rewrite'             => array(
-                'slug'       => $gallery_slug
- 		 	),
-		),
-		'labels'     => array()
-	);
-
-	return $postypes;
-}
-
-add_filter( 'cms_extra_taxonomies', 'fastway_add_tax' );
-function fastway_add_tax( $taxonomies ) {
-
-	$taxonomies['gallery-category'] = array(
-		'status'     => true,
-		'post_type'  => array( 'gallery' ),
-		'taxonomy'   => esc_html__( 'Gallery Category', 'fastway' ),
-		'taxonomies' => esc_html__( 'Gallery Categories', 'fastway' ),
-		'args'       => array(),
-		'labels'     => array()
-	);
-
-	return $taxonomies;
-}
-
 add_filter( 'cms_enable_megamenu', 'fastway_enable_megamenu' );
 function fastway_enable_megamenu() {
 	return true;

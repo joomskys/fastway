@@ -16,10 +16,10 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 <div class="cms-qc-wrap">
 	<div class="cms-qc-inner bg-gray p-30">
 		<div class="cms-qc-heading h2 m-b25">
-			<?php echo $settings['heading_text']; ?>
+			<?php echo esc_html($settings['heading_text']); ?>
 		</div>
 		<div class="cms-qc-desc m-b25">
-			<?php echo $settings['description_text']; ?>
+			<?php echo esc_html($settings['description_text']); ?>
 		</div>
 		<?php foreach ($settings['contact_list'] as $value): ?>
 			<div class="cms-qc-list p-20 bg-white m-b30">
@@ -37,7 +37,7 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 			        } 
 			        ?>
 			        </div>
-			        <div class="col h5"><?php echo esc_attr($value['contact_list_title']); ?></div>
+			        <div class="col h5"><?php echo esc_html($value['contact_list_title']); ?></div>
 			    </div>
 		    </div>      
 		<?php endforeach; ?>

@@ -6,13 +6,12 @@
 .updated:not(.published) {
   display: none;
 }
-.posts-pagination {
-  padding-top: 8px;
-  .posts-page-links {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-  }
+.posts-pagination,
+.woocommerce-pagination {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
   .page-numbers {
     background-color: #fff;
     border: 1px solid #e0e0e0;
@@ -29,7 +28,7 @@
     .nav-next-icon,
     .nav-prev-icon{
       &:before{
-        font-family: "FontAwesome";
+        font-family: "Font Awesome 5 Free";
       }
     }
     .nav-next-icon:before{

@@ -1,6 +1,4 @@
 <?php
-$widget->add_render_attribute( 'selected_icon', 'class', ['elementor-animation-' . $settings['hover_animation'] ] );
-
 $icon_tag = 'span';
 $has_icon = ! empty( $settings['selected_icon'] );
 

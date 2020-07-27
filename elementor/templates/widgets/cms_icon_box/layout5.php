@@ -1,6 +1,4 @@
 <?php
-$widget->add_render_attribute( 'selected_icon', 'class', ['elementor-animation-' . $settings['hover_animation'] ] );
-
 $icon_tag = 'span';
 $has_icon = ! empty( $settings['selected_icon'] );
 
@@ -32,7 +30,7 @@ $widget->add_inline_editing_attributes( 'description_text' );
 
 $is_new = \Elementor\Icons_Manager::is_migration_allowed();
 ?>
-<div class="cms-icon-box-wrapper cms-icon-box-layout5">
+<div class="cms-icon-box-wrapper cms-icon-box-layout5 text-center">
     <?php if ( $has_icon ) : ?>
     <div class="cms-icon-box-icon m-b20">
         <<?php echo implode( ' ', [ $icon_tag, $icon_attributes, $link_attributes ] ); ?>>

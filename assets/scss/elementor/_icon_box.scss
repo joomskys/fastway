@@ -1,7 +1,6 @@
 .cms-icon-box-wrapper{
 	border: 1px solid #ddd;
 	padding: 30px;
-	text-align: center;
 	.cms-icon-box-icon{
 		width: 80px;
 		height: 80px;
@@ -76,5 +75,32 @@
 .cms-icon-box-layout6{
 	.cms-icon{
 		font-size: 30px;
+	}
+}
+
+// layout 8
+.cms-icon-box-layout8{
+	margin-left: 20px;
+	.cms-icon-box-icon{
+		position: absolute;
+		top: auto;
+		left: 0;
+		@include transform(translateX(-50%));
+		width: 40px;
+    	height: 40px;
+    	text-align: center;
+    	i{
+    		font-size: 14px;
+    		line-height: 40px;
+    	}
+	}
+}
+// Layout 10
+.cms-icon-box-layout10{
+	&.cms-icon-box-wrapper{
+		border-color: transparent;
+	}
+	.cms-icon-box-icon{
+		@include border-radius(0);
 	}
 }

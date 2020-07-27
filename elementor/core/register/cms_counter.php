@@ -29,12 +29,20 @@
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout1.png'
                                 ],
                                 '2' => [
-                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'label' => esc_html__( 'Layout 2', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout2.png'
                                 ],
                                 '3' => [
-                                    'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                    'label' => esc_html__( 'Layout 3', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout3.png'
+                                ],
+                                '4' => [
+                                    'label' => esc_html__( 'Layout 4', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout4.png'
+                                ],
+                                '5' => [
+                                    'label' => esc_html__( 'Layout 5', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_counter/layout/layout5.png'
                                 ],
                             ],
                         ),

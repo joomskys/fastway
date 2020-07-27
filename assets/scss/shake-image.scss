@@ -1,0 +1,158 @@
+.pos-bl{
+	position: absolute!important;
+	left: -470px;
+	bottom: -70px;
+}
+
+.cms-shake-image-wrap{
+	position: relative;
+	display: inline-block;
+}
+.cms-shake-image {
+	animation: cms-shake 1.8s;
+	animation-iteration-count: infinite;
+	position: relative;
+}
+.tyre-position{
+	position:absolute;
+	bottom: 0px;
+	z-index: 1;
+	left: 190px;
+}
+
+@keyframes cms-shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
+
+.worker-ex-two{
+	position:relative;
+	width:33%;
+	float:left;
+}
+@media only screen and (max-width:991px){
+.worker-ex-two{
+	display:none;
+}
+	
+}
+
+
+/*truck light blink*/
+/* Firefox old*/
+@-moz-keyframes cms-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+
+@-webkit-keyframes cms-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes cms-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+/* Opera and prob css3 final iteration */
+@keyframes cms-blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+} 
+.blink-image {
+    -moz-animation: cms-blink normal 2s infinite ease-in-out; /* Firefox */
+    -webkit-animation: cms-blink normal 2s infinite ease-in-out; /* Webkit */
+    -ms-animation: cms-blink normal 2s infinite ease-in-out; /* IE */
+    animation: cms-blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
+	position:absolute;
+	right:-160px;
+	bottom:-12px;
+	z-index:-1;
+}
+
+.mid-img-verticle{
+	display:table;
+	height:100%;
+}
+.mid-img-verticle a{
+	display:table-cell;
+	vertical-align:middle;
+}
+.mid-img-verticle a img{
+	width:100%;
+}
+
+.spin-tyres{
+  animation-name: cms-spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes cms-spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

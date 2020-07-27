@@ -1,0 +1,76 @@
+.cms-cf7-layout1{
+	input,
+	textarea{
+		background: none;
+	    border: none;
+	    border-bottom: 2px solid #a1a1a1;
+	    padding-left: 0px;
+	}
+}
+
+.cms-cf7-layout3{
+	.wpcf7-form .wpcf7-form-control-wrap{
+		margin-bottom: 25px;
+	}
+	input,
+	textarea{
+		background-color: transparent;
+	    border: none;
+	    border-bottom: 1px solid rgb(22, 28, 42);
+	    color: $white;
+	}
+	input:not([type="submit"]){
+		height: 40px;
+	    font-size: 13px;
+	    line-height: 20px;
+	    padding: 9px 12px;
+	}
+	input::-moz-placeholder,
+	textarea::-moz-placeholder{
+		color: $white;
+	}
+	
+	input::-o-placeholder,
+	textarea::-o-placeholder{
+		color: $white;
+	}
+	input::-ms-placeholder,
+	textarea::-ms-placeholder{
+		color: $white;
+	}
+	.wpcf7-form-control{
+		color: $white;
+		&::-webkit-input-placeholder{
+			color: $white;
+		}
+		&::-moz-placeholder{
+			color: $white;
+		}
+		&:focus,
+		&:active{
+			color: $white;
+		}
+	}
+	textarea{
+		height: 79px;
+		min-height: unset;
+	}
+	&:after{
+		content: attr(data-title);
+		font-size: 14px;
+    	position: absolute;
+	    right: -70px;
+	    top: 100px;
+	    padding: 5px 20px;
+	    text-transform: uppercase;
+	    font-weight: 700;
+	    letter-spacing: 2px;
+	    -webkit-transform: rotate(-90deg);
+	    -moz-transform: rotate(-90deg);
+	    -o-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	    transform: rotate(-90deg);
+	    background: $white;
+	    color: $accent_color;
+	}
+}

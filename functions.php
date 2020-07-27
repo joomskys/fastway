@@ -8,6 +8,19 @@
 if(!function_exists('fastway_configs')){
     function fastway_configs($value){
         $configs = [
+            'theme_colors' => [
+                'accent'    => '#ff5e14',
+                'primary'   => '#1a1a1a',
+                'secondary' => '#010e2a',
+                'white'     => '#ffffff'
+            ],
+            'theme_size_screen'    => [
+                'xs',
+                'sm',
+                'md',
+                'lg',
+                'xl'
+            ],
             //accent color
             'accent_color'          => '#ff5e14',
             'darkent_accent_color'  => '#020d26',
@@ -34,7 +47,7 @@ if(!function_exists('fastway_configs')){
             'body_font_size_small'  => '13px',
             'body_font_size_xsmall' => '12px',
             'body_font_size_xxsmall'=> '11px',
-            'body_font_color'       => 'var(--secondary-color)',
+            'body_font_color'       => 'var(--thirdary-color)',
             'body_line_height'      => '1.42857143',
             'content_width'         => 1170,
             'h1_size'               => '45px',
@@ -50,7 +63,7 @@ if(!function_exists('fastway_configs')){
             'meta_font'             => '\'Poppins\', sans-serif',    
             'meta_color'            => 'var(--secondary-color)',    
             'meta_color_hover'      => 'var(--accent-color)',
-            'text-grey'            => '#b0b0b0',
+            'text-grey'             => '#b0b0b0',
             // Boder
             'main_border'           => '1px solid #DDDDDD', 
             'main_border2'          => '2px solid #DDDDDD', 
@@ -76,46 +89,50 @@ if(!function_exists('fastway_configs')){
             'header_sidewidth' => '320px',
             // Menu Color
             'main_menu_color_regular' => 'var(--primary-color)',
-            'main_menu_color_hover' => 'var(--accent-color)',
-            'main_menu_color_active' => 'var(--accent-color)',
+            'main_menu_color_hover'   => 'var(--accent-color)',
+            'main_menu_color_active'  => 'var(--accent-color)',
             // Menu Ontop Color
             'ontop_link_color_regular' => '#fff',
-            'ontop_link_color_hover' => 'var(--accent-color)',
-            'ontop_link_color_active' => 'var(--accent-color)',
+            'ontop_link_color_hover'   => 'var(--accent-color)',
+            'ontop_link_color_active'  => 'var(--accent-color)',
             // Menu Sticky Color
             'sticky_link_color_regular' => '#fff',
-            'sticky_link_color_hover' => 'var(--accent-color)',
-            'sticky_link_color_active' => 'var(--accent-color)',
+            'sticky_link_color_hover'   => 'var(--accent-color)',
+            'sticky_link_color_active'  => 'var(--accent-color)',
             // Dropdown
             'dropdown_bg'      => '#ffffff',
             'dropdown_regular' => '#000000',
             'dropdown_hover'   => 'var(--accent-color)',
             'dropdown_active'  => 'var(--accent-color)',
             // Page title
-            'ptitle_color'    => '#ffffff',
-            'ptitle_bg_color' => 'var(--accent-color)',
-            'ptitle_bg_img'   => '../images/ptitle-layout/bg.jpg',
-            'ptitle_overlay_color'   => 'rgba(0,0,0,0.7)',
+            'ptitle_color'         => '#ffffff',
+            'ptitle_bg_color'      => 'var(--accent-color)',
+            'ptitle_bg_img'        => '../images/ptitle-layout/bg.jpg',
+            'ptitle_overlay_color' => 'rgba(0,0,0,0.7)',
             // Comments 
             'cmt_avatar_size'  => 90,
             'cmt_border'       => '1px solid #DDDDDD',
             // WooCommerce,
-            'fastway_product_single_image_w' => '455',
-            'fastway_product_single_image_h' => '605',
+            'fastway_product_single_image_w'          => '455',
+            'fastway_product_single_image_h'          => '605',
+            
+            'fastway_product_loop_image_w'            => '600',
+            'fastway_product_loop_image_h'            => '600',
 
-            'fastway_product_loop_image_w' => '205',
-            'fastway_product_loop_image_h' => '162',
+            'fastway_product_gallery_layout'          => 'horizontal',
+            'fastway_product_gallery_thumb_position'  => 'bottom',
 
-            'fastway_product_gallery_thumbnail_w' => '115',
-            'fastway_product_gallery_thumbnail_h' => '140',
-
-            'fastway_product_gallery_thumbnail_v_w' => '115',
-            'fastway_product_gallery_thumbnail_v_h' => '140',
-
-            'fastway_product_gallery_thumbnail_h_w' => '115',
-            'fastway_product_gallery_thumbnail_h_h' => '140',
-
-            'fastway_product_gallery_thumbnail_space' => '14',
+            'fastway_product_gallery_thumbnail_w'     => '86',
+            'fastway_product_gallery_thumbnail_h'     => '86',
+            
+            'fastway_product_gallery_thumbnail_v_w'   => '86',
+            'fastway_product_gallery_thumbnail_v_h'   => '86',
+            
+            'fastway_product_gallery_thumbnail_h_w'   => '86',
+            'fastway_product_gallery_thumbnail_h_h'   => '86',
+            
+            'fastway_product_gallery_thumbnail_space_vertical'   => '5',
+            'fastway_product_gallery_thumbnail_space_horizontal' => '5',
 
             // API 
             'google_api_key' => apply_filters('fastway-google-api-key', false)
@@ -123,10 +140,6 @@ if(!function_exists('fastway_configs')){
         ];
         return $configs[$value];
     }
-}
-
-if(!defined('DEV_MODE')){
-    define('DEV_MODE', true);
 }
 
 if ( ! function_exists( 'fastway_setup' ) ) :
@@ -321,7 +334,7 @@ add_action( 'widgets_init', 'fastway_widgets_init' );
  */
 function fastway_scripts() {
 	$theme = wp_get_theme( get_template() );
-	wp_enqueue_style( 'fastway-font-awesome', get_template_directory_uri() . '/assets/fonts/awesome/css/all.min.css', array(), '5.14.0' );
+	wp_enqueue_style( 'font-awesome-all', get_template_directory_uri() . '/assets/fonts/awesome/css/all.min.css', array(), '5.14.0' );
     wp_enqueue_style( 'fastway-flaticon', get_template_directory_uri() . '/assets/fonts/flaticon/font-flaticon.css', array(), $theme->get( 'Version' ) ); 
     wp_enqueue_style( 'fastway-icomoon', get_template_directory_uri() . '/assets/fonts/icomoon/css/font-icomoon.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0' );
@@ -331,25 +344,18 @@ function fastway_scripts() {
 	wp_enqueue_style( 'fastway-google-fonts', fastway_fonts_url() );
 
 	/* Lib JS */
-    wp_enqueue_script( 'jquery-cookie', get_template_directory_uri() . '/assets/js/jquery.cookie.js', array( 'jquery' ), '1.4.1', true);
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '4.0.0', true );
-    wp_enqueue_script( 'nice-select', get_template_directory_uri() . '/assets/js/nice-select.min.js', array( 'jquery' ), 'all', true );
-    wp_enqueue_script( 'enscroll', get_template_directory_uri() . '/assets/js/enscroll.js', array( 'jquery' ), 'all', true );
-    wp_enqueue_script( 'match-height', get_template_directory_uri() . '/assets/js/match-height-min.js', array( 'jquery' ), '1.0.0', true );
     wp_enqueue_script( 'fastway-sidebar-fixed', get_template_directory_uri() . '/assets/js/sidebar-scroll-fixed.js', array( 'jquery' ), '1.0.0', true );
     wp_enqueue_script( 'magnific-popup', get_template_directory_uri() . '/assets/js/magnific-popup.min.js', array( 'jquery' ), '1.0.0', true );
     $smoothscroll = fastway_get_opt( 'smoothscroll', false );
     if ( isset( $smoothscroll ) && $smoothscroll ) {
         wp_enqueue_script( 'smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), 'all', true );
     }
-
     /* Theme JS */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	wp_enqueue_script( 'fastway-main', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), $theme->get( 'Version' ), true );
-	wp_register_script( 'fastway-parallax', get_template_directory_uri() . '/assets/js/cms-parallax.js', array( 'jquery' ), $theme->get( 'Version' ), true );
-	wp_enqueue_script( 'fastway-woocommerce', get_template_directory_uri() . '/woocommerce/woocommerce.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+	//wp_register_script( 'fastway-parallax', get_template_directory_uri() . '/assets/js/cms-parallax.js', array( 'jquery' ), $theme->get( 'Version' ), true );
 	wp_localize_script( 'fastway-main', 'main_data', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
     /*
@@ -367,10 +373,7 @@ function fastway_scripts() {
     $api = fastway_get_opt('gm_api_key', 'AIzaSyC08_qdlXXCWiFNVj02d-L2BDK5qr6ZnfM');
     $api_js = "https://maps.googleapis.com/maps/api/js?&key=".$api;
     wp_register_script('maps-googleapis', $api_js, [], date("Ymd"));
-    wp_register_script('custom-gm-widget-js', get_template_directory_uri() . '/elementor/js/custom-gm-widget.js', ['maps-googleapis', 'jquery'], $theme->get( 'Version' ), true);
-    // Progress Bar Widget
-    //wp_register_script('custom-progressbar-widget-js', get_template_directory_uri() . '/assets/js/elementor/custom-progressbar-widget.js', ['progressbar-lib-js','jquery'], $theme->get( 'Version' ), true);
-    
+    wp_register_script('custom-gm-widget-js', get_template_directory_uri() . '/elementor/js/custom-gm-widget.js', ['maps-googleapis', 'jquery'], $theme->get( 'Version' ), true);    
     // Post Grid Widget
     wp_register_script('cms-post-grid-widget-js', get_template_directory_uri() . '/elementor/js/cms-post-grid-widget.js', [ 'isotope', 'jquery' ], $theme->get( 'Version' ), true);
     wp_register_script('cms-toggle-widget-js', get_template_directory_uri() . '/elementor/js/cms-toggle-widget.js', [ 'jquery' ], $theme->get( 'Version' ), true);
@@ -379,9 +382,20 @@ function fastway_scripts() {
     wp_register_script('cms-tabs-widget-js', get_template_directory_uri() . '/elementor/js/cms-tabs-widget.js', [ 'jquery' ], $theme->get( 'Version' ), true);
     
     wp_register_script('cms-slick-slider', get_template_directory_uri() . '/elementor/js/cms-slick-slider.js', [ 'jquery' ], $theme->get( 'Version' ), true);
+    wp_register_script('cms-masonry', get_template_directory_uri() . '/elementor/js/cms-masonry.js', [ 'jquery' ], $theme->get( 'Version' ), true);
 
     $fastway_inline_styles = fastway_inline_styles();
     wp_add_inline_style( 'fastway-theme', $fastway_inline_styles );
+
+    // RevSlider Html
+    wp_register_script( 'themepunch-tools', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/jquery.themepunch.tools.min.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_register_script( 'jquery-themepunch-revolution', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/jquery.themepunch.revolution.min.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_register_script( 'revolution-plugin', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/revolution-plugin.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_register_script( 'rev-script-1', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/rev-script-1.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_register_script( 'rev-script-2', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/rev-script-2.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_register_script( 'rev-script-3', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/js/rev-script-3.js', array( 'jquery' ), $theme->get( 'Version' ), true );
+    wp_enqueue_style( 'cms-revslider-html-st', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/css/settings.css', array(), '1.0' );
+    wp_enqueue_style( 'cms-revslider-html-van', get_template_directory_uri() . '/elementor/templates/widgets/cms_revslider_html/css/navigation.css', array(), '1.0' );
 }
 
 add_action( 'wp_enqueue_scripts', 'fastway_scripts' );
@@ -418,21 +432,17 @@ function fastway_fonts_url() {
 }
 
 /**
- * Add Template Woocommerce
- */
-if(class_exists('Woocommerce')){
-    require_once( get_template_directory() . '/woocommerce/wc-function-hooks.php' );
-}
-
+ * Element Theme Core
+*/
 if(class_exists("Elementor_Theme_Core")){
 	if(!function_exists("fastway_add_icons_to_cms_iconpicker_field")){
 		add_filter("redux_cms_iconpicker_field/get_icons", "fastway_add_icons_to_cms_iconpicker_field");
 		function fastway_add_icons_to_cms_iconpicker_field($icons){
 			$custom_icons = [
 				'Material Icons' => array(
-                    array('zmdi zmdi-3d-rotation' => '3D Rotation'),
+                    array('zmdi zmdi-3d-rotation'  => '3D Rotation'),
                     array('zmdi zmdi-airplane-off' => 'Airplane Off'),
-                    array('zmdi zmdi-airplane' => 'Airplane'),
+                    array('zmdi zmdi-airplane'     => 'Airplane'),
                 ),
 			];
 			$icons = array_merge($custom_icons, $icons);
@@ -617,8 +627,9 @@ function fastway_inline_styles() {
  *
 */
 if(!function_exists('fastway_require_folder')){
-    function fastway_require_folder($foldername,$path)
+    function fastway_require_folder($foldername,$path = '')
     {
+        if($path === '') $path = get_template_directory();
         $dir = $path . DIRECTORY_SEPARATOR . $foldername;
         if (!is_dir($dir)) {
             return;
@@ -633,20 +644,30 @@ if(!function_exists('fastway_require_folder')){
     }
 }
 
-fastway_require_folder('inc', get_template_directory());
-fastway_require_folder('inc/classes', get_template_directory());
-fastway_require_folder('inc/extends', get_template_directory());
-fastway_require_folder('inc/theme-options', get_template_directory());
+fastway_require_folder('inc');
+fastway_require_folder('inc/classes');
+fastway_require_folder('inc/extends');
+fastway_require_folder('inc/theme-options');
 
 /**
  * Additional widgets for the theme
  */
-fastway_require_folder('widgets', get_template_directory());
+fastway_require_folder('widgets');
 /**
  * Custom post type
 */
-fastway_require_folder('inc/custom-post', get_template_directory());
+fastway_require_folder('inc/custom-post');
 /**
  * Elementor
 */
-fastway_require_folder('inc/elementor', get_template_directory());
+fastway_require_folder('inc/elementor');
+/**
+ *  Woocommerce
+ */
+if(class_exists('Woocommerce')){
+    fastway_require_folder('woocommerce');
+}
+/**
+ * other extensions
+*/
+fastway_require_folder('inc/extensions');

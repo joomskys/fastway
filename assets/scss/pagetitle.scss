@@ -39,11 +39,9 @@
 	    font-size: 14px;
 	    font-weight: 600;
 	    &:after{
-	    	content: "\f101";
 		    margin-left: 7px;
-		    font-family: 'FontAwesome';
-		    font-size: 16px;
-		    font-weight: normal;
+		    font-size: 11px;
+		    @include font-awesome("\f101");
 	    }
 	    &:last-child:after{
 	    	display: none;

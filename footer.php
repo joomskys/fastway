@@ -14,7 +14,7 @@ $back_totop_on = fastway_get_opt('back_totop_on', true);
 <?php fastway_search_popup(); ?>
 <?php fastway_sidebar_hidden(); ?>
 <?php if (isset($back_totop_on) && $back_totop_on) : ?>
-    <a href="#" class="scroll-top"><i class="zmdi zmdi-long-arrow-up"></i></a>
+    <a href="#" class="scroll-top"><span class="cms-scroll-top-arrow cms-scroll-top-icon"></span></a>
 <?php endif; ?>
 
 </div><!-- #page -->

@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  th, td{
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: start;
+  }
+  th{
+    font-weight: 700;
+  }
+}
+caption, td {
+  font-weight: normal;
+  text-align: left;
+}
+.table > tbody > tr > td, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > td, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > thead > tr > th {
+  padding: 13px 8px;
+}
+th {
+  font-weight: 600;
+  border-top: 1px solid #ededed;
+  padding: 10px;
+  border-right: 1px solid #ededed;
+}
+td {
+  border-top: 1px solid #ededed;
+  padding: 10px;
+  border-right: 1px solid #ededed;
+}

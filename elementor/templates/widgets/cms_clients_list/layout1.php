@@ -7,22 +7,26 @@
                     'thumb_size' => 'full',
                     'class'      => '',
                 ));
-                $thumbnail = $img['thumbnail'];
                 $url    = !empty($client['client_link']['id'])?$client['client_link']['id']:'#';
                 $target = !empty($client['client_link']['is_external']);
                 $rel    = !empty($client['client_link']['nofollow']);
 
-            if(!empty($client['client_image']['id'])) { 
+                if(!empty($client['client_image']['id'])){
+                    $thumbnail = $img['thumbnail'];
+                } else {
+                    $thumbnail = fastway_default_image_thumbnail([
+                        'size' => 'full',
+                    ]);
+                }
             ?>
-            <div class="cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($slides_gutter/2);?>px; padding-right: <?php echo esc_attr($slides_gutter/2);?>px;">
+            <div class="cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($settings['slides_gutter']/2);?>px; padding-right: <?php echo esc_attr($settings['slides_gutter']/2);?>px;">
                 <div class="cms-client-item p-10">
                     <div class="cms-client-image">
                         <a href="<?php echo esc_url($url); ?>" <?php etc_print_html($target?'target="_blank"':''); ?> <?php etc_print_html($rel?'rel="nofollow"':''); ?>><?php echo wp_kses_post($thumbnail); ?></a>
                     </div>
                 </div>
             </div>
-            <?php }
-            endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 <?php endif; ?>

@@ -64,18 +64,14 @@ $screen-xxl-min: 1600px;
 @import "functions";
 @import "colors";
 @import "mixins";
-
-// Custom
-@import "spacing";
-@import "border";
-@import "opacity";
 // libs
+@import "masonry";
 @import "slick_slider";
 @import "slick_slider_theme";
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
-@import "typography";
+@import "typo/typo";
 
 /*--------------------------------------------------------------
 # Class
@@ -150,15 +146,31 @@ $screen-xxl-min: 1600px;
 # Layout Content
 --------------------------------------------------------------*/
 @import "layout";
-@import "woocommerce";
+
 /*--------------------------------------------------------------
 # Elementor
 --------------------------------------------------------------*/
 @import "elementor";
 @import "elementor/elementor";
-
+/*--------------------------------------------------------------
+# WooCommerce
+--------------------------------------------------------------*/
+@import "woo/woo";
 /*--------------------------------------------------------------
 # Display
 --------------------------------------------------------------*/
 @import "display";
+/**
+ * 404 page
+*/
+@import "404.scss";
+
+// Custom
+@import "spacing";
+@import "border";
+@import "opacity";
+@import "hovers";
+@import "overlay";
+@import "icons";
+@import "shake-image";
 

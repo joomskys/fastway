@@ -2,10 +2,14 @@
 .btn,
 button,
 .button,
-input[type="submit"] {
+input[type="submit"],
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button {
   background-color: $accent_color;
   position: relative;
-  overflow: hidden;
+  overflow: hidden!important;
   color: $white;
   padding: 10px 20px;
   display: inline-block;
@@ -20,6 +24,7 @@ input[type="submit"] {
   text-transform: uppercase;
   font-weight: 600;
   @include transition(all .8s ease);
+  @include border-radius(0);
   &:after{
     content: "";
     position: absolute;
@@ -32,11 +37,63 @@ input[type="submit"] {
   }
   &:hover, &:focus {
     background: $primary_color;
+    color: $white;
     &:after{
       right: 0%;
     }
   }
+  // Colors
+  &.gray {
+      background-color: #666666;
+      color: #fff;
+      &:hover{
+        background-color: #555555;
+        color: $white;
+      }
+  }
+  &.outline {
+      color: #888;
+      background: none;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #eee;
+      &:hover {
+        border-color: rgba(0, 0, 0, 0);
+        color: #fff;
+    }
+  }
+  &.outline.gray {
+    color: #666666;
+    border-color: #666666;
+    &:hover{
+      color: $white;
+    }
+  }
+  // outline
+  &.btn-outline{
+    background: transparent;
+    @each $name, $color in $theme_colors{
+      &.btn-#{$name} {
+        color: #{$color};
+        //border-color: #{$color};
+        box-shadow: 0 0 0 3px #{$color} inset;
+        &:hover{
+          color: $white;
+          background-color: #{$color};
+        }
+      }
+    }
+  }
+  &.alt{
+    background: $primary_color;
+    @include css3-prefix('font-smoothing','inherit');
+    &:hover{
+      background: $accent_color;
+    }
+  }
 }
+
+
 
 .site-button-link,
 .btn-text {

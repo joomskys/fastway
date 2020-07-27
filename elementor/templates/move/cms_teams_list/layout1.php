@@ -93,7 +93,7 @@ $widget->add_render_attribute( 'carousel', [
                                     $skype = !empty($team['team_link_skype'])?$team['team_link_skype']:'#';
                                 ?>
                                 <a href="<?php echo esc_url($facebook); ?>" <?php etc_print_html($social_target?'target="_blank"':''); ?> <?php etc_print_html($social_nofollow?'rel="nofollow"':''); ?>>
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
                                 </a>
                                 <a href="<?php echo esc_url($twitter); ?>" <?php etc_print_html($social_target?'target="_blank"':''); ?> <?php etc_print_html($social_nofollow?'rel="nofollow"':''); ?>>
                                     <i class="fa fa-twitter" aria-hidden="true"></i>

@@ -1,0 +1,11 @@
+.col2-set{
+	.col-1,
+	.col-2{
+		@media(min-width: 769px){
+			flex: 0 0 48%;
+			max-width: 48%;
+		}
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+}

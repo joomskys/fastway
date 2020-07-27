@@ -112,3 +112,8 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+
+.slick-disabled{
+    cursor: not-allowed!important;
+    @include opacity(0.5);
+}

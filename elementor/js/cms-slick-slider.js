@@ -6,6 +6,8 @@
     var CMSSlickSliderHandler = function( $scope, $ ) {
         var breakpoints = elementorFrontend.config.breakpoints;
         var carousel = $scope.find(".cms-slick-slider");
+        console.log(carousel);
+        //if(carousel.length()<1) return;
         var data = carousel.data();
         var gutter = data.gutter;
         var slickOptions = {
@@ -30,6 +32,8 @@
                     settings: {
                         slidesToShow: data.slidestoshowtablet,
                         slidesToScroll: data.slidestoscrolltablet,
+                        arrows: data.arrowstablet,
+                        dots: data.dotstablet
                     }
                 },
                 {
@@ -37,6 +41,8 @@
                     settings: {
                         slidesToShow: data.slidestoshowmobile,
                         slidesToScroll: data.slidestoscrollmobile,
+                        arrows: data.arrowsmobile,
+                        dots: data.dotsmobile
                     }
                 }
             ],
@@ -46,6 +52,12 @@
         carousel.find('.slick-slide').css({
             'padding-left':gutter,
             'padding-right':gutter
+        });
+        carousel.find('.cms-slick-prev').css({
+            'left':gutter
+        });
+        carousel.find('.cms-slick-next').css({
+            'right':gutter
         });
         carousel.on('breakpoint', function(event,slick){
             $('.slick-slide').css({
@@ -61,5 +73,6 @@
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_testimonial.default', CMSSlickSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_teams_list.default', CMSSlickSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_clients_list.default', CMSSlickSliderHandler );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/cms_service.default', CMSSlickSliderHandler );
     } );
 } )( jQuery );

@@ -1,0 +1,28 @@
+.bypostauthor{
+	visibility: visible;
+}
+.screen-reader-text {
+    display: none;
+}
+.alignleft,
+.alignright,
+.aligncenter {
+    margin-top: 6px;
+    margin-bottom: 45px;
+}
+.alignleft {
+    display: inline;
+    float: left;
+    margin-right: 35px;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin-left: 35px;
+}
+
+.aligncenter {
+    clear: both;
+    @include center-block;
+}

@@ -3,9 +3,12 @@ if(!function_exists('fastway_custom_section_presets')){
     add_filter('etc-custom-section/custom-presets', 'fastway_custom_section_presets');
     function fastway_custom_section_presets(){
         return [
-            6 => [
+            2 => [
                 [
-                    'preset' => [ 33, 33, 33, 33, 33, 33 ],
+                    'preset' => [41, 58],
+                ],
+                [
+                    'preset' => [33, 33, 33, 33, 33, 33],
                 ],
             ],
             3 => [
@@ -17,7 +20,25 @@ if(!function_exists('fastway_custom_section_presets')){
                 [
                     'preset' => [ 100, 33, 33, 33 ],
                 ],
+                [
+                    'preset' => [ 50, 50, 50, 50 ],
+                ]
             ],
+            5 => [
+                [
+                    'preset' => [ 100, 50, 50, 50, 50 ],
+                ],
+            ],
+            6 => [
+                [
+                    'preset' => [ 33, 33, 33, 33, 33, 33 ],
+                ]
+            ],
+            7 => [
+                [
+                    'preset' => [ 100, 33, 33, 33, 33, 33, 33 ],
+                ]
+            ]
         ];
     }
 }

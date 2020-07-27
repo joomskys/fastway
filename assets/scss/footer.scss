@@ -57,6 +57,27 @@
 			margin-bottom: 14px;
 		}
 	}
+	&.footer-light{
+		color: #484848;
+		.top-footer{
+			background: #eee;
+			color: #484848;
+			a,
+			.entry-meta li{
+				color: #484848;
+			}
+		}
+		.bottom-footer{
+			background-color: #ddd;
+    		color: #474747;
+    		.bottom-copyright {
+			    color: #474747;
+			}
+		}
+		.footer-widget-title{
+			color: $heading_color;
+		}
+	}
 }
 .cms-footer-fixed{
 	position: fixed;

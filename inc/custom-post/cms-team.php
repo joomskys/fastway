@@ -4,8 +4,8 @@ if(!function_exists('fastway_cpt_team')){
 	function fastway_cpt_team( $postypes ) {
 		$postypes['cms-team'] = array(
 			'status'     => true,
-			'item_name'  => esc_html__( 'CMS Team', 'amarou' ),
-			'items_name' => esc_html__( 'CMS Teams', 'amarou' ),
+			'item_name'  => esc_html__( 'CMS Team', 'fastway' ),
+			'items_name' => esc_html__( 'CMS Teams', 'fastway' ),
 			'args'       => array(
 				'menu_icon'          => 'dashicons-admin-users',
 				'public'             => true,

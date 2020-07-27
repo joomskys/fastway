@@ -1,0 +1,36 @@
+.error404 {
+  // page title 
+  #pagetitle{
+    &.page-title-layout404{
+      height: auto;
+      background: #f1f1f1;
+      padding: 20px 0;
+      color: #111111;
+      .cms-page-title-overlay{
+        display: none;
+      }
+      .cms-page-title-inner {
+        padding-bottom: 0;
+      }
+      a{
+        color: $accent_color;
+      }
+      .cms-breadcrumb li{
+        color: #111;
+      }
+    }
+    
+  }
+  // site content 
+  .site-content {
+    padding: 140px 0 160px;   
+  }
+  .error-404 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+  }
+
+}
+

@@ -3,3 +3,21 @@
 .cms-justify-content-center .elementor-row  { justify-content: center; }
 .cms-justify-content-between .elementor-row { justify-content: space-between; }
 .cms-justify-content-around .elementor-row  { justify-content: space-around; }
+
+// Custom Column Width
+$elementor_col_width:(
+	41 : 41%,
+	58 : 58%
+);
+$breakpoints: $grid-breakpoints;
+@each $breakpoint in map-keys($breakpoints) {
+	$infix: breakpoint-infix($breakpoint, $breakpoints);
+	@include media-breakpoint-up($breakpoint, $breakpoints) {
+		@each $name, $width in $elementor_col_width{
+			.elementor-col#{$infix}-#{$name},
+			.elementor-column[data-col="#{$name}"] {
+				width: #{$width};
+			}
+		}
+	}
+}

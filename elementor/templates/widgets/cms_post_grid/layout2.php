@@ -105,7 +105,7 @@ $load_more = array(
         <?php endif; ?>
         <?php
         $load_more['tax'] = $tax;
-        fastway_elementor_get_post_grid($posts, $load_more);
+        fastway_elementor_get_post_grid($posts, $load_more, $widget);
         ?>
     </div>
     <?php if ($layout_type == 'masonry' && $pagination_type == 'pagination') { ?>

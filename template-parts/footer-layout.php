@@ -48,7 +48,7 @@ if($f_btn_link_type == 'page') {
                 <?php endif; ?>
                 <?php if(!empty($f_btn_text)) : ?>
                     <div class="footer-button">
-                        <a href="<?php echo esc_url( $f_btn_url ); ?>" target="<?php echo esc_attr($f_btn_target); ?>" class="btn btn-outline"><?php echo esc_attr( $f_btn_text ); ?></a>
+                        <a href="<?php echo esc_url( $f_btn_url ); ?>" target="<?php echo esc_attr($f_btn_target); ?>" class="btn btn-outline"><?php echo esc_html( $f_btn_text ); ?></a>
                     </div>
                 <?php endif; ?>
             </div>

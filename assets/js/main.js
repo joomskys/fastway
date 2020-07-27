@@ -10,6 +10,16 @@
     var window_width;
     var scroll_status = '';
     var lastScrollTop = 0;
+    // Fire on document ready.
+    $( document ).ready( function() {
+        // WooCommerce
+        fastway_wc_single_product_gallery();
+        fastway_quantity_plus_minus();
+        fastway_quantity_plus_minus_action();
+        // background image moving
+        fastway_background_moving();
+    });
+
     $(window).on('load', function () {
         $(".cms-loader").fadeOut("slow");
         window_width = $(window).width();
@@ -22,6 +32,8 @@
         setTimeout(function () { $('.cms-grid-menu-layout5 .grid-filter-wrap .filter-item:nth-child(1)').trigger('click'); }, 100);
         fastway_post_gallery_slide();
         fastway_video_size();
+
+        
     });
     $(window).on('resize', function () {
         window_width = $(window).width();
@@ -268,9 +280,9 @@
             $(this).parents('#page').find('.site-overlay').removeClass('open');
         });
         /* Images Light Box - Gallery:True */
-        $('.images-light-box').each(function () {
+        $('.cms-images-light-box').each(function () {
             $(this).magnificPopup({
-                delegate: 'a.light-box',
+                delegate: 'a.cms-light-box',
                 type: 'image',
                 gallery: {
                     enabled: true
@@ -279,9 +291,9 @@
             });
         });
 
-        $('.image-light-box').each(function () {
+        $('.cms-image-light-box').each(function () {
             $(this).magnificPopup({
-                delegate: 'a.light-box',
+                delegate: 'a.cms-light-box',
                 type: 'image',
                 gallery: {
                     enabled: false
@@ -355,11 +367,6 @@
             $owl_item.trigger('to.owl.carousel', $(this).data('position'));
         });
 
-        /* Select */
-        $('select').each(function () {
-            $(this).niceSelect();
-        });
-
         /* Newsletter */
         var email_text = $('.tnp-field-email label').text();
         $('.tnp-field-email label').remove();
@@ -382,9 +389,6 @@
                 $(this).attr("placeholder", lastname_text);
             }
         });
-
-        /* Same Height */
-        $('.vc_row-o-equal-height .col-equal-height').matchHeight();
 
         /* Mobile Menu */
         $('.main-navigation li.menu-item-has-children').append('<span class="main-menu-toggle"></span>');
@@ -539,6 +543,169 @@
                 $(this).attr('height',v_height + 59).css('height',v_height + 59);
             });
         }, 100);
+    }
+    /**
+     * WooCommerce
+     * Single Product
+    */
+    //quantity number field custom
+    function fastway_quantity_plus_minus(){
+        "use strict";
+        $( ".quantity input" ).wrap( "<div class='cms-quantity'></div>" );
+        $('<span class="quantity-button quantity-down"></span>').insertBefore('.quantity input');
+        $('<span class="quantity-button quantity-up"></span>').insertAfter('.quantity input');
+    }
+    function fastway_ajax_quantity_plus_minus(){
+        "use strict";
+        $('<span class="quantity-button quantity-down"></span>').insertBefore('.quantity input');
+        $('<span class="quantity-button quantity-up"></span>').insertAfter('.quantity input');
+    }
+    function fastway_quantity_plus_minus_action(){
+        "use strict";
+        $(document).on('click','.quantity .quantity-button',function () {
+            var $this = $(this),
+                spinner = $this.closest('.quantity'),
+                input = spinner.find('input[type="number"]'),
+                step = input.attr('step'),
+                min = input.attr('min'),
+                max = input.attr('max'),value = parseInt(input.val());
+            if(!value) value = 0;
+            if(!step) step=1;
+            step = parseInt(step);
+            if (!min) min = 0;
+            var type = $this.hasClass('quantity-up') ? 'up' : 'down' ;
+            switch (type)
+            {
+                case 'up':
+                    if(!(max && value >= max))
+                        input.val(value+step).change();
+                    break;
+                case 'down':
+                    if (value > min)
+                        input.val(value-step).change();
+                    break;
+            }
+            if(max && (parseInt(input.val()) > max))
+                input.val(max).change();
+            if(parseInt(input.val()) < min)
+                input.val(min).change();
+        });
+    }
+    // WooCommerce Single Product Gallery 
+    function fastway_wc_single_product_gallery(){
+        'use strict';
+        if(typeof $.flexslider != 'undefined'){
+            $('.wc-gallery-sync').each(function() {
+                var itemW      = parseInt($(this).attr('data-thumb-w')),
+                    itemH      = parseInt($(this).attr('data-thumb-h')),
+                    itemN      = parseInt($(this).attr('data-thumb-n')),
+                    itemMargin = parseInt($(this).attr('data-thumb-margin')),
+                    itemSpace  = itemH - itemW + itemMargin;
+                if($(this).hasClass('thumbnail-vertical')){
+                    $(this).flexslider({
+                        selector       : '.wc-gallery-sync-slides > .wc-gallery-sync-slide',
+                        animation      : 'slide',
+                        controlNav     : false,
+                        directionNav   : true,
+                        prevText       : '<span class="flex-prev-icon"></span>',
+                        nextText       : '<span class="flex-next-icon"></span>',
+                        asNavFor       : '.woocommerce-product-gallery',
+                        direction      : 'vertical',
+                        slideshow      : false,
+                        animationLoop  : false,
+                        itemWidth      : itemW, // add thumb image height
+                        itemMargin     : itemSpace, // need it to fix transform item
+                        move           : 3,
+                        start: function(slider){
+                            var asNavFor     = slider.vars.asNavFor,
+                                height       = $(asNavFor).height(),
+                                height_thumb = $(asNavFor).find('.flex-viewport').height(),
+                                window_w = $(window).width();
+                            if(window_w > 1024) {
+                                slider.css({'max-height' : height_thumb, 'overflow': 'hidden'});
+                                slider.find('> .flex-viewport > *').css({'height': height, 'width': ''});
+                            }
+                        }
+                    });
+                }
+                if($(this).hasClass('thumbnail-horizontal')){
+                    $(this).flexslider({
+                        selector       : '.wc-gallery-sync-slides > .wc-gallery-sync-slide',
+                        animation      : 'slide',
+                        controlNav     : true,
+                        directionNav   : false,
+                        prevText       : '<span class="flex-prev-icon"></span>',
+                        nextText       : '<span class="flex-next-icon"></span>',
+                        asNavFor       : '.woocommerce-product-gallery',
+                        slideshow      : false,
+                        animationLoop  : false, // Breaks photoswipe pagination if true.
+                        itemWidth      : itemW,
+                        itemMargin     : itemMargin,
+                        start: function(slider){
+
+                        }
+                    });
+                };
+            });
+        }
+    }
+    /**
+     * Cart Page
+    */
+    // move remove product to last of row
+    function fastway_table_move_column(table, selected ,from, to, remove, colspan, colspan_value) {
+        "use strict";
+        var rows = jQuery(selected, table);
+        var cols;
+        rows.each(function() {
+            cols = jQuery(this).children('th, td');
+            cols.eq(from).detach().insertAfter(cols.eq(to));
+        });
+        var rows_remove = jQuery(remove, table);
+        rows_remove.each(function(){
+            jQuery(this).remove(remove);
+        });
+        var colspan = jQuery(colspan, table);
+        colspan.each(function(){
+            jQuery(this).attr('colspan',colspan_value);
+        });
+    }
+
+    /**
+     * BACKGROUND IMAGE MOVING FUNCTION BY= jquery.bgscroll.js
+    */
+    (function() {
+        $.fn.bgscroll = $.fn.bgScroll = function( options ) {
+            
+            if( !this.length ) return this;
+            if( !options ) options = {};
+            if( !window.scrollElements ) window.scrollElements = {};
+            
+            for( var i = 0; i < this.length; i++ ) {
+                
+                var allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var randomId = '';
+                for( var l = 0; l < 5; l++ ) randomId += allowedChars.charAt( Math.floor( Math.random() * allowedChars.length ) );
+                
+                    this[ i ].current = 0;
+                    this[ i ].scrollSpeed = options.scrollSpeed ? options.scrollSpeed : 70;
+                    this[ i ].direction = options.direction ? options.direction : 'h';
+                    window.scrollElements[ randomId ] = this[ i ];
+                    
+                    eval( 'window[randomId]=function(){var axis=0;var e=window.scrollElements.' + randomId + ';e.current -= 1;if (e.direction == "h") axis = e.current + "px 0";else if (e.direction == "v") axis = "0 " + e.current + "px";else if (e.direction == "d") axis = e.current + "px " + e.current + "px";$( e ).css("background-position", axis);}' );
+                                                             
+                    setInterval( 'window.' + randomId + '()', options.scrollSpeed ? options.scrollSpeed : 70 );
+                }
+                
+                return this;
+            }
+    })(jQuery);   
+    function fastway_background_moving(){
+        "use strict";
+        //jQuery( function() {              
+            $('.cms-bg-moving-h').bgscroll({scrollSpeed:20 , direction:'h' });
+            $('.cms-bg-moving-v').bgscroll({scrollSpeed:20 , direction:'v' });
+        //});
     }
 
 })(jQuery);

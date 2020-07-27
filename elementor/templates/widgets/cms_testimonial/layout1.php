@@ -15,7 +15,7 @@ $widget->add_render_attribute( 'inner', [
                     ));
                     $thumbnail = $img['thumbnail'];
                     ?>
-                        <div class="cms-ttmn-item cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($slides_gutter/2);?>px; padding-right: <?php echo esc_attr($slides_gutter/2);?>px;">
+                        <div class="cms-ttmn-item cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($settings['slides_gutter']/2);?>px; padding-right: <?php echo esc_attr($settings['slides_gutter']/2);?>px;">
                             <div class="cms-ttmn-item-inner p-a20">
                                 <div class="row text-center text-md-start">
                                     <?php if(!empty($value['image']['id'])) { ?>
@@ -25,9 +25,9 @@ $widget->add_render_attribute( 'inner', [
                                     <?php } ?>
                                     <div class="cms-ttmn-content col">
                                         <span class="cms-quote-icon fa fa-quote-left"></span>
-                                        <div class="cms-ttmn-title text-uppercase"><?php echo esc_attr($value['title']); ?></div>
-                                        <div class="cms-ttmn-position text-accent"><?php echo esc_attr($value['position']); ?></div>
-                                        <div class="cms-ttmn-desc"><?php echo esc_attr($value['description']); ?></div>
+                                        <div class="cms-ttmn-title text-uppercase"><?php echo esc_html($value['title']); ?></div>
+                                        <div class="cms-ttmn-position text-accent"><?php echo esc_html($value['position']); ?></div>
+                                        <div class="cms-ttmn-desc"><?php echo esc_html($value['description']); ?></div>
                                     </div>
                                 </div>
                             </div>

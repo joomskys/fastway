@@ -1,0 +1,55 @@
+$cms-icon-sizes: (
+	40,
+	46,
+	50,
+	60,
+	70,
+	80,
+	90,
+	100
+);
+.cms-icon-list{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -5px;
+	margin-right: -5px;
+	.cms-icon{
+		flex: 0 0 auto;
+	    max-width: 100%;
+	    margin: 0 5px 10px;
+	    position: relative;
+	    > *{
+	    	position: absolute;
+	    	top: 50%;
+	    	left: 50%;
+	    	@include transform(translate(-50%,-50%));
+	    }
+	}
+}
+@each $size in $cms-icon-sizes{
+	.cms-icon-#{$size}{
+		width: #{$size}px;
+		height: #{$size}px;
+	}
+}
+$cms-icon-sizes-screen:(
+	'xl' : 100 80,
+	'lg' : 80 60,
+	'md' : 60 45,
+	'sm' : 40 30
+);
+@each $size, $value in $cms-icon-sizes-screen{
+	.cms-icon-#{$size}{
+		width: #{nth($value,1)}px!important;
+		height: auto!important;
+		line-height: 1!important;
+		font-size: #{nth($value,2)}px!important;
+		i{
+			line-height: 1!important;
+			font-size: #{nth($value,2)}px!important;
+			&:before{
+				font-size: #{nth($value,2)}px!important;
+			}
+		}
+	}
+}

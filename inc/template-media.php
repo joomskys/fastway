@@ -14,7 +14,6 @@ if(!function_exists('fastway_post_thumbnail')){
             'show_image'      => true    
         ]);
         extract($args);
-
         if(!has_post_thumbnail($args['id']) && !$default_thumb) return;
 
         $thumbnail_atts = [];
@@ -29,7 +28,7 @@ if(!function_exists('fastway_post_thumbnail')){
         if($echo) {
         ?>
             <div <?php echo implode(' ', $thumbnail_atts);?>>
-                <?php fastway_image_by_size(['id' => $id,'size' => $thumbnail_size, 'class' => $args['img_class'], 'show_image' => $show_image]);?>
+                <?php fastway_image_by_size(['id' => get_post_thumbnail_id($id),'size' => $thumbnail_size, 'class' => $args['img_class'], 'show_image' => $show_image]);?>
             </div>
             <?php do_action('fastway_post_thumbnail_content');
         } else {

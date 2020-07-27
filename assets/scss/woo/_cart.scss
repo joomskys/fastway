@@ -1,0 +1,81 @@
+.woocommerce-cart{
+	table.cart {
+		border: 0;
+		margin: 0;
+		td,
+		th{
+			&:first-child{
+				border-left: 1px solid #ddd;
+			}
+		}
+		th{
+			padding: 5px 10px !important;
+    		color: #060000;
+    		text-transform: uppercase;
+    		background: #f5f6f6;
+		}
+		td{
+			&.actions{
+				border-right: 0;
+				border-left: 0;
+				border-bottom: 0;
+				padding: 25px 0 0 0;
+				> *{
+					margin: 0 20px 20px 0;
+					&:last-child,
+					&.cms-continue-shop{
+						margin-right: 0;
+					}
+				}
+				.coupon{
+					display: flex;
+					flex-wrap: wrap;
+					margin: -10px;
+					> * {
+						margin: 10px !important;
+					}
+					input[name="coupon_code"]{
+						flex-basis: 0;
+					    flex-grow: 1;
+					    max-width: 100%;
+					    height: 39px;
+					    width: 300px!important;
+					    @include border-radius(0);
+					}
+					button[name="apply_coupon"]{
+						flex: 0 0 auto;
+					    width: auto;
+					    max-width: 100%;
+					}
+					@media (max-width: $screen-md-max){
+						padding-bottom: 20px;
+						float: none!important;
+					}
+					@media (max-width: $screen-sm-max){
+						padding-bottom: 20px !important;
+					}
+				}
+				button[name="update_cart"]{
+					padding: 10px 20px;
+					vertical-align: top;
+					@media (max-width: $screen-sm-max + 1){
+						width: unset!important;
+						display: unsest!important;
+					}
+				}
+			}
+		}
+	}
+	//cart-collaterals
+	.cart-collaterals{
+		.cart_totals {
+			> h2{
+				text-transform: uppercase;
+				font-size: 24px;
+			}
+			.wc-proceed-to-checkout a.checkout-button{
+				padding: 10px 20px;
+			}
+		}
+	}
+}

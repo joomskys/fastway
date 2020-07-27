@@ -29,7 +29,7 @@
     text-shadow: none;
     @include opacity(1);
     &:before{
-        @include font-awesome("\f04b");
+        @include font-awesome("\f04b",900);
     }
 }
 

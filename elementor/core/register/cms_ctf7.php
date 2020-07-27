@@ -10,6 +10,7 @@ if(class_exists('WPCF7')) {
     } else {
         $contact_forms[esc_html__('No contact forms found', 'fastway')] = 0;
     }
+
     etc_add_custom_widget(
         array(
             'name'       => 'cms_ctf7',
@@ -25,10 +26,45 @@ if(class_exists('WPCF7')) {
                         'tab'      => \Elementor\Controls_Manager::TAB_CONTENT,
                         'controls' => array(
                             array(
+                                'name'        => 'heading_text',
+                                'label'       => esc_html__( 'Form Title', 'fastway' ),
+                                'type'        => \Elementor\Controls_Manager::TEXT,
+                                'default'     => '',
+                                'placeholder' => esc_html__( 'Enter Form title', 'fastway' ),
+                                'label_block' => true,
+                            ),
+                            array(
                                 'name'    => 'ctf7_id',
                                 'label'   => esc_html__('Select Form', 'fastway'),
                                 'type'    => \Elementor\Controls_Manager::SELECT,
                                 'options' => $contact_forms,
+                            ),
+                        ),
+                    ),
+                    array(
+                        'name'     => 'layout_section',
+                        'label'    => esc_html__( 'Layout', 'fastway' ),
+                        'tab'      => \Elementor\Controls_Manager::TAB_LAYOUT,
+                        'controls' => array(
+                            array(
+                                'name'    => 'layout',
+                                'label'   => esc_html__( 'Templates', 'fastway' ),
+                                'type'    => Elementor_Theme_Core::LAYOUT_CONTROL,
+                                'default' => '1',
+                                'options' => [
+                                    '1' => [
+                                        'label' => esc_html__( 'Layout 1', 'fastway' ),
+                                        'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_ctf7/layout/layout1.png'
+                                    ],
+                                    '2' => [
+                                        'label' => esc_html__( 'Layout 2', 'fastway' ),
+                                        'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_ctf7/layout/layout2.png'
+                                    ],
+                                    '3' => [
+                                        'label' => esc_html__( 'Layout 3', 'fastway' ),
+                                        'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_ctf7/layout/layout3.png'
+                                    ]
+                                ],
                             ),
                         ),
                     ),

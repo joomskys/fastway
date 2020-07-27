@@ -50,6 +50,26 @@ etc_add_custom_widget(
                                     'label' => esc_html__( 'Layout 7', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout7.png'
                                 ],
+                                '8' => [
+                                    'label' => esc_html__( 'Layout 8', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout8.png'
+                                ],
+                                '9' => [
+                                    'label' => esc_html__( 'Layout 9', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout9.png'
+                                ],
+                                '10' => [
+                                    'label' => esc_html__( 'Layout 10', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout10.png'
+                                ],
+                                '11' => [
+                                    'label' => esc_html__( 'Layout 11', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout11.png'
+                                ],
+                                '12' => [
+                                    'label' => esc_html__( 'Layout 12', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout12.png'
+                                ],
                             ],
                         ),
                     ),

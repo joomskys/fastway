@@ -174,7 +174,7 @@ function fastway_page_options_register( $metabox ) {
 		)
 	) );
 	// Post title
-	$metabox->add_section( 'post', fastway_page_title_opts(['default' => true]));
+	$metabox->add_section( 'post', fastway_page_title_opts(['default' => true,'default_value' => '-1']));
 
 	/**
 	 * Config page meta options
@@ -205,97 +205,23 @@ function fastway_page_options_register( $metabox ) {
 	// Attribute:  search, cart, ...
 	$metabox->add_section('page', fastway_header_atts_opts(['default' => true]));
 	// Page title
-	$metabox->add_section( 'page', fastway_page_title_opts(['default' => true]));
+	$metabox->add_section( 'page', fastway_page_title_opts(['default' => true, 'default_value' => '-1']));
 	// Sidebar
 	$metabox->add_section('page', fastway_sidebar_opts(['default' => true, 'subsection' => false]));
 	// Footer 
 	$metabox->add_section('page', fastway_footer_opts(['default' => true, 'default_value'=>'-1', 'subsection' => false]));
 
 	// Products
-	$metabox->add_section( 'product', array(
-		'title'  => esc_html__( 'Header', 'fastway' ),
-		'desc'   => esc_html__( 'Header settings for the page.', 'fastway' ),
-		'icon'   => 'el-icon-website',
-		'fields' => array(
-			array(
-				'id'      => 'custom_header',
-				'type'    => 'switch',
-				'title'   => esc_html__( 'Custom Header', 'fastway' ),
-				'default' => false,
-				'indent'  => true
-			),
-			array(
-				'id'           => 'header_layout',
-				'type'         => 'image_select',
-				'title'        => esc_html__( 'Layout', 'fastway' ),
-				'subtitle'     => esc_html__( 'Select a layout for header.', 'fastway' ),
-				'options'      => array(
-					'0' => get_template_directory_uri() . '/assets/images/header-layout/h0.jpg',
-					'1' => get_template_directory_uri() . '/assets/images/header-layout/h1.jpg',
-					'2' => get_template_directory_uri() . '/assets/images/header-layout/h2.jpg',
-					'3' => get_template_directory_uri() . '/assets/images/header-layout/h3.jpg',
-					'4' => get_template_directory_uri() . '/assets/images/header-layout/h4.jpg',
-				),
-				'default'      => fastway_get_option_of_theme_options( 'header_layout' ),
-				'required'     => array( 0 => 'custom_header', 1 => 'equals', 2 => '1' ),
-				'force_output' => true
-			),
-		)
-	) );
-
-	$metabox->add_section( 'product', array(
-		'title'  => esc_html__( 'Page Title', 'fastway' ),
-		'icon'   => 'el el-indent-left',
-		'fields' => array(
-			array(
-				'id'           => 'custom_pagetitle',
-				'type'         => 'button_set',
-				'title'        => esc_html__( 'Page Title', 'fastway' ),
-				'options'      => array(
-					'themeoption'  => esc_html__( 'Theme Option', 'fastway' ),
-					'show'  => esc_html__( 'Custom', 'fastway' ),
-					'hide'  => esc_html__( 'Hide', 'fastway' ),
-				),
-				'default'      => 'themeoption',
-			),
-			array(
-	            'id'       => 'ptitle_layout',
-	            'type'     => 'image_select',
-	            'title'    => esc_html__('Layout', 'fastway'),
-	            'subtitle' => esc_html__('Select a layout for page title.', 'fastway'),
-	            'options'  => array(
-	                '' => get_template_directory_uri() . '/assets/images/ptitle-layout/p0.jpg',
-	                '1' => get_template_directory_uri() . '/assets/images/ptitle-layout/p1.jpg',
-	                '2' => get_template_directory_uri() . '/assets/images/ptitle-layout/p2.jpg',
-	                '3' => get_template_directory_uri() . '/assets/images/ptitle-layout/p3.jpg',
-	                '4' => get_template_directory_uri() . '/assets/images/ptitle-layout/p4.jpg',
-	            ),
-	            'default'  => '',
-	            'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-	        ),
-			array(
-				'id'           => 'sub_title',
-				'type'         => 'text',
-				'title'        => esc_html__( 'Sub Title', 'fastway' ),
-				'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-			),
-			array(
-	            'id'       => 'ptitle_bg',
-	            'type'     => 'background',
-	            'background-color'     => false,
-	            'background-repeat'     => false,
-	            'background-size'     => false,
-	            'background-attachment'     => false,
-	            'background-position'     => false,
-	            'title'    => esc_html__('Background', 'fastway'),
-	            'subtitle' => esc_html__('Page title background image.', 'fastway'),
-	            'required'     => array( 0 => 'custom_pagetitle', 1 => '=', 2 => 'show' ),
-				'force_output' => true
-	        ),
-		)
-	) );
+	$metabox->add_section( 'product',  fastway_header_opts([
+			'default'       => true,
+			'default_value' => '-1'
+		])
+	);
+	$metabox->add_section( 'product', fastway_page_title_opts([
+			'default' => true, 
+			'default_value' => '-1'
+		])
+	);
 
 	/**
 	 * Config post format meta options

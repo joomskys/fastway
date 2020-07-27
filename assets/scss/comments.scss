@@ -1,6 +1,6 @@
 .comments-area{
 	padding: 30px;
-	background-color: $color_gray;
+	background-color: $gray_color;
 }
 .comment-list-wrap{
 	.comments-title{
@@ -98,16 +98,16 @@
 	    text-align: center;
 	}
 	&.comment-form-author:before{
-		@include font-awesome("\f007");
+		@include font-awesome("\f007", 900);
 	}
 	&.comment-form-email:before{
-		@include font-awesome("\f0e0");
+		@include font-awesome("\f0e0", 900);
 	}
 	&.comment-form-website:before{
-		@include font-awesome("\f0ac");
+		@include font-awesome("\f0ac", 900);
 	}
 	&.comment-form-comment:before{
-		@include font-awesome("\f040");
+		@include font-awesome("\f303", 900);
 	}
 	input,
 	textarea{

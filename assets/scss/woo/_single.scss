@@ -1,0 +1,240 @@
+.woocommerce ,
+.woocommerce-page{
+	#content div.product div.summary, 
+	div.product div.summary{
+		float: none;
+		width: 100%;
+	}
+	// add-to-cart form
+	.cms-single-product-btns{
+		margin: 0 -7.5px;
+		form.cart,
+		.woosw-btn{
+			margin-bottom: 20px!important;
+			margin-left: 7.5px;
+			margin-right: 7.5px;
+			flex: 0 0 auto;
+		}
+		.single_add_to_cart_button{
+			clear: both;
+			margin-top: 20px;
+		}
+	}
+	.cms-quantity{
+		position: relative;
+		color: #9b9b9b;
+		display: inline-block;
+		.quantity-button{
+			position: absolute;
+			right: 0;
+			width: 22px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			font-size: 10px;
+			font-weight: 600;
+			border: $FF_Border;
+			cursor: pointer;
+		}
+		.quantity-up{
+			top: 0;
+			&:before{
+				@include font-awesome("\f067");
+			}
+		}
+		.quantity-down{
+			bottom: 0;
+			&:before{
+				@include font-awesome("\f068");
+			}
+		}
+	}
+	.quantity .qty{
+		width: 70px;
+		height: 40px;
+		padding-right: 30px;
+		text-align: start;
+		@include border-radius(0);
+	}
+	.single_add_to_cart_button{
+		clear: both;
+	}
+	//product meta
+	.product_meta{
+		> span{
+			display: block;
+			clear: both;
+		}
+		a{
+			color: $accent_color;
+			&:hover{
+				color: $primary_color;
+			}
+		}
+	}
+	// tabs
+	.woocommerce-tabs{
+		margin-top: 70px;
+		.wc-tabs{
+			display: none;
+		}
+		.wc-tab{
+			display: block!important;
+		}
+		.panel{
+			margin-bottom: 20px!important;
+		}
+	}
+	// shop attributes
+	table.shop_attributes{
+		border: none;
+		td, th{
+			vertical-align: top;
+			font-style: normal;
+			padding: 6px 0;
+			border: 0;
+			width: unset;
+			background: transparent!important;
+			p{
+				padding: 0;
+			}
+		}
+	}
+	// Comments
+	#reviews{
+		background: $gray_color;
+		padding: 20px;
+		#comments{
+			.woocommerce-Reviews-title{
+				display: none;
+			}
+			ol.commentlist{
+				padding: 0;
+				li{
+					position: relative;
+				    padding: 0;
+				    margin-bottom: 20px;
+				    background: #F7F8FA;
+				    border: 1px dashed #EEEEEE;
+				    img.avatar{
+				    	float: left;
+					    width: 80px;
+					    height: auto;
+					    padding: 5px;
+					    background: $white;
+				    }
+				    .comment-text{
+				    	margin: 0;
+					    padding: 0 0 0 100px;
+					    border: none;
+				    }
+				    .star-rating{
+				    	margin-bottom: 10px;
+				    	float: none;
+				    }
+				    .meta{
+				    	margin-bottom: 5px!important;
+				    	font-size: inherit!important;
+				    	color: inherit;
+				    }
+				    .woocommerce-review__author{
+				    	font-size: 16px;
+					    text-transform: uppercase;
+					    padding-right: 10px;
+					    color: $heading_color;
+				    }
+				    .description {
+				    	p:last-child{
+				    		margin-bottom: 0;
+				    	}
+				    }
+				}
+			}
+		}
+		#review_form{
+			#reply-title{
+				margin-bottom: 17px;
+				display: block;
+				margin-top: 2px;
+			}
+			.comment-notes{
+				display: none;
+			}
+			label{
+				padding-bottom: 10px;
+    			display: block;
+    			font-weight: 600;
+			}
+			.comment-form-author, 
+			.comment-form-email{
+				margin-bottom: 20px;
+				
+			}
+			@media (min-width: $screen-lg-min){
+				.comment-form-author, 
+				.comment-form-email{
+					width: calc(50% - 15px);
+				}
+				.comment-form-author{
+					float: left;
+				}
+				.comment-form-email{
+					float: right;
+				}
+			}			
+			[class*="comment-form"]{
+				input, textarea{
+				    border: 1px solid #CCC;
+				    padding: 8px 10px;
+				    width: 100%;
+				    @include border-radius(0);
+				    height: 38px;				}
+			}
+			.form-submit{
+				input[type="submit"]{
+					width: auto;
+					border-color: transparent;
+					padding: 9px 19px;
+					height: auto;
+					margin-top: 15px;
+				}
+			}
+		}
+	}
+	.products{
+		&.related{
+			padding-top: 40px;
+			padding-bottom: 10px;
+			h2{
+				text-transform: uppercase;
+				position: relative;
+				text-align: center;
+				padding-bottom: 30px;
+				margin-bottom: 45px;
+				&:before{
+					position: absolute;
+				    content: attr(data-title);
+				    color: rgba(210, 210, 210, 0.3);
+				    font-weight: 900;
+				    font-size: 90px;
+				    top: 50%;
+				    left: 50%;
+				    width: 100%;
+				    z-index: -1;
+				    @include transform(translate(-50%, calc(-50% - 15px)));
+				}
+				&:after{
+					content: '';
+					display: block;
+				    height: 3px;
+				    width: 50px;
+				    background: $accent_color;
+				    position: absolute;
+				    bottom: 0;
+				    left: 50%;
+				    @include transform(translateX(-50%));
+				}
+			}
+		}
+	}
+}

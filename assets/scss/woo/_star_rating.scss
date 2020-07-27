@@ -1,0 +1,27 @@
+.woocommerce {
+	.woocommerce-product-rating {
+		display: flex;
+	    flex-wrap: wrap;
+	    align-items: center;
+		.star-rating{
+			letter-spacing: 4px;
+			float: none;
+			margin: 0;
+			width: 94px;
+			&:before,
+			span{
+				color: $accent_color;
+			}
+		}
+		.woocommerce-review-link{
+			font-weight: 600;
+		}
+	}
+	div.product .woocommerce-product-rating{
+		margin-bottom: 12px;
+	}
+	// short desc
+	.woocommerce-product-details__short-description{
+		margin-bottom: 30px;
+	}
+}

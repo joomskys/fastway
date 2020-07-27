@@ -51,7 +51,7 @@ if(!empty($toggles)) : ?>
                         }
                         echo esc_html($ac_title); 
                     ?></a>
-                    <span class="cms-toggle-title-icon <?php echo esc_attr($icon_align); ?>">
+                    <span class="cms-toggle-title-icon">
                         <?php
                         if($is_new):
                             \Elementor\Icons_Manager::render_icon( $settings['main_icon'], [ 'aria-hidden' => 'true', 'class' => 'cms-toggle-title-icon-close' ] );

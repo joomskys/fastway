@@ -52,7 +52,7 @@ $widget->add_render_attribute( 'carousel', [
 <?php if(isset($settings['testimonial']) && !empty($settings['testimonial']) && count($settings['testimonial'])): ?>
     <div class="cms-ttmn-slider cms-ttmn-slider2">
         <div <?php etc_print_html($widget->get_render_attribute_string( 'inner' )); ?>>
-            <div <?php etc_print_html($widget->get_render_attribute_string( 'carousel' )); ?> style="margin-left: <?php echo esc_attr($slides_gutter/-2);?>px; margin-right: <?php echo esc_attr($slides_gutter/-2);?>px;">
+            <div <?php etc_print_html($widget->get_render_attribute_string( 'carousel' )); ?> style="margin-left: <?php echo esc_attr($settings['slides_gutter']/-2);?>px; margin-right: <?php echo esc_attr($settings['slides_gutter']/-2);?>px;">
                 <?php foreach ($settings['testimonial'] as $value): 
                     $img = etc_get_image_by_size( array(
                         'attach_id'  => $value['image']['id'],
@@ -61,7 +61,7 @@ $widget->add_render_attribute( 'carousel', [
                     ));
                     $thumbnail = $img['thumbnail'];
                     ?>
-                        <div class="cms-ttmn-item cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($slides_gutter/2);?>px; padding-right: <?php echo esc_attr($slides_gutter/2);?>px;">
+                        <div class="cms-ttmn-item cms-slick-slide slick-slide" style="padding-left: <?php echo esc_attr($settings['slides_gutter']/2);?>px; padding-right: <?php echo esc_attr($settings['slides_gutter']/2);?>px;">
                             <div class="cms-ttmn-item-inner p-a20">
                                 <div class="cms-ttmn-item-details row text-center text-md-start">
                                     <?php if(!empty($value['image']['id'])) { ?>
@@ -71,9 +71,9 @@ $widget->add_render_attribute( 'carousel', [
                                     <?php } ?>
                                     <div class="cms-ttmn-content col">
                                         <span class="cms-quote-icon fa fa-quote-left text-accent font-50"></span>
-                                        <div class="cms-ttmn-desc"><?php echo esc_attr($value['description']); ?></div>
-                                        <div class="cms-ttmn-title text-uppercase"><?php echo esc_attr($value['title']); ?></div>
-                                        <div class="cms-ttmn-position text-accent p-t15"><?php echo esc_attr($value['position']); ?></div>
+                                        <div class="cms-ttmn-desc"><?php echo esc_html($value['description']); ?></div>
+                                        <div class="cms-ttmn-title text-uppercase"><?php echo esc_html($value['title']); ?></div>
+                                        <div class="cms-ttmn-position text-accent p-t15"><?php echo esc_html($value['position']); ?></div>
                                     </div>
                                 </div>
                             </div>

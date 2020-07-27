@@ -108,12 +108,11 @@ ul.menu {
             padding: 9px 15px 9px 10px;
         }
         &:before{
-            content: "\f054";
+            @include font-awesome("\f054", 900);
             position: absolute;
             left: 0;
             top: 10px;
             display: block;
-            font-family: "FontAwesome";
             font-size: 8px;
             [dir="rtl"] &{
                 content: "\f053";
@@ -443,12 +442,11 @@ ul.menu {
         padding: 9px 15px 9px 10px;
     }
     &:before{
-        content: "\f054";
+        @include font-awesome("\f054", 600);
         position: absolute;
         left: 0;
         top: 10px;
         display: block;
-        font-family: "FontAwesome";
         font-size: 8px;
         [dir="rtl"] &{
             content: "\f053";

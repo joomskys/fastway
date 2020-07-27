@@ -467,9 +467,12 @@ $mm-xl: "(min-width: 1200px) and (max-width: 1400px)";
 }
 
 // font icon
-@mixin font-awesome($icon){
-  font-family: FontAwesome;
+@mixin font-awesome($icon, $weight : ''){
+  font-family: "Font Awesome 5 Free";
   content: $icon;
+  @if $weight !=''{
+    font-weight: $weight;
+  }
 }
 // text emphasis
 @mixin text-ellipsis(){

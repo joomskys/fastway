@@ -1,0 +1,78 @@
+// Font Style 
+$font-styles: (
+    '100' : '',
+    '100i' : italic,
+    '200' : '',
+    '200i' : italic,
+    '300' : '',
+    '300i' : italic,
+    '400' : '',
+    '400i' : italic,
+    '500' : '',
+    '500i' : italic,
+    '600' : '',
+    '600i' : italic,
+    '700' : '',
+    '700i' : italic,
+    '800' : '',
+    '800i' : italic,
+    '900' : '',
+    '900i' : italic,
+);
+
+@each $name , $style in $font-styles {
+    .font-#{$name}{
+        font-weight: fastway_string_to_number($name);
+        @if $style != '' {
+            font-style: $style;
+        }
+    }
+}
+// Font Sizes
+$font-sizes: (
+    '14' : 14,
+    '15' : 15,
+    '16' : 16,
+    '17' : 17,
+    '18' : 18,
+    '19' : 19,
+    '20' : 20,
+    '21' : 21,
+    '22' : 22,
+    '23' : 23,
+    '24' : 24,
+    '25' : 25,
+    '26' : 26,
+    '27' : 27,
+    '28' : 28,
+    '29' : 29,
+    '30' : 30,
+    '31' : 31,
+    '32' : 32,
+    '33' : 33,
+    '34' : 34,
+    '35' : 35,
+    '36' : 36,
+    '37' : 37,
+    '38' : 38,
+    '39' : 39,
+    '40' : 40,
+    '42' : 42,
+    '44' : 44,
+    '46' : 46,
+    '48' : 48,
+);
+@each $name , $size in $font-sizes {
+    .text-#{$name}{
+        font-size: #{$size}px!important;
+    }
+}
+// Font Sizes
+$line-height: (
+    '48' : 48px,
+);
+@each $name , $size in $line-height {
+    .lh-#{$name}{
+        line-height: $size !important;
+    }
+}
