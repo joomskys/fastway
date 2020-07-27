@@ -505,10 +505,9 @@ ul.menu {
             position: relative;
             opacity: 1 !important;
             &:before {
-                content: "\f16d";
+                @include font-awesome-brand("\f16d");
                 color: #fff;
                 font-size: 14px;
-                font-family: FontAwesome;
                 z-index: 2;
                 width: 40px;
                 height: 40px;
@@ -548,6 +547,31 @@ ul.menu {
     #sbi_load {
         padding-top: 0 !important;
     }
+
+    @media (max-width: 480px){
+        &.sbi_col_10 #sbi_images .sbi_item, 
+        &.sbi_col_3 #sbi_images .sbi_item, 
+        &.sbi_col_4 #sbi_images .sbi_item, 
+        &.sbi_col_5 #sbi_images .sbi_item, 
+        &.sbi_col_6 #sbi_images .sbi_item, 
+        &.sbi_col_7 #sbi_images .sbi_item, 
+        &.sbi_col_8 #sbi_images .sbi_item, 
+        &.sbi_col_9 #sbi_images .sbi_item {
+            width: 33.33%;
+        }
+    }
+    @media (max-width: 480px){
+        &.sbi_col_10 #sbi_images .sbi_item, 
+        &.sbi_col_3 #sbi_images .sbi_item, 
+        &.sbi_col_4 #sbi_images .sbi_item, 
+        &.sbi_col_5 #sbi_images .sbi_item, 
+        &.sbi_col_6 #sbi_images .sbi_item, 
+        &.sbi_col_7 #sbi_images .sbi_item, 
+        &.sbi_col_8 #sbi_images .sbi_item, 
+        &.sbi_col_9 #sbi_images .sbi_item {
+            width: 33.33%;
+        }
+    }
 }
 .vc_row #sb_instagram .sbi_item .sbi_photo {
     &:before {
@@ -565,3 +589,4 @@ ul.menu {
         @include border-radius(2px);
     }
 }
+

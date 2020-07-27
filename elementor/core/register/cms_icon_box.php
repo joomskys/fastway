@@ -70,6 +70,10 @@ etc_add_custom_widget(
                                     'label' => esc_html__( 'Layout 12', 'fastway' ),
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout12.png'
                                 ],
+                                '13' => [
+                                    'label' => esc_html__( 'Layout 13', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_icon_box/layout/layout13.png'
+                                ],
                             ],
                         ),
                     ),

@@ -78,3 +78,16 @@
 	    }
 	}
 }
+
+div.wpcf7{
+	[dir="rtl"] &{
+		&[dir="ltr"] {
+			direction: rtl;
+			input[type="url"],
+			input[type="email"],
+			input[type="tel"]{
+				direction: rtl;
+			}
+		}
+	}
+}

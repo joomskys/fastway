@@ -181,7 +181,7 @@ function fastway_page_options_register( $metabox ) {
 	 *
 	 */
 	// Header Top
-	$metabox->add_section('page', fastway_header_top_opts());
+	$metabox->add_section('page', fastway_header_top_opts(['default' => true, 'default_value' => '-1']));
 	// Main Header
 	$metabox->add_section( 'page',  fastway_header_opts([
 			'default'       => true,

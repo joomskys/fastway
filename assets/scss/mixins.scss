@@ -474,6 +474,13 @@ $mm-xl: "(min-width: 1200px) and (max-width: 1400px)";
     font-weight: $weight;
   }
 }
+@mixin font-awesome-brand($icon, $weight : ''){
+  font-family: "Font Awesome 5 Brands";
+  content: $icon;
+  @if $weight !=''{
+    font-weight: $weight;
+  }
+}
 // text emphasis
 @mixin text-ellipsis(){
   white-space: nowrap;

@@ -102,5 +102,8 @@
             right: auto;
             left: 0;
         }
+        img {
+            @include transform(scaleX(-1));
+        }
     }
 }

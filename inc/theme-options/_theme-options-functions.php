@@ -5,14 +5,35 @@
 if(!function_exists('fastway_header_top_opts')){
 	function fastway_header_top_opts($args=[]){
 		$args = wp_parse_args($args, [
-			'default'    => false,
-			'subsection' => false
+			'default'       => false,
+			'default_value' => '1',
+			'subsection'    => false
 		]);
+		if($args['default']){
+			$options = [
+				'-1' => esc_html__('Default','fastway'),
+                '1'  => esc_html__('Yes','fastway'),
+                '0'  => esc_html__('No','fastway'),
+			];
+		} else {
+			$options = [
+				'1'  => esc_html__('Yes','fastway'),
+                '0'  => esc_html__('No','fastway'),
+			];
+		}
 		$opts = [
 			'title'      => esc_html__('Header Top', 'fastway'),
 		    'icon'       => 'el el-website',
 		    'subsection' => $args['subsection'],
 		    'fields'     => array(
+		    	array(
+		            'id'       => 'show_header_top',
+		            'title'    => esc_html__('Header Top', 'fastway'),
+		            'subtitle' => esc_html__('Show/Hide header top section.', 'fastway'),
+		            'type'     => 'button_set',
+                    'options'  => $options,
+                    'default'  => $args['default_value'],
+		        ),
 		        array(
 					'id'           => 'header_top_short_text',
 					'type'         => 'textarea',
@@ -57,73 +78,85 @@ if(!function_exists('fastway_header_top_opts')){
 		                    'class' => array()
 		                ),
 		                'li' => array(),
-		            )
+		            ),
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
-		            'title' => esc_html__('Quick Contact', 'fastway'),
-		            'type'  => 'section',
-		            'id' => 'header_contact',
-		            'indent' => true,
+					'title'  => esc_html__('Quick Contact', 'fastway'),
+					'type'   => 'section',
+					'id'     => 'header_contact',
+					'indent' => true,
+					'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'phone_icon',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Phone Icon', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'phone_label',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Phone Label', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'phone_number',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Phone Number', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'email_icon',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Email Icon', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'email_label',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Email Label', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'email_address',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Email Address', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'time_icon',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Time Icon', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'time_label',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Time Label', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 		            'id'      => 'time',
 		            'type'    => 'text',
 		            'title'   => esc_html__('Time', 'fastway'),
 		            'default' => '',
+		            'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        array(
 					'title'  => esc_html__('Social List', 'fastway'),
 					'type'   => 'section',
 					'id'     => 'header_top_social',
 					'indent' => true,
+					'required' => array( 0 => 'show_header_top', 1 => 'equals', 2 => '1' ),
 		        ),
 		        fastway_social_list_opts(['param_name' => 't_social_list'])
 		    )
@@ -251,7 +284,15 @@ if(!function_exists('fastway_header_sticky_opts')){
 		            'type'     => 'button_set',
                     'options'  => $options,
                     'default'  => $default_value,
-		        )
+		        ),
+		        array(
+					'id'       => 'header_sticky_bg',
+					'type'     => 'background',
+					'title'    => esc_html__('Background', 'fastway'),
+					'output'   => array('.cms-header.header-sticky .h-fixed'),
+					'required' => array( 0 => 'sticky_on', 1 => 'equals', 2 => '1' ),
+					'force_output' => true
+		        ),
 		    )
 		);
 	}

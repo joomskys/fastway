@@ -7,10 +7,14 @@
 		right: -470px;
 	}
 }
-
 .cms-shake-image-wrap{
 	position: relative;
 	display: inline-block;
+	[dir="rtl"] &{
+		img {
+      		@include transform(scaleX(-1));
+		}
+	}
 }
 .cms-shake-image {
 	animation: cms-shake 1.8s;

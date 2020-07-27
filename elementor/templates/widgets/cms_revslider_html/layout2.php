@@ -4,9 +4,9 @@
                         <div id="rev_slider_1059_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
                             <ul>    
                                 <!-- SLIDE  -->
-                                <li data-index="rs-2972" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slider1/slide2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <li data-index="rs-2972" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider1/slide2.jpg';?>"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                                     <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slider2/slide1.jpg"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                                    <img src="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider2/slide1.jpg';?>"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                                     <!-- LAYERS -->
                             
                                     <!-- LAYER NR. 1 -->
@@ -124,9 +124,9 @@
                                 </li>
                                 
                                 <!-- SLIDE  -->
-                                <li data-index="rs-2973" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slider1/slide1.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <li data-index="rs-2973" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider1/slide1.jpg';?>"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                                     <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slider2/slide2.jpg"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                                    <img src="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider2/slide2.jpg';?>"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                                     <!-- LAYERS -->
                             
                                     <!-- LAYER NR. 1 -->
@@ -244,9 +244,9 @@
                                 </li>
                                 
                                 <!-- SLIDE  -->
-                                <li data-index="rs-2974" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slider1/slide3.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                <li data-index="rs-2974" data-transition="boxfade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider1/slide3.jpg';?>"  data-rotate="0"  data-saveperformance="off"  data-title="Web Show" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                                     <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slider2/slide3.jpg"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
+                                    <img src="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/slider2/slide3.jpg';?>"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg" data-no-retina>
                                     <!-- LAYERS -->
                             
                                     <!-- LAYER NR. 1 -->

@@ -7,10 +7,10 @@
                            <div id="rev_slider_1014_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
                                 <ul>
                                     <!-- SLIDE 1 -->    
-                                    <li data-index="rs-1000" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="2000"  data-thumb="<?php echo get_template_directory().'elementor/templates/widgets/cms_revslider_html/construct-video1..jpg'; ?>"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                                    <li data-index="rs-1000" data-transition="fadethroughdark" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="2000"  data-thumb="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/construct-video1.jpg'; ?>"  data-rotate="0"  data-saveperformance="off"  data-title="Creative" data-param1="01" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                                     
                                     <!-- MAIN IMAGE -->
-                                    <img src="<?php echo get_template_directory().'elementor/templates/widgets/cms_revslider_html/construct-video1..jpg'; ?>"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" class="rev-slidebg" data-no-retina/>
+                                    <img src="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/construct-video1.jpg'; ?>"  alt="fastway"  data-bgposition="center center" data-bgfit="cover" class="rev-slidebg" data-no-retina/>
                                     <!-- LAYERS -->
                                     
                                     <!-- LAYER NR. 1 [ for overlay ] -->
@@ -44,7 +44,7 @@
                                     data-volume="mute" 
                                     data-videowidth="100%" 
                                     data-videoheight="100%" 
-                                    data-videomp4="<?php echo get_template_directory().'elementor/templates/widgets/cms_revslider_html/construct-video1.mp4';?>" 
+                                    data-videomp4="<?php echo get_template_directory_uri().'/elementor/templates/widgets/cms_revslider_html/construct-video1.mp4';?>" 
                                     data-videopreload="auto" 
                                     data-videoloop="loop" 
                                     data-aspectratio="16:9" 
