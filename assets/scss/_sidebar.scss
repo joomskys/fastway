@@ -33,3 +33,27 @@
 		margin-top: 50px;
 	}
 }
+
+// Bottom sidebar 
+.cms-bottom-sidebar-inner{
+	display: flex;
+	flex-wrap: wrap;
+	margin: -15px;
+	> .widget{
+		flex: 0 0 100%;
+		max-width: 100%;
+		padding: 15px;
+		@media (min-width: $screen-md-min){
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+		@media (min-width: $screen-lg-min){
+			flex: 0 0 33.3333%;
+			max-width: 33.3333%;
+		}
+		@media (min-width: $screen-xl-min){
+			flex: 0 0 25%;
+			max-width: 25%;
+		}
+	}
+}

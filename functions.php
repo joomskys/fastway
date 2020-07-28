@@ -350,6 +350,9 @@ function fastway_scripts() {
     if ( isset( $smoothscroll ) && $smoothscroll ) {
         wp_enqueue_script( 'smoothscroll', get_template_directory_uri() . '/assets/js/smoothscroll.min.js', array( 'jquery' ), 'all', true );
     }
+    // Slick Slider 
+    wp_enqueue_script( 'jquery-slick', get_template_directory_uri() . '/assets/js/slick/slick.min.js', array( 'jquery' ), '1.8.1', true );
+    
     /* Theme JS */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

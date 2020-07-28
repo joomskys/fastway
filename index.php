@@ -49,6 +49,13 @@ $sidebar_pos = fastway_get_opt( 'archive_sidebar_pos', 'right' );
             </div>
         </div>
         <?php endif; ?>
+        <?php if ( 'bottom' == $sidebar_pos ) : ?>
+        <div id="cms-bottom-sidebar" class="cms-bottom-sidebar p-t50">
+            <div class="cms-bottom-sidebar-inner">
+                <?php get_sidebar(); ?>
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 <?php

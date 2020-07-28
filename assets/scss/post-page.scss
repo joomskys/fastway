@@ -7,12 +7,14 @@
   display: none;
 }
 .posts-pagination,
-.woocommerce-pagination {
+.woocommerce-pagination,
+.page-links {
   padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: start;
-  .page-numbers {
+  .page-numbers,
+  .post-page-numbers {
     background-color: #fff;
     border: 1px solid #e0e0e0;
     color: #767676;
@@ -132,6 +134,10 @@
     }
   }
 }
-
+.cms-no-post-thumbnail{
+  .cms-post-featured-date{
+    display: none;
+  }
+}
 @import "post_gallery";
 @import "post_video";

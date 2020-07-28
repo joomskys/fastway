@@ -20,7 +20,7 @@
             <h3 class="entry-title text-uppercase">
                 <a href="<?php echo esc_url( get_permalink()); ?>">
                     <?php if(is_sticky()) { ?>
-                        <i class="fa fa-thumb-tack"></i>
+                        <i class="fa fa-thumbtack"></i> 
                     <?php } ?>
                     <?php the_title(); ?>
                 </a>

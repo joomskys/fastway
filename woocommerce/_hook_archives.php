@@ -45,7 +45,7 @@ if(!function_exists('fastway_woocommerce_catalog_result')){
  * Change number of column that are displayed per page (shop page)
  * Return column number
 */
-add_filter( 'loop_shop_columns', 'fastway_loop_shop_columns', 20 );
+add_filter( 'loop_shop_columns', 'fastway_loop_shop_columns', 20 ); 
 function fastway_loop_shop_columns() {
   $columns = fastway_get_opts('products_columns', 3);
   $sidebar_position   = fastway_get_opts('sidebar_pos', 'bottom');
@@ -68,7 +68,7 @@ function fastway_loop_shop_columns() {
  */
 add_filter( 'loop_shop_per_page', 'fastway_loop_shop_per_page', 20 );
 function fastway_loop_shop_per_page( $limit ) {
-  $limit = fastway_get_opts('products_per_page', 9);
+  $limit = fastway_get_opts('product_per_page', 9);
   return $limit;
 }
 

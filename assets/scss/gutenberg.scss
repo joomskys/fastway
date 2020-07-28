@@ -1,0 +1,15 @@
+// Button
+.wp-block-button{
+	margin-bottom: 20px;
+}
+// Cover
+.wp-block-cover{
+	color: $white;
+}
+// paraggraph
+.single-post p{
+	&[class],
+	&[style]{
+		line-height: normal;
+	}	
+}

@@ -315,9 +315,10 @@ Redux::setSection($opt_name, array(
             'options'  => array(
                 'left'  => esc_html__('Left', 'fastway'),
                 'right' => esc_html__('Right', 'fastway'),
+                'bottom' => esc_html__('Bottom', 'fastway'),
                 'none'  => esc_html__('Disabled', 'fastway')
             ),
-            'default'  => 'right'
+            'default'  => 'bottom'
         ),
         array(
             'id'       => 'archive_author_on',
@@ -363,9 +364,10 @@ Redux::setSection($opt_name, array(
             'options'  => array(
                 'left'  => esc_html__('Left', 'fastway'),
                 'right' => esc_html__('Right', 'fastway'),
+                'bottom' => esc_html__('Bottom', 'fastway'),
                 'none'  => esc_html__('Disabled', 'fastway')
             ),
-            'default'  => 'right'
+            'default'  => 'bottom'
         ),
         array(
             'id'       => 'post_author_on',
@@ -455,15 +457,16 @@ if(class_exists('Woocommerce')) {
                 'title'    => esc_html__('Sidebar Position', 'fastway'),
                 'subtitle' => esc_html__('Select a sidebar position for archive shop.', 'fastway'),
                 'options'  => array(
-                    'left'  => esc_html__('Left', 'fastway'),
-                    'right' => esc_html__('Right', 'fastway'),
-                    'none'  => esc_html__('Disabled', 'fastway')
+                    'left'   => esc_html__('Left', 'fastway'),
+                    'right'  => esc_html__('Right', 'fastway'),
+                    'bottom' => esc_html__('Bottom', 'fastway'),
+                    'none'   => esc_html__('Disabled', 'fastway')
                 ),
-                'default'  => 'none'
+                'default'  => 'bottom'
             ),
             array(
                 'title'         => esc_html__('Products displayed per row', 'fastway'),
-                'id'            => 'product_per_row',
+                'id'            => 'products_columns',
                 'type'          => 'slider',
                 'subtitle'      => esc_html__('Number product to show per row', 'fastway'),
                 'default'       => 3,

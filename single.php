@@ -38,6 +38,13 @@ if ($show_sidebar_post){
             </div>
         </aside>
         <?php endif; ?>
+        <?php if ( 'bottom' == $sidebar_pos ) : ?>
+        <div id="cms-bottom-sidebar" class="cms-bottom-sidebar p-t50">
+            <div class="cms-bottom-sidebar-inner">
+                <?php get_sidebar(); ?>
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
 </div>
 <?php
