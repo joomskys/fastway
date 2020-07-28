@@ -18,7 +18,7 @@ if(class_exists('Newsletter')) {
         $index = 1;
         foreach ( $forms as $key => $form )
         {
-            $newsletter_forms[ $key ] = sprintf( esc_html__( 'Form %s', 'fastway' ), $index );
+            $newsletter_forms[!important $key ] = sprintf( esc_html__( 'Form %s', 'fastway' ), $index );
             $index ++;
         }
     }
@@ -203,7 +203,7 @@ Redux::setSection($opt_name, array(
             'type'     => 'media',
             'title'    => esc_html__('Logo Light', 'fastway'),
             'default' => array(
-                'url'=>get_template_directory_uri().'/assets/images/logo-light.png'
+                'url' => get_template_directory_uri().'/assets/images/logo-light.png'
             )
         ),
         array(
@@ -211,7 +211,7 @@ Redux::setSection($opt_name, array(
             'type'     => 'media',
             'title'    => esc_html__('Logo Dark', 'fastway'),
              'default' => array(
-                'url'=>get_template_directory_uri().'/assets/images/logo-dark.png'
+                'url' => get_template_directory_uri().'/assets/images/logo-dark.png'
             )
         ),
         array(
@@ -219,7 +219,7 @@ Redux::setSection($opt_name, array(
             'type'     => 'media',
             'title'    => esc_html__('Logo Tablet & Mobile', 'fastway'),
              'default' => array(
-                'url'=>get_template_directory_uri().'/assets/images/logo-dark.png'
+                'url' => get_template_directory_uri().'/assets/images/logo-dark.png'
             )
         ),
         array(
@@ -435,7 +435,7 @@ Redux::setSection($opt_name, array(
             'title'    => esc_html__('Related Post', 'fastway'),
             'subtitle' => esc_html__('Show related on single post.', 'fastway'),
             'type'     => 'switch',
-            'default'  => '1'
+            'default'  => '0'
         ),
     )
 ));
@@ -459,17 +459,28 @@ if(class_exists('Woocommerce')) {
                     'right' => esc_html__('Right', 'fastway'),
                     'none'  => esc_html__('Disabled', 'fastway')
                 ),
-                'default'  => 'right'
+                'default'  => 'none'
             ),
             array(
-                'title' => esc_html__('Products displayed per page', 'fastway'),
-                'id' => 'product_per_page',
-                'type' => 'slider',
-                'subtitle' => esc_html__('Number product to show', 'fastway'),
-                'default' => 8,
-                'min'  => 4,
-                'step' => 1,
-                'max' => 50,
+                'title'         => esc_html__('Products displayed per row', 'fastway'),
+                'id'            => 'product_per_row',
+                'type'          => 'slider',
+                'subtitle'      => esc_html__('Number product to show per row', 'fastway'),
+                'default'       => 3,
+                'min'           => 2,
+                'step'          => 1,
+                'max'           => 6,
+                'display_value' => 'text'
+            ),
+            array(
+                'title'         => esc_html__('Products displayed per page', 'fastway'),
+                'id'            => 'product_per_page',
+                'type'          => 'slider',
+                'subtitle'      => esc_html__('Number product to show', 'fastway'),
+                'default'       => 9,
+                'min'           => 3,
+                'step'          => 1,
+                'max'           => 50,
                 'display_value' => 'text'
             ),
         )
