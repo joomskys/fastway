@@ -22,7 +22,7 @@ function fastway_register_required_plugins() {
      * Array of plugin arrays. Required keys are name and slug.
      * If the source is NOT from the .org repo, then source is also required.
      */
-    $default_path = 'https://7oroof.com/tfdemos/7oroofplugins/';
+    $default_path = 'https://cmssuperheroes.com/plugins/elementor/';
     $plugins = array(
         /* CMS Plugin */
         array(

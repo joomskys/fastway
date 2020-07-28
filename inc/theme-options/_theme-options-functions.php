@@ -6,7 +6,7 @@ if(!function_exists('fastway_header_top_opts')){
 	function fastway_header_top_opts($args=[]){
 		$args = wp_parse_args($args, [
 			'default'       => false,
-			'default_value' => '1',
+			'default_value' => '0',
 			'subsection'    => false
 		]);
 		if($args['default']){
@@ -529,13 +529,12 @@ if(!function_exists('fastway_social_list_opts')){
             'type'    => 'sorter',
             'desc'    => 'Choose which social networks are displayed and edit where they link to.',
             'options' => array(
-                'enabled'  => array(
-                    'facebook'      => 'Facebook',
+                'enabled'  => array(),
+                'disabled' => array(
+                	'facebook'      => 'Facebook',
                     'twitter'       => 'Twitter',
                     'linkedin'      => 'Linkedin',
                     'instagram'     => 'Instagram',
-                ),
-                'disabled' => array(
                 	'google-plus'   => 'Google',
                     'tripadvisor'   => 'Tripadvisor',
                     'youtube'       => 'Youtube',

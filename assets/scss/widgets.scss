@@ -100,12 +100,15 @@ ul.menu {
     }
     li{
         border-bottom: 1px dashed rgba(102, 102, 102, 0.3);
-        padding-bottom: 18px;
         position: relative;
-        padding: 9px 10px 9px 15px;
+        padding: 9px 0 9px 15px;
         line-height: 20px;
         [dir="rtl"] &{
-            padding: 9px 15px 9px 10px;
+            padding: 9px 15px 9px 0;
+        }
+        &[class*="has_children"],
+        &[class*="has-children"]{
+            padding-bottom: 0;
         }
         &:before{
             @include font-awesome("\f054", 900);
@@ -121,10 +124,18 @@ ul.menu {
             }
         }
         &:first-child{
-            margin-top: -14px;
+            
         }
         &:last-child{
             border-bottom: none;
+        }
+        .children,
+        .sub-menu{
+            padding-top: 9px;
+            margin-bottom: 0;
+            li:first-child{
+                border-top: 1px dashed rgba(102, 102, 102, 0.3);
+            }
         }
     }
 }
@@ -435,13 +446,16 @@ ul.menu {
     padding-bottom: 18px;
     margin-bottom: 13px;
     position: relative;
-    padding: 9px 10px 9px 15px;
+    padding: 9px 0 9px 15px;
     margin-bottom: 0;
     line-height: 20px;
     text-transform: uppercase;
     list-style: none;
     [dir="rtl"] &{
-        padding: 9px 15px 9px 10px;
+        padding: 9px 15px 9px 0;
+    }
+    &.cms-cat-parents{
+        padding-bottom: 0;
     }
     &:before{
         @include font-awesome("\f054", 600);
@@ -473,6 +487,9 @@ ul.menu {
                 color: $accent_color;
             }
         }
+    }
+    ul.children{
+        padding-top: 9px;
     }
 }
 

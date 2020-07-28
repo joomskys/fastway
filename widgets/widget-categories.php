@@ -67,11 +67,10 @@ class FastWay_Categories_Walker extends Walker_Category {
         $link .= '>';
 
         if ( $args['has_children'] && $args['hierarchical'] && ( empty( $args['max_depth'] ) || $args['max_depth'] > $depth + 1 ) ) {
-            $link .= '<span class="title">'.$cat_name;
-                if ( ! empty( $args['show_count'] ) ) {
-                    $link .= ' <span class="count">' . number_format_i18n( $category->count ) . '</span>';
-                }
-            $link .= '</span>';
+            $link .= '<span class="title">'.$cat_name.'</span>';
+            if ( ! empty( $args['show_count'] ) ) {
+                $link .= ' <span class="count">' . number_format_i18n( $category->count ) . '</span>';
+            }
         } else {
             $link .= '<span class="title">'.$cat_name.'</span>';
             if ( ! empty( $args['show_count'] ) ) {
@@ -118,7 +117,7 @@ class FastWay_Categories_Walker extends Walker_Category {
                 'cms-cat-item-' . $category->term_id,
             );
             if($args['has_children']){
-                $css_classes[] =  'ef5-cat-parents';
+                $css_classes[] =  'cms-cat-parents';
             }
             if ( ! empty( $args['current_category'] ) ) {
                 // 'current_category' can be an array, so we use `get_terms()`.

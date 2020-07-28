@@ -1148,9 +1148,10 @@ if(!function_exists('fastway_header_top_text')){
         $args = wp_parse_args($args,[
             'tag'   => 'div',
             'class' => '',
-            'text'  => 'Your Trusted 24 Hours Service Provider!'
+            'text'  => ''
         ]);
         $text = fastway_get_opts('header_top_short_text', $args['text']);
+        if(empty($text)) return;
         echo '<'.$args['tag'].' class="'.implode(' ', ['cms-header-top-text', $args['class']]).'">';
             echo esc_html($text);
         echo '</'.$args['tag'].'>';
@@ -1233,7 +1234,7 @@ if(!function_exists('fastway_header_top_social')){
 if(!function_exists('fastway_header_top')){
     function fastway_header_top($args = []){
         $args = wp_parse_args($args, []);
-        $show_header_top = fastway_get_opts('show_header_top', true);
+        $show_header_top = fastway_get_opts('show_header_top', false);
         if(!$show_header_top) return;
     ?>
     <div id="cms-header-top" class="cms-header-top bg-gray">
