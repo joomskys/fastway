@@ -56,10 +56,6 @@ function fastway_body_classes( $classes )
         $classes[] = 'heading-default-font';
     }
 
-    if($sub_heading_default_font == 'Shadows-Into-Light') {
-        $classes[] = 'sub-heading-default-font';
-    }
-
     if (fastway_get_opts( 'sticky_on', false )) {
         $classes[] = 'header-sticky';
     }
@@ -72,7 +68,22 @@ function fastway_body_classes( $classes )
 }
 add_filter( 'body_class', 'fastway_body_classes' );
 
+/**
+ * Adds custom classes to the array of post classes.
+ *
+ * @param array $classes Classes for the post element.
+ * @return array
+ */
+function fastway_posts_classes( $classes )
+{
+    if(has_post_thumbnail())
+        $classes[] = 'cms-has-post-thumbnail';
+    else 
+        $classes[] = 'cms-no-post-thumbnail';
 
+    return $classes;
+}
+add_filter( 'post_class', 'fastway_posts_classes' );
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */

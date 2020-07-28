@@ -28,7 +28,7 @@ if ( $related_products ) : ?>
 
 		if ( $heading ) :
 			?>
-			<h2 data-title="<?php echo esc_html__('Product','fastway');?>"><?php echo esc_html( $heading ); ?></h2>
+			<h2 data-title="<?php echo esc_attr__('Product','fastway');?>"><?php echo esc_html( $heading ); ?></h2> 
 		<?php endif; ?>
 		
 		<?php woocommerce_product_loop_start(); ?>
