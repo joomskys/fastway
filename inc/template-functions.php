@@ -301,15 +301,6 @@ function fastway_save_meta_boxes( $post_id ) {
 
 add_action( 'save_post', 'fastway_save_meta_boxes' );
 
-add_filter( 'cms_enable_megamenu', 'fastway_enable_megamenu' );
-function fastway_enable_megamenu() {
-	return true;
-}
-add_filter( 'cms_enable_onepage', 'fastway_enable_onepage' );
-function fastway_enable_onepage() {
-	return false;
-}
-
 /* Add default pagram Carousel */
 function fastway_get_param_carousel( $atts ) {
 	$default  = array(
@@ -382,24 +373,3 @@ function fastway_set_post_views( $postID ) {
 		update_post_meta( $postID, $countKey, $count );
 	}
 }
-
-/* Create Demo Data */
-add_filter('swa_ie_export_mode', 'fastway_enable_export_mode');
-function fastway_enable_export_mode()
-{
-    return false;
-}
-/* Dashboard Theme */
-add_filter('cms_documentation_link',function(){
-     return '#';
-});
-
-add_filter('cms_ticket_link', 'fastway_add_cms_ticket_link');
-function fastway_add_cms_ticket_link($url)
-{
-    $url = array('type' => 'url', 'link' => '#');
-    return $url;
-}
-add_filter('cms_video_tutorial_link',function(){
-     return '#';
-});

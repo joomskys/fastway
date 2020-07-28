@@ -16,7 +16,11 @@
     <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
     <!--    contained in this file into your site. -->
 
+<<<<<<< HEAD
     <!-- generator="WordPress/5.4.2" created="2020-07-28 09:09" -->
+=======
+    <!-- generator="WordPress/5.4.2" created="2020-07-28 08:12" -->
+>>>>>>> 9e157c03b04a9c889b432ffa4a95bf9302f84a4e
     <rss version="2.0"
          xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
          xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +33,11 @@
             <title>FastWay</title>
             <link>http://localhost/fastway</link>
             <description>Transport &#38; Logistic WordPress Theme</description>
+<<<<<<< HEAD
             <pubDate>Tue, 28 Jul 2020 09:09:36 +0000</pubDate>
+=======
+            <pubDate>Tue, 28 Jul 2020 08:12:16 +0000</pubDate>
+>>>>>>> 9e157c03b04a9c889b432ffa4a95bf9302f84a4e
             <language>en-US</language>
             <wp:wxr_version>1.2</wp:wxr_version>
             <wp:base_site_url>http://localhost/fastway</wp:base_site_url>
