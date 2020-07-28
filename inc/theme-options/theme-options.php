@@ -18,7 +18,7 @@ if(class_exists('Newsletter')) {
         $index = 1;
         foreach ( $forms as $key => $form )
         {
-            $newsletter_forms[!important $key ] = sprintf( esc_html__( 'Form %s', 'fastway' ), $index );
+            $newsletter_forms[$key] = sprintf( esc_html__( 'Form %s', 'fastway' ), $index );
             $index ++;
         }
     }
