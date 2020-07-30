@@ -1,6 +1,7 @@
 .cms-overlay-wrap{
 	position: relative;
 	overflow: hidden;
+	outline: none;
 	img{
 		@include transition(all 0.25s);
 	}

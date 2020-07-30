@@ -35,10 +35,16 @@
 }
 
 // Bottom sidebar 
+.cms-bottom-sidebar{
+	width: 100%;
+}
 .cms-bottom-sidebar-inner{
 	display: flex;
 	flex-wrap: wrap;
 	margin: -15px;
+	.widget-title{
+		margin: 0 0 20px;
+	}
 	> .widget{
 		flex: 0 0 100%;
 		max-width: 100%;

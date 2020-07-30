@@ -82,34 +82,49 @@ etc_add_custom_widget(
                     'name' => 'icon_section',
                     'label' => esc_html__( 'Icon Box', 'fastway' ),
                     'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-                    'controls' => array(
+                    'controls' => array_merge(
                         array(
-                            'name'             => 'selected_icon',
-                            'label'            => esc_html__( 'Icon', 'fastway' ),
-                            'type'             => \Elementor\Controls_Manager::ICONS,
-                            'fa4compatibility' => 'icon',
-                            'default'          => [
-                                'value' => 'fas fa-star',
-                                'library' => 'fa-solid',
+                            array(
+                                'name'             => 'selected_icon',
+                                'label'            => esc_html__( 'Icon', 'fastway' ),
+                                'type'             => \Elementor\Controls_Manager::ICONS,
+                                'fa4compatibility' => 'icon',
+                                'default'          => [
+                                    'value' => 'fas fa-star',
+                                    'library' => 'fa-solid',
+                                ],
+                            ),
+                            array(
+                                'name'        => 'title_text',
+                                'label'       => esc_html__( 'Title', 'fastway' ),
+                                'type'        => \Elementor\Controls_Manager::TEXT,
+                                'default'     => esc_html__( 'This is the heading', 'fastway' ),
+                                'placeholder' => esc_html__( 'Enter your title', 'fastway' ),
+                                'label_block' => true,
+                            ),
+                            array(
+                                'name'        => 'description_text',
+                                'label'       => esc_html__( 'Description', 'fastway' ),
+                                'type'        => \Elementor\Controls_Manager::TEXTAREA,
+                                'default'     => esc_html__( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'fastway' ),
+                                'placeholder' => esc_html__( 'Enter your description', 'fastway' ),
+                                'rows'        => 10,
+                                'show_label'  => false,
+                            ),
+                            array(
+                                'name'    => 'add_icon_link',
+                                'label'   => esc_html__('Add icon Link','fastway'),
+                                'type'    => \Elementor\Controls_Manager::SWITCHER,
+                                'default' => 'true',
+                            )
+                        ),
+                        fastway_elementor_button_settings([
+                            'condition' => [
+                                'add_icon_link'    => 'true'                            
                             ],
-                        ),
-                        array(
-                            'name'        => 'title_text',
-                            'label'       => esc_html__( 'Title', 'fastway' ),
-                            'type'        => \Elementor\Controls_Manager::TEXT,
-                            'default'     => esc_html__( 'This is the heading', 'fastway' ),
-                            'placeholder' => esc_html__( 'Enter your title', 'fastway' ),
-                            'label_block' => true,
-                        ),
-                        array(
-                            'name'        => 'description_text',
-                            'label'       => esc_html__( 'Description', 'fastway' ),
-                            'type'        => \Elementor\Controls_Manager::TEXTAREA,
-                            'default'     => esc_html__( 'Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'fastway' ),
-                            'placeholder' => esc_html__( 'Enter your description', 'fastway' ),
-                            'rows'        => 10,
-                            'show_label'  => false,
-                        )
+                            'btn_text'         => 'Overlay',
+                            'btn_type_default' => 'btn-overlay'
+                        ])
                     )
                 )
             )

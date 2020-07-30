@@ -25,6 +25,14 @@
     		[dir="rtl"] &{
     			border-left: 0;
     			border-right: 1px solid rgba(0, 0, 0, 0.1);
+    			&:last-child{
+    				border-left: 1px solid rgba(0, 0, 0, 0.1);
+    			}
+    		}
+    		@media (max-width: $screen-sm-min){
+    			&:last-child{
+    				border-right: 1px solid rgba(0, 0, 0, 0.1);
+    			}
     		}
 		}
 	}
@@ -68,10 +76,16 @@
 		    	margin-right: 15px;
 		    	color: $accent_color;
 		    	padding-top: 4px;
+		    	&.iconmoon-smartphone{
+		    		margin-right: 10px;
+		    	}
 		    	[dir="rtl"] &{
 		    		float: right;
 		    		margin-left: 15px;
 		    		margin-right: 0;
+		    		&.iconmoon-smartphone{
+		    			margin-left: 10px;
+		    		}
 		    	}
 		    	+ span{
 		    		display: block;

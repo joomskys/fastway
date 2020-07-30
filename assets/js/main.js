@@ -711,8 +711,8 @@
     function fastway_background_moving(){
         "use strict";
         $('.cms-bg-moving-h').bgscroll({scrollSpeed:20 , direction:'h' });
-        $('.cms-bg-moving-v').bgscroll({scrollSpeed:20 , direction:'v' });
-        $('.cms-bg-moving-d').bgscroll({scrollSpeed:20 , direction:'d' });
+        //$('.cms-bg-moving-v').bgscroll({scrollSpeed:20 , direction:'v' });
+        //$('.cms-bg-moving-d').bgscroll({scrollSpeed:20 , direction:'d' });
     }
 
 })(jQuery);

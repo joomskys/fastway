@@ -23,6 +23,7 @@ input[type="submit"],
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 600;
+  vertical-align: top;
   @include transition(all .8s ease);
   @include border-radius(0);
   &:after{
@@ -92,9 +93,6 @@ input[type="submit"],
     }
   }
 }
-
-
-
 .site-button-link,
 .btn-text {
   display: inline-block;
@@ -102,6 +100,7 @@ input[type="submit"],
   position: relative;
   padding: 5px 15px 5px 0px;
   overflow: hidden;
+  color: $accent_color;
   &:before,
   &:after{
     content: "";
@@ -136,6 +135,15 @@ input[type="submit"],
       background-color: $accent_color;
     }
   }
+}
+// Overlay button
+.btn-overlay{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
 // Video 
 .btn-video{

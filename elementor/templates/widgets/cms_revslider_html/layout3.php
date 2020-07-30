@@ -241,8 +241,9 @@
                                     font-weight: 500; 
                                     color: rgba(255, 255, 255, 0.85);
                                     border-width:0px;">
-                                    <span style="font-family: 'Poppins', sans-serif;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer.</span>
+                                    <span style="font-family: 'Poppins', sans-serif;">
+                                          Representative logistics operator providing full range of service in the sphere of customs clearance and transportation worldwide.
+                                    </span>
                                     </div>
                                 
                                     <!-- LAYER NR. 9 [ for readmore botton ] -->
@@ -268,7 +269,7 @@
                                     data-paddingleft="[0,0,0,0]"
                                     
                                     style="z-index:13; text-transform:uppercase; font-weight:700;">
-                                    <a href="javascript:;" class="btn btn-accent button-lg  m-r15">Read more</a>
+                                    <a href="#service" class="btn btn-accent m-r15">Read more</a>
                                     </div>
                                     
                                   </li>

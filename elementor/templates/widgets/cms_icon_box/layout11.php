@@ -52,4 +52,5 @@ $is_new = \Elementor\Icons_Manager::is_migration_allowed();
             <p><?php echo esc_html($settings['description_text']); ?></p>
         </div>
     </div>
+    <?php fastway_elementor_button_render($widget, $settings); ?>
 </div>

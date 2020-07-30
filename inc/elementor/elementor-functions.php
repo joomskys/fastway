@@ -78,7 +78,7 @@ if(!function_exists('fastway_elementor_get_post_grid')){
                                             $content = strip_shortcodes( $post->post_content );
                                             $content = apply_filters( 'the_content', $content );
                                             $content = str_replace(']]>', ']]&gt;', $content);
-                                            $content = wp_trim_words( $content, $num_words, '&hellip;' );
+                                            $content = wp_trim_words( $content, $num_words, '' );
                                             echo wp_kses_post($content);
                                         }
                                     ?></div>
@@ -160,7 +160,7 @@ if(!function_exists('fastway_elementor_get_post_list')){
                                                 $content = strip_shortcodes( $post->post_content );
                                                 $content = apply_filters( 'the_content', $content );
                                                 $content = str_replace(']]>', ']]&gt;', $content);
-                                                $content = wp_trim_words( $content, $num_words, '&hellip;' );
+                                                $content = wp_trim_words( $content, $num_words, '' );
                                                 echo wp_kses_post($content);
                                             }
                                         ?>
@@ -243,7 +243,7 @@ if(!function_exists('fastway_elementor_get_service')){
                     $content = strip_shortcodes( $post->post_content );
                     $content = apply_filters( 'the_content', $content );
                     $content = str_replace(']]>', ']]&gt;', $content);
-                    $content = wp_trim_words( $content, 15, '&hellip;' );
+                    $content = wp_trim_words( $content, 15, '' );
                 }
                 if($args['show_readmore'] == '1') { 
                     $readmore = '

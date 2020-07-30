@@ -70,6 +70,11 @@ etc_add_custom_widget(
                                     'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout10.png',
                                     'show_label' => true
                                 ],
+                                '11' => [
+                                    'label' => esc_html__( 'Layout 11', 'fastway' ),
+                                    'image' => get_template_directory_uri() . '/elementor/templates/widgets/cms_heading/layout/layout11.png',
+                                    'show_label' => true
+                                ],
                             ],
                         ),
                     ),
@@ -96,7 +101,7 @@ etc_add_custom_widget(
                                 'placeholder' => esc_html__( 'Enter your sub title', 'fastway' ),
                                 'label_block' => true,
                                 'condition'   => [
-                                    'layout' => ['1','3','4','7','8','9','10'],
+                                    'layout' => ['1','3','4','7','8','9','10','11'],
                                 ],
                             ),
                             array(
@@ -108,12 +113,12 @@ etc_add_custom_widget(
                                 'rows'        => 10,
                                 'show_label'  => false,
                                 'condition'   => [
-                                    'layout' => ['4','6','8','9','10'],
+                                    'layout' => ['4','6','8','9','10','11'],
                                 ],
                             ),
                             array(
                                 'name'     => 'cms_lists',
-                                'label'    => esc_html__( 'Lists', 'fastway' ),
+                                'label'    => esc_html__( 'Feature Left', 'fastway' ),
                                 'type'     => \Elementor\Controls_Manager::REPEATER,
                                 'controls' => array(
                                     array(
@@ -137,14 +142,21 @@ etc_add_custom_widget(
                                 ),
                                 'default' => [
                                     [
-                                        'list_title' => 'Simply dummy text of the Lorem Ipsum is printing and type setting.',
+                                        'list_title' => 'Quality Control System',
                                         'list_icon'  => [
                                             'value'   => 'fas fa-check-circle',
                                             'library' => 'fa-solid',
                                         ]
                                     ],
                                     [
-                                        'list_title' => 'Dummy text of the printing and typesetting industry. Text of the printing.',
+                                        'list_title' => '100% Satisfaction Guarantee',
+                                        'list_icon'  => [
+                                            'value'   => 'fas fa-check-circle',
+                                            'library' => 'fa-solid',
+                                        ]
+                                    ],
+                                    [
+                                        'list_title' => 'Highly Professional Staff',
                                         'list_icon'  => [
                                             'value'   => 'fas fa-check-circle',
                                             'library' => 'fa-solid',
@@ -153,13 +165,65 @@ etc_add_custom_widget(
                                 ],
                                 'title_field' => '{{{ list_title }}}',
                                 'condition'   => [
-                                    'layout' => ['9'],
+                                    'layout' => ['9','11'],
+                                ]
+                            ),
+                            array(
+                                'name'     => 'cms_lists_r',
+                                'label'    => esc_html__( 'Feature Right', 'fastway' ),
+                                'type'     => \Elementor\Controls_Manager::REPEATER,
+                                'controls' => array(
+                                    array(
+                                        'name'        => 'list_title',
+                                        'label'       => esc_html__( 'List Title', 'fastway' ),
+                                        'type'        => \Elementor\Controls_Manager::TEXT,
+                                        'default'     => 'Your text here #1',
+                                        'placeholder' => esc_html__( 'Enter your text', 'fastway' ),
+                                        'label_block' => true,
+                                    ),
+                                    array(
+                                        'name'             => 'list_icon',
+                                        'label'            => esc_html__( 'Icon', 'fastway' ),
+                                        'type'             => \Elementor\Controls_Manager::ICONS,
+                                        'fa4compatibility' => 'icon',
+                                        'default'          => [
+                                            'value'   => 'fas fa-check-circle',
+                                            'library' => 'fa-solid',
+                                        ],
+                                    )
+                                ),
+                                'default' => [
+                                    [
+                                        'list_title' => 'Unrivalled workmanship',
+                                        'list_icon'  => [
+                                            'value'   => 'fas fa-check-circle',
+                                            'library' => 'fa-solid',
+                                        ]
+                                    ],
+                                    [
+                                        'list_title' => 'Accurate Testing Processes',
+                                        'list_icon'  => [
+                                            'value'   => 'fas fa-check-circle',
+                                            'library' => 'fa-solid',
+                                        ]
+                                    ],
+                                    [
+                                        'list_title' => 'Professional and Qualified',
+                                        'list_icon'  => [
+                                            'value'   => 'fas fa-check-circle',
+                                            'library' => 'fa-solid',
+                                        ]
+                                    ]
+                                ],
+                                'title_field' => '{{{ list_title }}}',
+                                'condition'   => [
+                                    'layout' => ['11'],
                                 ]
                             )
                         ),
                         fastway_elementor_button_settings([
                             'condition' => [
-                                'layout'    => ['4','6','9']
+                                'layout'    => ['4','6','9', '11']
                             ]
                         ])
                     )

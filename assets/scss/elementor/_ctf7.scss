@@ -9,6 +9,11 @@
 }
 
 .cms-cf7-layout3{
+	.cms-cf7-inner{
+		position: relative;
+		z-index: 1;
+		color: $white;
+	}
 	.wpcf7-form .wpcf7-form-control-wrap{
 		margin-bottom: 25px;
 	}

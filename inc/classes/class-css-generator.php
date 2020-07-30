@@ -1,5 +1,5 @@
 <?php
-if ( ! class_exists( 'ReduxFrameworkInstances' ) ) {
+if ( ! class_exists( 'Redux_Instances' ) ) {
 	return;
 }
 
@@ -61,7 +61,7 @@ class CSS_Generator {
             return;
         }
 
-		$this->redux = ReduxFrameworkInstances::get_instance( $this->opt_name );
+		$this->redux = Redux_Instances::get_instance( $this->opt_name );
 
 		if ( empty( $this->redux ) || ! $this->redux instanceof ReduxFramework ) {
 			return;
@@ -74,7 +74,8 @@ class CSS_Generator {
 
 	function generate_with_dev_mode() {
 		if ( $this->dev_mode === true ) {
-			$this->generate_file();
+			$this->generate_file(); 
+			$this->generate_min_file(); 
 		}
 	}
 
@@ -130,7 +131,41 @@ class CSS_Generator {
 			'content' => preg_replace( "/(?<=[^\r]|^)\n/", "\r\n", $this->scssc->compile( '@import "theme.scss"' ) )
 		) );
 	}
+	/**
+     * Generate options and css files
+     */
+    function generate_min_file()
+    {   
+        // Theme
+        $scss_dir = get_template_directory() . '/assets/scss/';
+        $css_dir  = get_template_directory() . '/assets/css/';
+        $css_file = $css_dir . 'theme.min.css';
+        // Child Theme
+        $child_scss_dir = get_stylesheet_directory() . '/assets/scss/';
+        $child_css_dir  = get_stylesheet_directory() . '/assets/css/';
+        $child_css_file = $child_css_dir . 'child-theme.min.css';
 
+        $this->scssc = new \Leafo\ScssPhp\Compiler();
+        $this->scssc->setImportPaths( $scss_dir );
+
+        $_options = $scss_dir . 'variables.scss';
+
+        $this->redux->filesystem->execute( 'put_contents', $_options, array(
+            'content' => $this->options_output()
+        ) );
+        $this->scssc->setFormatter( 'Leafo\ScssPhp\Formatter\Crunched' );
+        
+        // Theme
+        $this->redux->filesystem->execute( 'put_contents', $css_file, array(
+            'content' => $this->scssc->compile( '@'.'import "theme.scss"' )
+        ) );
+        // Child Theme
+        if(is_child_theme()){
+            $this->redux->filesystem->execute( 'put_contents', $child_css_file, array(
+                'content' => $this->scssc->compile( '@'.'import "child-theme.scss"' )
+            ) );
+        }
+    }
 	/**
 	 * Output options to _variables.scss
 	 *

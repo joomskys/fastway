@@ -12,7 +12,7 @@ $sticky_on = fastway_get_opt( 'sticky_on', false );
                     <div class="site-branding col-12 col-md-auto">
                         <?php get_template_part( 'template-parts/header-branding' ); ?>
                     </div>
-                    <div class="cms-header-quick-contact col-auto d-max-sm-none">
+                    <div class="cms-header-quick-contact col-auto d-max-md-none">
                         <?php fastway_header_top_quick_contact(['class' => 'style2 row']); ?>
                     </div>
                 </div>

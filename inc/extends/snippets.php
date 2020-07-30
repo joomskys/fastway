@@ -2,56 +2,60 @@
 /*
  * get page ID by Slug
 */
-function fastway_get_id_by_slug($slug, $post_type){
-    if(empty($slug)) return '';
-    $content = get_page_by_path($slug, OBJECT, $post_type);
-    if(is_object($content)) 
-        return $content->ID;
-    else
-        return;
+if(!function_exists('fastway_get_id_by_slug')){
+    function fastway_get_id_by_slug($slug, $post_type){
+        if(empty($slug)) return '';
+        $content = get_page_by_path($slug, OBJECT, $post_type);
+        if(is_object($content)) 
+            return $content->ID;
+        else
+            return;
+    }
 }
+if(!function_exists('fastway_get_link_by_slug')){
+    function fastway_get_link_by_slug($slug, $post_type = 'post'){
+        // Initialize the permalink value
+        $permalink = null;
 
-function fastway_get_link_by_slug($slug, $post_type = 'post'){
-    // Initialize the permalink value
-    $permalink = null;
+        // Build the arguments for WP_Query
+        $args = array(
+            'name'          => $slug,
+            'max_num_posts' => 1
+        );
 
-    // Build the arguments for WP_Query
-    $args = array(
-        'name'          => $slug,
-        'max_num_posts' => 1
-    );
+        // If the optional argument is set, add it to the arguments array
+        if( '' != $post_type ) {
+            $args = array_merge( $args, array( 'post_type' => $post_type ) );
+        }
 
-    // If the optional argument is set, add it to the arguments array
-    if( '' != $post_type ) {
-        $args = array_merge( $args, array( 'post_type' => $post_type ) );
+        // Run the query (and reset it)
+        $query = new WP_Query( $args );
+        if( $query->have_posts() ) {
+            $query->the_post();
+            $permalink = get_permalink( get_the_ID() );
+            wp_reset_postdata();
+        }
+        return $permalink;
     }
-
-    // Run the query (and reset it)
-    $query = new WP_Query( $args );
-    if( $query->have_posts() ) {
-        $query->the_post();
-        $permalink = get_permalink( get_the_ID() );
-        wp_reset_postdata();
-    }
-    return $permalink;
 }
 
 /**
  * get content by slug
 **/
-function fastway_get_content_by_slug($slug, $post_type){
-    $content = get_posts(
-        array(
-            'name'      => $slug,
-            'post_type' => $post_type
-        )
-    );
-    if(!empty($content))
-        return $content[0]->post_content;
-    else 
-        return;
+if(!function_exists('fastway_get_content_by_slug')){
+    function fastway_get_content_by_slug($slug, $post_type){
+        $content = get_posts(
+            array(
+                'name'      => $slug,
+                'post_type' => $post_type
+            )
+        );
+        if(!empty($content))
+            return $content[0]->post_content;
+        else 
+            return;
+    }
 }
-
 /**
  * Show content
  * Show content by post ID

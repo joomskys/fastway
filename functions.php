@@ -107,7 +107,7 @@ if(!function_exists('fastway_configs')){
             // Page title
             'ptitle_color'         => '#ffffff',
             'ptitle_bg_color'      => 'var(--accent-color)',
-            'ptitle_bg_img'        => '../images/ptitle-layout/bg.jpg',
+            'ptitle_bg_img'        => get_template_directory_uri().'/assets/images/ptitle-layout/bg.jpg',
             'ptitle_overlay_color' => 'rgba(0,0,0,0.7)',
             // Comments 
             'cmt_avatar_size'  => 90,
@@ -334,11 +334,12 @@ add_action( 'widgets_init', 'fastway_widgets_init' );
  */
 function fastway_scripts() {
 	$theme = wp_get_theme( get_template() );
+    $min = fastway_get_opt('dev_mode', '0') === '0' ? '.min' : '';
 	wp_enqueue_style( 'font-awesome-all', get_template_directory_uri() . '/assets/fonts/awesome/css/all.min.css', array(), '5.14.0' );
     wp_enqueue_style( 'fastway-flaticon', get_template_directory_uri() . '/assets/fonts/flaticon/font-flaticon.css', array(), $theme->get( 'Version' ) ); 
     wp_enqueue_style( 'fastway-icomoon', get_template_directory_uri() . '/assets/fonts/icomoon/css/font-icomoon.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0' );
-	wp_enqueue_style( 'fastway-theme', get_template_directory_uri() . '/assets/css/theme.css', array(), $theme->get( 'Version' ) );
+	wp_enqueue_style( 'fastway-theme', get_template_directory_uri() . '/assets/css/theme'.$min.'.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'fastway-menu', get_template_directory_uri() . '/assets/css/menu.css', array(), $theme->get( 'Version' ) );
 	wp_enqueue_style( 'fastway-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'fastway-google-fonts', fastway_fonts_url() );

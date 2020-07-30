@@ -119,6 +119,7 @@
 	.cms-scroll-top-arrow{
 		display: block;
 	    width: 100%;
+	    position: relative;
 	    @include transform(rotate(-90deg));
 	    @include animation(vibrate 2s linear 0s infinite);
 	    &:before{

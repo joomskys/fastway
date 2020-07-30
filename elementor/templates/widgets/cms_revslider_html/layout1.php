@@ -133,7 +133,7 @@
                             data-paddingbottom="[15,15,15,15]"
                             data-paddingleft="[50,50,0,0]"
                 
-                            style="z-index: 8; "><a href="#" class="btn btn-accent">READ MORE</a> </div>
+                            style="z-index: 8; "><a href="#service" class="btn btn-accent">READ MORE</a> </div>
                 
                         
                     </li>
@@ -265,7 +265,7 @@
                             data-paddingbottom="[15,15,15,15]"
                             data-paddingleft="[50,50,0,0]"
                 
-                            style="z-index: 8; "><a href="#" class="btn btn-accent">READ MORE</a> </div>
+                            style="z-index: 8; "><a href="#service" class="btn btn-accent">READ MORE</a> </div>
                 
                         
                     </li>
@@ -396,7 +396,7 @@
                             data-paddingbottom="[15,15,15,15]"
                             data-paddingleft="[50,50,0,0]"
                 
-                            style="z-index: 8; "><a href="#" class="btn btn-accent">READ MORE</a> </div>
+                            style="z-index: 8; "><a href="#service" class="btn btn-accent">READ MORE</a> </div>
                 
                         
                     </li>

@@ -1,0 +1,14 @@
+.search{
+	// no result
+	&.search-no-results{
+		.page-content{
+			.search-form{
+				.searchform-wrap{
+					.search-field{
+						margin-bottom: 15px;
+					}
+				}
+			}
+		}
+	}
+}

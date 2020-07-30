@@ -77,11 +77,7 @@ if ( ! empty( $settings['video_btn_link']['url'] ) ) {
                 </a>
                 <div class="cms-video-title h2 m-b30 m-t50 text-white"><?php echo esc_html($video_label); ?></div>
                 <div class="cms-video-sub-title h4 m-b30 m-t10 text-white"><?php echo esc_html($video_sub_title); ?></div>
-                <?php if(!empty($settings['video_btn_text'])) { ?>
-                    <a <?php etc_print_html($widget->get_render_attribute_string( 'button' )); ?>>
-                        <span <?php etc_print_html($widget->get_render_attribute_string( 'video_btn_text' )); ?>><?php echo esc_html($settings['video_btn_text']); ?></span>
-                    </a>
-                <?php } ?>
+                <?php fastway_elementor_button_render($widget, $settings, $args = ['prefix' => 'video_']); ?>
             </div>
         <?php endif; ?>  
     <?php endif; ?>

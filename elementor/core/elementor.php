@@ -1,4 +1,22 @@
 <?php
+/**
+ * Get Page List 
+ * @return array
+*/
+if(!function_exists('fastway_elementor_list_page_opts')){
+    function fastway_elementor_list_page_opts($default = []){
+        $page_list = array();
+        if(!empty($default))
+            $page_list[$default['value']] = $default['label'];
+        $pages = get_pages(array('hierarchical' => 0, 'posts_per_page' => '-1'));
+        foreach($pages as $page){
+            $page_list[$page->post_name] = $page->post_title;
+        }
+        return $page_list;
+    }
+}
+
+
 if(!function_exists('fastway_register_custom_icon_library')){
     add_filter('elementor/icons_manager/native', 'fastway_register_custom_icon_library');
     function fastway_register_custom_icon_library($tabs){
@@ -28,7 +46,6 @@ if(!function_exists('fastway_register_custom_icon_library')){
                 'native'        => true,
             ]
         ];
-
         $tabs = array_merge($custom_tabs, $tabs);
         return $tabs;
     }
@@ -527,11 +544,13 @@ if(!function_exists('fastway_elementor_button_settings')){
         $args = wp_parse_args($args, [
             'options'   => [],
             'condition' => [],
-            'btn_text'  => ''
+            'prefix'    => '',
+            'btn_text'  => '',
+            'btn_type_default' => 'btn btn-fill'
         ]);
         $default = [
             array(
-                'name'        => 'btn_text',
+                'name'        => $args['prefix'].'btn_text',
                 'label'       => esc_html__( 'Button Text', 'fastway' ),
                 'type'        => \Elementor\Controls_Manager::TEXT,
                 'default'     => $args['btn_text'],
@@ -539,14 +558,33 @@ if(!function_exists('fastway_elementor_button_settings')){
                 'condition'   => $args['condition'],
             ),
             array(
-                'name'        => 'btn_link',
+                'name'        => 'btn_link_type',
+                'label'       => esc_html__( 'Link Type', 'fastway' ),
+                'type'        => \Elementor\Controls_Manager::SELECT,
+                'default'     => 'custom',
+                'options'     => [
+                    'custom'   => esc_html__('Custom','fastway'),
+                    'page'     => esc_html__('Internal Page','fastway'),
+                ],
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition']),
+            ),
+            array(
+                'name'        => 'btn_link_page',
+                'label'       => esc_html__( 'Page Link', 'fastway' ),
+                'type'        => \Elementor\Controls_Manager::SELECT,
+                'default'     => '',
+                'options'     => fastway_elementor_list_page_opts(),
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition'], ['btn_link_type' => 'page']),
+            ),            
+            array(
+                'name'        => $args['prefix'].'btn_link',
                 'label'       => esc_html__( 'Link', 'fastway' ),
                 'type'        => \Elementor\Controls_Manager::URL,
                 'placeholder' => esc_html__( 'https://your-link.com', 'fastway' ),
                 'default'     => [
                     'url' => '#',
                 ],
-                'condition' => array_merge(['btn_text!' => ''], $args['condition']),
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition'], ['btn_link_type' => 'custom']),
             ),
             array(
                 'name'        => 'btn_color',
@@ -560,19 +598,20 @@ if(!function_exists('fastway_elementor_button_settings')){
                     'secondary' => esc_html__('Secondary','fastway'),
                     'white'     => esc_html__('White','fastway')
                 ],
-                'condition' => array_merge(['btn_text!' => ''], $args['condition']),
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition']),
             ),
             array(
                 'name'        => 'btn_type',
                 'label'       => esc_html__( 'Mode', 'fastway' ),
                 'type'        => \Elementor\Controls_Manager::SELECT,
-                'default'     => 'btn btn-fill',
+                'default'     => $args['btn_type_default'],
                 'options'     => [
                     'btn btn-fill'    => esc_html__('Fill','fastway'),
                     'btn btn-outline' => esc_html__('Outline','fastway'),
                     'btn-text'        => esc_html__('Just Text','fastway'),
+                    'btn-overlay'     => esc_html__('Overlay','fastway'),
                 ],
-                'condition' => array_merge(['btn_text!' => ''], $args['condition']),
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition']),
             ),
             array(
                 'name'        => 'btn_size',
@@ -587,7 +626,7 @@ if(!function_exists('fastway_elementor_button_settings')){
                     'lg' => esc_html__('Large','fastway'),
                     'xl' => esc_html__('Extra Large','fastway')
                 ],
-                'condition' => array_merge(['btn_text!' => ''], $args['condition']), 
+                'condition' => array_merge([$args['prefix'].'btn_text!' => ''], $args['condition']), 
             )
         ];
         return wp_parse_args($args['options'], $default);
@@ -596,18 +635,21 @@ if(!function_exists('fastway_elementor_button_settings')){
 if(!function_exists('fastway_elementor_button_render')){
     function fastway_elementor_button_render($widget, $settings, $args = []){
         $args = wp_parse_args($args, [
+            'prefix' => '',
             'wrap'  => true,
             'class' => ''
         ]);
-        if ( ! empty( $settings['btn_link']['url'] ) ) {
-            $widget->add_render_attribute( 'button', 'href', $settings['btn_link']['url'] );
-            $widget->add_render_attribute( 'button', 'class', 'btn' );
-
-            if ( $settings['btn_link']['is_external'] ) {
+        if(empty($settings[$args['prefix'].'btn_text'])) return;
+        $widget->add_render_attribute( 'button', 'class', $settings['btn_type'] );
+        if($settings['btn_link_type'] === 'page'){
+            $widget->add_render_attribute( 'button', 'href', fastway_get_link_by_slug($settings['btn_link_page'],'page') );
+        } elseif ( ! empty( $settings[$args['prefix'].'btn_link']['url'] ) ) {
+            $widget->add_render_attribute( 'button', 'href', $settings[$args['prefix'].'btn_link']['url'] );
+            if ( $settings[$args['prefix'].'btn_link']['is_external'] ) {
                 $widget->add_render_attribute( 'button', 'target', '_blank' );
             }
 
-            if ( $settings['btn_link']['nofollow'] ) {
+            if ( $settings[$args['prefix'].'btn_link']['nofollow'] ) {
                 $widget->add_render_attribute( 'button', 'rel', 'nofollow' );
             }
         }
@@ -654,9 +696,12 @@ if(!function_exists('fastway_elementor_button_render')){
                                 \Elementor\Icons_Manager::render_icon( $settings['btn_icon'], [ 'aria-hidden' => 'true' ] );
                             ?>
                         </span>
-                    <?php endif; ?>
-                    <span <?php etc_print_html($widget->get_render_attribute_string( 'text' )); ?>><?php echo esc_html($settings['btn_text']); ?></span>
-                    <?php if($settings['icon_align'] === 'right' && !empty($settings['btn_icon']['value'])) : ?>
+                    <?php endif; 
+                    if($settings['btn_type'] != 'btn-overlay') {
+                    ?>
+                    <span <?php etc_print_html($widget->get_render_attribute_string( 'text' )); ?>><?php echo esc_html($settings[$args['prefix'].'btn_text']); ?></span>
+                    <?php }
+                    if($settings['icon_align'] === 'right' && !empty($settings['btn_icon']['value'])) : ?>
                         <span <?php etc_print_html($widget->get_render_attribute_string( 'icon-align' )); ?>>
                             <?php
                                 \Elementor\Icons_Manager::render_icon( $settings['btn_icon'], [ 'aria-hidden' => 'true' ] );
@@ -671,6 +716,23 @@ if(!function_exists('fastway_elementor_button_render')){
         endif;
     }
 }
+
+if(!function_exists('fastway_elementor_section_before_row')){
+    //add_action('cms_etc_before_render_container_html', 'fastway_elementor_section_before_row');
+    function fastway_elementor_section_before_row($settings){
+        //var_dump($settings);
+    ?>
+        <div class="cms-shake-image-wrap">
+            <div class="cms-shake-image shake_image">
+                <img src="<?php echo get_template_directory_uri();?>/assets/images/truck/truck-2.png" alt="fastway">
+                    <span class="tyre-position"><img src="<?php echo get_template_directory_uri();?>/assets/images/truck/rotate-tyer.png" alt="fastway" class="spin-tyres"></span>
+                <img class="blink-image" src="<?php echo get_template_directory_uri();?>/assets/images/truck/light-blink.png" alt="fastway">
+            </div>
+        </div>
+    <?php
+    }
+}
+
 // Scan element (need add to bottom of this file)
 $files = scandir(get_template_directory() . '/elementor/core/register');
 foreach ($files as $file){

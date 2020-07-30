@@ -1,17 +1,3 @@
-<?php
-if ( ! empty( $settings['btn_link']['url'] ) ) {
-    $widget->add_render_attribute( 'button', 'href', $settings['btn_link']['url'] );
-    $widget->add_render_attribute( 'button', 'class', 'cms-heading-btn text-accent font-600' );
-
-    if ( $settings['btn_link']['is_external'] ) {
-        $widget->add_render_attribute( 'button', 'target', '_blank' );
-    }
-
-    if ( $settings['btn_link']['nofollow'] ) {
-        $widget->add_render_attribute( 'button', 'rel', 'nofollow' );
-    }
-}
-?>
 <div class="cms-heading-wrapper cms-heading-layout6">
     <div class="cms-heading-inner relative p-20 bg-white"><?php 
         if ( !empty($settings['heading_text']) ) { ?>
@@ -20,10 +6,7 @@ if ( ! empty( $settings['btn_link']['url'] ) ) {
         if(!empty($settings['description_text'])) { ?>
             <div class="cms-heading-desc m-b25"><?php echo esc_html($settings['description_text']); ?></div>
         <?php }
-        if(!empty($settings['btn_text'])) { ?>
-            <a <?php etc_print_html($widget->get_render_attribute_string( 'button' )); ?>>
-                <span <?php etc_print_html($widget->get_render_attribute_string( 'btn_text' )); ?>><?php echo esc_html($settings['btn_text']); ?></span>
-            </a>
-        <?php } ?>
+        fastway_elementor_button_render($widget, $settings, ['class' => 'cms-heading-btns']);
+        ?>
     </div>
 </div>

@@ -118,7 +118,7 @@
                                         data-paddingleft="[0,0,0,0]"
                                         data-lasttriggerstate="reset"
                                         style="z-index: 10; white-space: nowrap;">
-                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#" class="btn btn-accent"> CLICK ME</a></div></div>
+                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#home2-service" class="btn btn-accent"> CLICK ME</a></div></div>
                             
 
                                 </li>
@@ -238,7 +238,7 @@
                                         data-paddingleft="[0,0,0,0]"
                                         data-lasttriggerstate="reset"
                                         style="z-index: 10; white-space: nowrap;">
-                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#" class="btn btn-accent"> CLICK ME</a></div></div>
+                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#home2-service" class="btn btn-accent"> CLICK ME</a></div></div>
                             
 
                                 </li>
@@ -358,7 +358,7 @@
                                         data-paddingleft="[0,0,0,0]"
                                         data-lasttriggerstate="reset"
                                         style="z-index: 10; white-space: nowrap;">
-                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#" class="btn btn-accent"> CLICK ME</a></div></div>
+                            <div class="rs-looped rs-slideloop"  data-easing="Power1.easeInOut" data-speed="1" data-xs="0" data-xe="0" data-ys="10" data-ye="0"><a href="#home2-service" class="btn btn-accent"> CLICK ME</a></div></div>
                             
 
                                 </li>
