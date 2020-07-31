@@ -18,10 +18,12 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     <div id="cms-page" class="cms-page site">
+        <div class="cms-header-wraps"><?php 
+            fastway_header_top();
+            fastway_header_layout();
+        ?></div>
         <?php 
         	fastway_page_loading();
-            fastway_header_top();
-        	fastway_header_layout();
             fastway_page_title_layout();
         ?>
         <div id="content" class="site-content">

@@ -32,19 +32,13 @@ if(!function_exists('fastway_custom_section_params')){
                         // this field has config prefix_class
                         // it mean that the class will be added directly to wrapper
                         // screen shot - http://prntscr.com/tjcnjg
-                        /*array(
-                            'name'    => 'custom_position',
-                            'label'   => esc_html__( 'Position Settings', 'fastway' ),
-                            'type'    => \Elementor\Controls_Manager::SELECT,
-                            'options' => array(
-                                ''  => esc_html__( 'Default', 'fastway' ),
-                                '1' => esc_html__( 'Postion 1', 'fastway' ),
-                                '2' => esc_html__( 'Postion 2', 'fastway' ),
-                                '3' => esc_html__( 'Postion 3', 'fastway' ),
-                            ),
-                            'prefix_class' => 'fastway-',
-                            'default'      => '',
-                        ),*/
+                        array(
+                            'name'    => 'add_shake_image',
+                            'label'   => esc_html__( 'Add Shake Image', 'fastway' ),
+                            'type'    => \Elementor\Controls_Manager::SWITCHER,
+                            'prefix_class' => 'cms-had-shake-img',
+                            'default'      => 'false',
+                        )
                     ),
                 ),
             ),
@@ -120,5 +114,24 @@ if(!function_exists('fastway_custom_column_classes')){
             $classes[] = 'style-' . $settings['custom_style'];
         }
         return $classes;
+    }
+}
+
+// add html to before row
+if(!function_exists('fastway_before_elementor_row_shake_image')){
+    add_action('fastway_before_elementor_row','fastway_before_elementor_row_shake_image');
+    function fastway_before_elementor_row_shake_image($settings){
+        if($settings['add_shake_image'] === 'false') return;
+    ?>
+    <div class="pos-bl">
+        <div class="cms-shake-image-wrap">
+            <div class="cms-shake-image shake_image">
+                <img src="<?php echo esc_url(get_template_directory_uri().'/assets/images/truck/truck-2.png');?>" alt="fastway" >
+                    <span class="tyre-position"><img src="<?php echo esc_url(get_template_directory_uri().'/assets/images/truck/rotate-tyer.png');?>" alt="fastway" class="spin-tyres"></span>
+                <img class="blink-image" src="<?php echo esc_url(get_template_directory_uri().'/assets/images/truck/light-blink.png');?>" alt="fastway">
+            </div>
+        </div>
+    </div>
+    <?php
     }
 }

@@ -79,12 +79,19 @@
 		}
 	}
 }
-.cms-footer-fixed{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: -1;
+@media (min-width: 1200px){
+	.cms-footer-fixed{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: -1;
+	}
+}
+@media (max-width: 1199px){
+	.cms-page-footer-fixed #cms-page{
+		padding-bottom: 0 !important;
+	}
 }
 .scroll-top {
 	height: 55px;

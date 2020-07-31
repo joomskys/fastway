@@ -1,10 +1,10 @@
 .pos-bl{
 	position: absolute!important;
-	left: -470px;
-	bottom: -70px;
+	left: -100px;
+	bottom: 10px;
 	[dir="rtl"] &{
 		left: auto;
-		right: -470px;
+		right: -100px;
 	}
 }
 .cms-shake-image-wrap{
@@ -14,6 +14,9 @@
 		img {
       		@include transform(scaleX(-1));
 		}
+	}
+	@media (max-width: $screen-lg-max){
+		display: none;
 	}
 }
 .cms-shake-image {

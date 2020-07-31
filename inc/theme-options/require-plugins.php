@@ -26,7 +26,7 @@ function fastway_register_required_plugins() {
     $plugins = array(
         /* CMS Plugin */
         array(
-            'name'               => esc_html__('1 Redux Framework', 'fastway'),
+            'name'               => esc_html__('Redux Framework', 'fastway'),
             'slug'               => 'redux-framework',
             'required'           => true,
         ),
@@ -50,7 +50,7 @@ function fastway_register_required_plugins() {
         array(
             'name'               => esc_html__('Revolution Slider', 'fastway'),
             'slug'               => 'revslider',
-            'source'             => 'revslider.zip',
+            'source'             => esc_url('https://cmssuperheroes.com/plugins/revslider.zip'),
             'required'           => true,
         ),
         array(

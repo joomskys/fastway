@@ -230,7 +230,11 @@ ul.menu {
     }
 
 }
-
+@media (min-width: 1200px){
+    #main-menu-mobile{
+        display: none;
+    }
+}
 @media (max-width: 1169px) {
     .site-navigation {
         background-color: #fff;
